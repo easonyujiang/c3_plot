@@ -1,0 +1,21 @@
+* text=auto eol=lf
+*.py text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.cjs text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.css text eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.dll binary
+*.png binary
+*.jpg binary
+*.pdf binary
+# Preserve byte hashes of game inputs and captured experimental evidence.
+VAB/** -text -diff
+engines/** -text
+experiments/** -text -diff
+rockets/** -text
+tests/fixtures/** -text

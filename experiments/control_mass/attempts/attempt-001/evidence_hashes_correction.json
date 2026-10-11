@@ -1,0 +1,56 @@
+{
+ "correction_timestamp": "2026-08-02T15:15:00.639650+00:00",
+ "original_evidence_hashes_sha256": "acf9572f3e718d6f4276260dd8b19bbd88225dc765cd9e7e4e817c72203e2130",
+ "error_description": "attempt-001/evidence_hashes.json 中八个 input 文件的 archived_path 缺少 input\\\\ 层级：记录的路径是 attempts\\\\attempt-001\\<filename>，实际文件位于 attempts\\\\attempt-001\\\\input\\<filename>。",
+ "impact": "仅路径元数据错误。文件内容与 SHA-256 没有变化；本更正文件只 修正路径记录。",
+ "files": {
+  "input\\M0_control.craft": {
+   "recorded_archived_path": "attempts\\\\attempt-001\\\\M0_control.craft",
+   "correct_archived_path": "attempts\\\\attempt-001\\\\input\\\\M0_control.craft",
+   "actual_sha256": "c54e4e90564bf6e92582a75fa3cb5d87506592493b698d1cb9255870026fc3b6",
+   "hash_changed": false
+  },
+  "input\\M0_control.loadmeta": {
+   "recorded_archived_path": "attempts\\\\attempt-001\\\\M0_control.loadmeta",
+   "correct_archived_path": "attempts\\\\attempt-001\\\\input\\\\M0_control.loadmeta",
+   "actual_sha256": "66820d4f78fe366a8380905c152f0abbb1101078a9bcb42d6c4b04c9ea5b09de",
+   "hash_changed": false
+  },
+  "input\\M1_one_chute_default.craft": {
+   "recorded_archived_path": "attempts\\\\attempt-001\\\\M1_one_chute_default.craft",
+   "correct_archived_path": "attempts\\\\attempt-001\\\\input\\\\M1_one_chute_default.craft",
+   "actual_sha256": "58cb4088e2a2c4512b5ddb2727a16164905c652f2a1a353ebe2429791de2addb",
+   "hash_changed": false
+  },
+  "input\\M1_one_chute_default.loadmeta": {
+   "recorded_archived_path": "attempts\\\\attempt-001\\\\M1_one_chute_default.loadmeta",
+   "correct_archived_path": "attempts\\\\attempt-001\\\\input\\\\M1_one_chute_default.loadmeta",
+   "actual_sha256": "20979b3aa84f57acef4ba37a6585d443841de368d80ba4c4b2148d61b9357e52",
+   "hash_changed": false
+  },
+  "input\\M2_two_chutes_default.craft": {
+   "recorded_archived_path": "attempts\\\\attempt-001\\\\M2_two_chutes_default.craft",
+   "correct_archived_path": "attempts\\\\attempt-001\\\\input\\\\M2_two_chutes_default.craft",
+   "actual_sha256": "6c847435deab67b1f13b2fa7278e704193a31110726611245cb0dfba1866477e",
+   "hash_changed": false
+  },
+  "input\\M2_two_chutes_default.loadmeta": {
+   "recorded_archived_path": "attempts\\\\attempt-001\\\\M2_two_chutes_default.loadmeta",
+   "correct_archived_path": "attempts\\\\attempt-001\\\\input\\\\M2_two_chutes_default.loadmeta",
+   "actual_sha256": "b514025742b65977a87b666f22395c65dfac66bad899ae3970c00b3cb615de56",
+   "hash_changed": false
+  },
+  "input\\M3_one_chute_changed_diameter.craft": {
+   "recorded_archived_path": "attempts\\\\attempt-001\\\\M3_one_chute_changed_diameter.craft",
+   "correct_archived_path": "attempts\\\\attempt-001\\\\input\\\\M3_one_chute_changed_diameter.craft",
+   "actual_sha256": "8462e474ea747ad499ce4e72b87779876071e3c52f54778d46cb92635d6d5a7e",
+   "hash_changed": false
+  },
+  "input\\M3_one_chute_changed_diameter.loadmeta": {
+   "recorded_archived_path": "attempts\\\\attempt-001\\\\M3_one_chute_changed_diameter.loadmeta",
+   "correct_archived_path": "attempts\\\\attempt-001\\\\input\\\\M3_one_chute_changed_diameter.loadmeta",
+   "actual_sha256": "203da0a6368cc7ed44f36716fb5933ecc8140d2b21bb45f1ccbaa9d58ed428a2",
+   "hash_changed": false
+  }
+ }
+}

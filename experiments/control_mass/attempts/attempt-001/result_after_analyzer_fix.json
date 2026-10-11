@@ -1,0 +1,214 @@
+{
+ "schema_version": 3,
+ "experiment_name": "control_mass_parachute",
+ "experiment_status": "invalid_design",
+ "input": {
+  "directory": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-001\\input",
+  "files": {
+   "M0_control.craft": {
+    "path": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-001\\input\\M0_control.craft",
+    "present": true
+   },
+   "M1_one_chute_default.craft": {
+    "path": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-001\\input\\M1_one_chute_default.craft",
+    "present": true
+   },
+   "M2_two_chutes_default.craft": {
+    "path": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-001\\input\\M2_two_chutes_default.craft",
+    "present": true
+   },
+   "M3_one_chute_changed_diameter.craft": {
+    "path": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-001\\input\\M3_one_chute_changed_diameter.craft",
+    "present": true
+   },
+   "M0_control.loadmeta": {
+    "path": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-001\\input\\M0_control.loadmeta",
+    "present": true
+   },
+   "M1_one_chute_default.loadmeta": {
+    "path": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-001\\input\\M1_one_chute_default.loadmeta",
+    "present": true
+   },
+   "M2_two_chutes_default.loadmeta": {
+    "path": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-001\\input\\M2_two_chutes_default.loadmeta",
+    "present": true
+   },
+   "M3_one_chute_changed_diameter.loadmeta": {
+    "path": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-001\\input\\M3_one_chute_changed_diameter.loadmeta",
+    "present": true
+   }
+  },
+  "missing_files": [],
+  "sha256": {
+   "M0_control.craft": "c54e4e90564bf6e92582a75fa3cb5d87506592493b698d1cb9255870026fc3b6",
+   "M1_one_chute_default.craft": "58cb4088e2a2c4512b5ddb2727a16164905c652f2a1a353ebe2429791de2addb",
+   "M2_two_chutes_default.craft": "6c847435deab67b1f13b2fa7278e704193a31110726611245cb0dfba1866477e",
+   "M3_one_chute_changed_diameter.craft": "8462e474ea747ad499ce4e72b87779876071e3c52f54778d46cb92635d6d5a7e",
+   "M0_control.loadmeta": "66820d4f78fe366a8380905c152f0abbb1101078a9bcb42d6c4b04c9ea5b09de",
+   "M1_one_chute_default.loadmeta": "20979b3aa84f57acef4ba37a6585d443841de368d80ba4c4b2148d61b9357e52",
+   "M2_two_chutes_default.loadmeta": "b514025742b65977a87b666f22395c65dfac66bad899ae3970c00b3cb615de56",
+   "M3_one_chute_changed_diameter.loadmeta": "203da0a6368cc7ed44f36716fb5933ecc8140d2b21bb45f1ccbaa9d58ed428a2"
+  }
+ },
+ "tolerances": {
+  "serialization_model": "ieee754_binary32_round_trip",
+  "predicted_float32_error_factor": 4.76837158203125e-07,
+  "experiment_margin_t": 1e-07,
+  "diameter_min_delta_m": 2.0,
+  "rationale": "已只读检查真实 KSP .loadmeta：totalMass 小数位数在 5–9 位之间分布，固定七位小数假设不成立，也不能用小数位数统计猜测精度。假设存储值是 IEEE-754 binary32 并通过可往返的十进制序列化（serialization_model = ieee754_binary32_round_trip）；对每个解析值 v 取相邻可表示 binary32 值（下/上邻值）与 ULP，单值舍入界限 = max(|v-lower|, |upper-v|)（恰好可表示时取全间距，保守）。差分/线性/直径实验的观测误差界限按系数绝对值传播（M1-M0：b1+b0；M2-2M1+M0：b2+2b1+b0；M3-M1：b3+b1）。预测端误差单独记录：|预测值| × predicted_float32_error_factor（2^-21，覆盖 float32 结算链 ≤8 次运算的 2^-24 相对误差与 float64 往返）。最终判定容差 = 动态观测误差界限 + 预测误差 + 明确的实验裕量 experiment_margin_t。直径变化阈值单位是米（diameter_min_delta_m）。"
+ },
+ "design_note": "设计校验失败：不给出任何支持/反驳判定。",
+ "fingerprints": {
+  "ksp_root": "D:\\SteamLibrary\\steamapps\\common\\Kerbal Space Program",
+  "config_cache_path": "D:\\SteamLibrary\\steamapps\\common\\Kerbal Space Program\\GameData\\ModuleManager.ConfigCache",
+  "config_cache_sha256": "15c6d8dd36fd9310c964d67f0172906311956e19824ae38f66a1269a2bccaff3",
+  "dlls": {
+   "RealChute": {
+    "path": "D:\\SteamLibrary\\steamapps\\common\\Kerbal Space Program\\GameData\\RealChute\\Plugins\\RealChute.dll",
+    "sha256": "884acb3f4537a2164fa4b6d798be538c6fed54997c5de0a7674527bc973b56d5"
+   },
+   "RealFuels": {
+    "path": "D:\\SteamLibrary\\steamapps\\common\\Kerbal Space Program\\GameData\\RealFuels\\Plugins\\RealFuels.dll",
+    "sha256": "6c6629ed95955f4f0bd88041319444da45115223415bdc20febdb04a33377b5b"
+   }
+  }
+ },
+ "fingerprints_matches_manifest": true,
+ "attachment_plan": {
+  "mode": "stack",
+  "surface_path_available": false,
+  "stack_path_available": true,
+  "supports_experiment": true,
+  "M1_one_chute_default": [
+   "node_stack_top"
+  ],
+  "M2_two_chutes_default": [
+   "node_stack_top",
+   "node_stack_bottom"
+  ],
+  "M3_one_chute_changed_diameter": [
+   "node_stack_top"
+  ],
+  "reasons": [
+   "stack 路径可用：M1/M3 使用 node_stack_top，M2 使用 node_stack_top 与 node_stack_bottom（两个独立节点，不串联）"
+  ]
+ },
+ "runtime_mass_diagnostics": {
+  "M0_control": {
+   "core_mod_mass_t": 0.0,
+   "core_participates_in_design_validation": true,
+   "chutes": [],
+   "zero_noise_reference_scale_t": 0.0940142441738634
+  },
+  "M1_one_chute_default": {
+   "core_mod_mass_t": 0.0,
+   "core_participates_in_design_validation": true,
+   "chutes": [
+    {
+     "raw_value": "3.7252903E-09",
+     "parsed_value_t": 3.7252903e-09,
+     "within_binary32_zero_noise": true,
+     "zero_noise_bound_t": 7.450580596923828e-09,
+     "participates_in_design_validation": false
+    }
+   ],
+   "zero_noise_reference_scale_t": 0.0940142441738634
+  },
+  "M2_two_chutes_default": {
+   "core_mod_mass_t": 0.0,
+   "core_participates_in_design_validation": true,
+   "chutes": [
+    {
+     "raw_value": "0",
+     "parsed_value_t": 0.0,
+     "within_binary32_zero_noise": true,
+     "zero_noise_bound_t": 7.450580596923828e-09,
+     "participates_in_design_validation": false
+    },
+    {
+     "raw_value": "0",
+     "parsed_value_t": 0.0,
+     "within_binary32_zero_noise": true,
+     "zero_noise_bound_t": 7.450580596923828e-09,
+     "participates_in_design_validation": false
+    }
+   ],
+   "zero_noise_reference_scale_t": 0.0940142441738634
+  },
+  "M3_one_chute_changed_diameter": {
+   "core_mod_mass_t": 0.0,
+   "core_participates_in_design_validation": true,
+   "chutes": [
+    {
+     "raw_value": "0.00872013345",
+     "parsed_value_t": 0.00872013345,
+     "within_binary32_zero_noise": false,
+     "zero_noise_bound_t": 7.450580596923828e-09,
+     "participates_in_design_validation": false
+    }
+   ],
+   "zero_noise_reference_scale_t": 0.0940142441738634
+  },
+  "predicted_diameter_mass_delta_t": 0.00872013159096241
+ },
+ "validation": {
+  "valid": false,
+  "diffs": [
+   {
+    "code": "chute_calculation_mode_mismatch",
+    "message": "M2 的降落伞计算模式与 M1 不一致（M1=Manual/calcSelect=False，M2=Automatic/calcSelect=True）；请把 M2 两个降落伞都切换到 Calculations mode = Manual",
+    "m1_calc_select": false,
+    "m2_calc_select": true
+   }
+  ],
+  "root_part": "probeCoreOcto2.v2",
+  "part_counts": {
+   "M0_control": 1,
+   "M1_one_chute_default": 2,
+   "M2_two_chutes_default": 3,
+   "M3_one_chute_changed_diameter": 2
+  },
+  "chute_counts": {
+   "M0_control": 0,
+   "M1_one_chute_default": 1,
+   "M2_two_chutes_default": 2,
+   "M3_one_chute_changed_diameter": 1
+  },
+  "total_mass_t": {
+   "M0_control": 0.0399999991,
+   "M1_one_chute_default": 0.134014249,
+   "M2_two_chutes_default": 0.228028491,
+   "M3_one_chute_changed_diameter": 0.142734379
+  }
+ },
+ "crafts": {
+  "M0_control": {
+   "part_count": 1,
+   "chute_count": 0,
+   "root_part": "probeCoreOcto2.v2_4293424566",
+   "loadmeta_total_mass_t": 0.0399999991,
+   "ship_name": "M0_control"
+  },
+  "M1_one_chute_default": {
+   "part_count": 2,
+   "chute_count": 1,
+   "root_part": "probeCoreOcto2.v2_4293424566",
+   "loadmeta_total_mass_t": 0.134014249,
+   "ship_name": "M1_one_chute_default"
+  },
+  "M2_two_chutes_default": {
+   "part_count": 3,
+   "chute_count": 2,
+   "root_part": "probeCoreOcto2.v2_4293424566",
+   "loadmeta_total_mass_t": 0.228028491,
+   "ship_name": "M2_two_chutes_default"
+  },
+  "M3_one_chute_changed_diameter": {
+   "part_count": 2,
+   "chute_count": 1,
+   "root_part": "probeCoreOcto2.v2_4293424566",
+   "loadmeta_total_mass_t": 0.142734379,
+   "ship_name": "M3_one_chute_changed_diameter"
+  }
+ }
+}

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090d1b">
+  <title>C3-Mass 运力数据库</title>
+  <link rel="stylesheet" href="/css/dashboard.css?v=2026100901">
+  <script src="/static/plotly.min.js"></script>
+  <script>
+    window.__ROCKETS = {{ rockets_json | tojson }};
+    window.__ENGINES = {{ engines_json | tojson }};
+    window.__MISSIONS = {{ missions_json | tojson }};
+    window.__FOLDERS = {{ folders_json | tojson }};
+  </script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="app-sidebar" aria-label="主侧栏">
+      <div class="brand-row">
+        <button class="brand" data-nav="home" aria-label="返回性能总览">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span><strong>C3-MASS</strong><small>MISSION PERFORMANCE</small></span>
+        </button>
+        <button class="icon-button mobile-only" data-action="close-sidebar" aria-label="关闭侧栏">✕</button>
+      </div>
+
+      <div class="sidebar-scroll">
+        <div class="workspace-actions">
+          <button class="btn btn-a" data-action="new-rocket"><span>🚀</span> 新建火箭</button>
+          <button class="btn btn-quiet" data-action="import"><span>📥</span> 导入配置</button>
+        </div>
+
+        <section class="nav-section library-section">
+          <div class="section-label">
+            <span>火箭库</span>
+            <span class="section-actions">
+              <button class="icon-button" data-action="new-folder" title="新建文件夹" aria-label="新建文件夹">＋</button>
+            </span>
+          </div>
+          <div class="sb-tree" id="nav-tree"></div>
+        </section>
+
+        <div class="nav-divider"></div>
+
+        <nav class="workspace-nav" aria-label="工作区">
+          <a class="sb-item on" data-nav="home" href="#"><span class="nav-icon">🏠</span><span>性能总览</span></a>
+          <a class="sb-item" data-nav="planner" href="#"><span class="nav-icon">🧭</span><span>任务规划</span></a>
+          <a class="sb-item" data-nav="query" href="#"><span class="nav-icon">🔍</span><span>高级筛选</span></a>
+        </nav>
+
+        <section class="compare-dock" id="cmp-sec" style="display:none">
+          <div class="section-label"><span>对比栏</span><span class="count-pill" id="cmp-count"></span></div>
+          <div id="cmp-list"></div>
+          <button class="text-button" data-action="clear-compare">清空对比栏</button>
+        </section>
+      </div>
+
+      <footer class="sidebar-footer">
+        <div class="status-dot"></div><span>服务已连接</span>
+        <span class="footer-stat"><b id="f-rocket">--</b> 火箭</span>
+        <span class="footer-stat"><b id="f-best">--</b> 最佳 LEO</span>
+      </footer>
+    </aside>
+
+    <main class="cp" id="main-panel">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-button mobile-menu" data-action="open-sidebar" aria-label="打开侧栏">☰</button>
+          <div class="breadcrumb"><span class="eyebrow">C3 PERFORMANCE DATABASE</span><span class="breadcrumb-title" id="cp-tl">性能总览</span></div>
+        </div>
+        <div class="topbar-actions">
+          <span class="live-stat"><i></i><span id="f-engine">--</span> 台发动机</span>
+          <button class="icon-button" data-action="toggle-theme" aria-label="切换主题" title="切换主题"><span class="theme-icon">🌓</span></button>
+          <span class="cp-act" id="cp-act"></span>
+        </div>
+      </header>
+
+      <div id="view-home" class="cp-view">
+        <div class="cp-tabs" id="cp-tabs" style="display:none" role="tablist" aria-label="火箭数据">
+          <button class="cp-tab on" data-t="overview" role="tab">性能总览</button>
+          <button class="cp-tab" data-t="charts" role="tab">性能曲线</button>
+          <button class="cp-tab" data-t="missions" role="tab">参考任务</button>
+          <button class="cp-tab" data-t="data" role="tab">原始数据</button>
+        </div>
+
+        <div class="cp-body">
+          <div id="tab-overview" class="cp-tabc show"><div class="db-grid" id="overview-grid"></div></div>
+          <div id="tab-charts" class="cp-tabc">
+            <div class="chart-toolbar"><div id="msn-toggles"></div><span class="chart-hint">提示：可切换参考任务，曲线实时联动</span></div>
+            <div class="fairing-toolbar"><label><input type="checkbox" id="chart-fairing-enabled"> 扣除额外整流罩质量</label><label>质量 (t) <input id="chart-fairing-mass" type="number" min="0" step="0.001" value="0" disabled></label><span id="chart-fairing-note">仅扣减图表可用载荷；不模拟抛弃，不修改基准点。已计入箭体的整流罩无需重复扣除。</span></div>
+            <div class="charts-grid">
+              <section class="chart-box"><div class="chart-heading"><div><span class="eyebrow">ENERGY ENVELOPE</span><h3>C3 · 运力曲线</h3></div><span class="chart-unit">km²/s² · t</span></div><div class="ch-inner" id="ch-c3"></div></section>
+              <section class="chart-box"><div class="chart-heading"><div><span class="eyebrow">ASCENT RESERVE</span><h3>Δv 余量 · 运力曲线</h3></div><span class="chart-unit">m/s · t</span></div><div class="ch-inner" id="ch-dv"></div></section>
+            </div>
+          </div>
+          <div id="tab-missions" class="cp-tabc"><section class="card"><div class="card-heading"><div><span class="eyebrow">MISSION READINESS</span><h3>参考任务运力</h3></div></div><div id="tbl-area"></div></section></div>
+          <div id="tab-data" class="cp-tabc"><section class="card data-card"><div class="card-heading"><div><span class="eyebrow">COMPUTATION TRACE</span><h3>原始计算数据</h3></div><span class="data-chip">JSON</span></div><pre id="raw-json"></pre></section></div>
+        </div>
+      </div>
+
+      <div id="view-planner" class="cp-view" style="display:none">
+        <section class="planner-hero">
+          <p class="eyebrow">MISSION DESIGN DESK</p><h1>任务规划 · 任意轨道运力计算</h1><p>根据 C3 数据库与详细验证模型，规划任务载荷并匹配全库火箭；支持任意目标高度、倾角、发射场纬度与停泊轨道的运力查询。</p>
+        </section>
+        <div class="cp-body" id="planner-body">
+          <section class="card planner-card"><div class="card-heading"><div><span class="eyebrow">VEHICLE MATCH</span><h3>车辆匹配</h3></div></div>
+            <div class="planner-inputs fr">
+              <label><span>参考任务</span><select id="mp-msn"></select></label>
+              <label><span>任务载荷 <b>(t)</b></span><input id="mp-pl" type="number" step="0.01" min="0.01" value="1.0"></label>
+              <label><span>任务 C3 <b>(km²/s²)</b></span><input id="mp-c3" type="number" step="0.1" placeholder="可选：输入目标 C3"></label>
+              <button class="btn btn-a" data-planner="find">匹配全库火箭<span>→</span></button>
+            </div><div id="mp-res"></div>
+          </section>
+          <section class="card planner-card orbit-query-card"><div class="card-heading"><div><span class="eyebrow">ORBIT CAPACITY DATABASE</span><h3>任意地球轨道运力查询</h3></div><span class="data-chip">实时计算</span></div>
+            <div class="orbit-presets">
+              <button class="orbit-preset is-on" type="button" data-orbit-preset="iss">ISS · 408 km · 51.6°</button>
+              <button class="orbit-preset" type="button" data-orbit-preset="sso">SSO · 600 km · 97.8°</button>
+              <button class="orbit-preset" type="button" data-orbit-preset="gto">GTO · 35786 km · 28.5°</button>
+              <button class="orbit-preset" type="button" data-orbit-preset="geo">GEO · 35786 km · 0°</button>
+            </div>
+            <div class="planner-inputs orbit-query-inputs">
+              <label><span>交付方式</span><select id="oc-type"><option value="circular">目标圆轨道（含圆化）</option><option value="transfer">转移轨道注入（不圆化）</option></select></label>
+              <label><span>到达点火策略</span><select id="oc-strategy"><option value="combined">合并圆化与变轨（combined）</option><option value="separate">分开圆化与变轨（separate）</option></select></label>
+              <label><span>目标高度 <b>(km)</b></span><input id="oc-alt" type="number" min="80" value="408"></label>
+              <label><span>目标倾角 <b>(°)</b></span><input id="oc-inc" type="number" min="0" max="180" value="51.6"></label>
+              <label><span>任务载荷 <b>(t)</b></span><input id="oc-pl" type="number" min="0" step="0.01" placeholder="可选：指定载荷"></label>
+              <label><span>初始停泊轨道 <b>(km)</b></span><input id="oc-park" type="number" min="80" value="220"></label>
+              <label><span>发射场纬度 <b>(°)</b></span><input id="oc-lat" type="number" min="-90" max="90" step="0.01" value="19.81"></label>
+              <button class="btn btn-a orbit-calc-btn" id="oc-run" type="button" data-planner="orbit"><span>⚡</span> 计算并匹配火箭</button>
+            </div>
+            <p class="orbit-strategy-hint" id="oc-strategy-hint">远地点圆轨与剩余倾角变化合并为一次点火。</p>
+            <p class="orbit-model-note">模型假设：默认停泊轨道 220 km、发射场纬度 19.81°，重力损失按经验曲线计入。</p>
+            <div id="oc-res"></div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="mo" id="mo-editor" role="dialog" aria-modal="true" aria-labelledby="ed-title"><div class="mdl editor-modal">
+    <button class="modal-close" data-modal-close aria-label="关闭">✕</button><span class="eyebrow">VEHICLE CONFIGURATION</span><h2 id="ed-title">新建火箭</h2><div class="editor-notice" id="ed-notice" style="display:none"></div>
+    <label>火箭名称</label><input id="ed-name" placeholder="例如：Neutron IV">
+    <div class="sec-tl">级段<button class="btn btn-s" data-ed-action="add-stage">＋ 添加级段</button></div><div id="ed-stages"></div>
+    <div class="sec-tl">校准点<span class="hint">至少 3 个校准点</span><button class="btn btn-s" data-ed-action="add-cal">＋ 添加校准点</button></div><div id="ed-cals"></div>
+    <div class="sec-tl">参考任务<span class="hint">可选</span><button class="btn btn-s" data-ed-action="add-mission">＋ 添加任务</button></div><div id="ed-missions"></div>
+    <div class="mdl-act"><span id="ed-err"></span><button class="btn btn-quiet" data-ed-action="cancel">取消</button><button class="btn btn-a" data-ed-action="save">保存并计算</button></div>
+  </div></div>
+
+  <div class="mo" id="mo-query" role="dialog" aria-modal="true" aria-label="高级筛选"><div class="mdl query-modal">
+    <button class="modal-close" data-modal-close aria-label="关闭">✕</button><span class="eyebrow">DATABASE EXPLORER</span><h2>高级筛选</h2><div class="qf" id="qf-fields"></div>
+    <div class="qa"><button class="btn btn-a" data-q="search">查询</button><button class="btn btn-quiet" data-q="reset">重置</button><button class="btn btn-quiet" data-q="close">关闭</button></div><div id="q-res"></div>
+  </div></div>
+
+  <div class="mo" id="mo-import" role="dialog" aria-modal="true" aria-label="导入配置"><div class="mdl import-modal">
+    <button class="modal-close" data-modal-close aria-label="关闭">✕</button><span class="eyebrow">CONFIGURATION INGEST</span><h2>导入载具配置</h2><p class="modal-lead">通过 YAML、KSP VAB .craft 或批量文件导入载具配置，半自动读取并解析后进入编辑器确认。</p>
+    <section class="saved-craft-library"><div class="sec-tl">游戏中保存的火箭<button class="btn btn-s" id="im-library-refresh" type="button">刷新</button></div><p id="im-library-status">正在读取存档…</p><div id="im-library-list"></div></section>
+    <div class="import-source-grid">
+      <section class="dz import-source-card" id="im-drop">
+        <div class="source-badge">BATCH</div><div class="dzi">📦</div><div class="dzt">批量导入配置</div><div class="dzh">拖放文件或选择文件夹：支持 YAML / .craft / VAB 草稿批量预览与导入</div>
+        <input type="file" id="im-file" accept=".yaml,.yml,.craft,.loadmeta" multiple>
+        <button class="btn btn-s import-folder-btn" id="im-folder-btn" type="button">选择文件夹</button><input type="file" id="im-folder-file" webkitdirectory directory multiple>
+      </section>
+      <section class="dz import-source-card vab-source-card" id="im-vab-drop">
+        <div class="source-badge">KSP VAB</div><div class="dzi">🚀</div><div class="dzt">半自动读取 .craft</div><div class="dzh">从 KSP VAB 存档解析级段、发动机与质量证据；SSTU 布局按回退表估算，需以 GameData 安装为准</div>
+        <button class="btn btn-a" id="im-vab-btn" type="button">选择 .craft 文件</button>
+        <input type="file" id="im-vab-file" accept=".craft">
+      </section>
+    </div>
+    <div class="import-batch-bar"><span id="im-batch-summary">选择文件后先预览，系统不会立即覆盖数据库。</span><label><input type="checkbox" id="im-batch-updates" checked>允许同名更新</label><button class="btn btn-a" id="im-batch-confirm" type="button" disabled>导入可用项目</button></div>
+    <div class="sec-tl">粘贴 YAML</div><textarea id="im-paste" placeholder="rocket:&#10;  name: ..."></textarea>
+    <div class="mdl-act"><button class="btn btn-quiet" id="im-close">关闭</button><button class="btn btn-a" id="im-paste-btn">解析并导入</button></div><div id="im-res"></div>
+  </div></div>
+  <div class="sidebar-backdrop" data-action="close-sidebar"></div><div class="toast" id="toast"></div>
+  <script type="module" src="/js/main-v2.js?v=2026100901"></script>
+</body>
+</html>

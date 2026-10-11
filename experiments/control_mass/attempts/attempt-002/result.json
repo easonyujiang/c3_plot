@@ -1,0 +1,347 @@
+{
+ "schema_version": 3,
+ "experiment_name": "control_mass_parachute",
+ "experiment_status": "analyzed",
+ "input": {
+  "directory": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-002\\input",
+  "files": {
+   "M0_control.craft": {
+    "path": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-002\\input\\M0_control.craft",
+    "present": true
+   },
+   "M1_one_chute_default.craft": {
+    "path": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-002\\input\\M1_one_chute_default.craft",
+    "present": true
+   },
+   "M2_two_chutes_default.craft": {
+    "path": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-002\\input\\M2_two_chutes_default.craft",
+    "present": true
+   },
+   "M3_one_chute_changed_diameter.craft": {
+    "path": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-002\\input\\M3_one_chute_changed_diameter.craft",
+    "present": true
+   },
+   "M0_control.loadmeta": {
+    "path": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-002\\input\\M0_control.loadmeta",
+    "present": true
+   },
+   "M1_one_chute_default.loadmeta": {
+    "path": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-002\\input\\M1_one_chute_default.loadmeta",
+    "present": true
+   },
+   "M2_two_chutes_default.loadmeta": {
+    "path": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-002\\input\\M2_two_chutes_default.loadmeta",
+    "present": true
+   },
+   "M3_one_chute_changed_diameter.loadmeta": {
+    "path": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-002\\input\\M3_one_chute_changed_diameter.loadmeta",
+    "present": true
+   }
+  },
+  "missing_files": [],
+  "sha256": {
+   "M0_control.craft": "c54e4e90564bf6e92582a75fa3cb5d87506592493b698d1cb9255870026fc3b6",
+   "M1_one_chute_default.craft": "58cb4088e2a2c4512b5ddb2727a16164905c652f2a1a353ebe2429791de2addb",
+   "M2_two_chutes_default.craft": "c1f6a9b6861ffaae00594537a13c0cf3c934e4bbef6fb074251c3aab9ed07df6",
+   "M3_one_chute_changed_diameter.craft": "8462e474ea747ad499ce4e72b87779876071e3c52f54778d46cb92635d6d5a7e",
+   "M0_control.loadmeta": "66820d4f78fe366a8380905c152f0abbb1101078a9bcb42d6c4b04c9ea5b09de",
+   "M1_one_chute_default.loadmeta": "20979b3aa84f57acef4ba37a6585d443841de368d80ba4c4b2148d61b9357e52",
+   "M2_two_chutes_default.loadmeta": "5ffd208c2037ea91be4be57c7303777b0e7aec60a9455ef7d5755f9a849064d2",
+   "M3_one_chute_changed_diameter.loadmeta": "203da0a6368cc7ed44f36716fb5933ecc8140d2b21bb45f1ccbaa9d58ed428a2"
+  }
+ },
+ "tolerances": {
+  "serialization_model": "ieee754_binary32_round_trip",
+  "predicted_float32_error_factor": 4.76837158203125e-07,
+  "experiment_margin_t": 1e-07,
+  "diameter_min_delta_m": 2.0,
+  "rationale": "已只读检查真实 KSP .loadmeta：totalMass 小数位数在 5–9 位之间分布，固定七位小数假设不成立，也不能用小数位数统计猜测精度。假设存储值是 IEEE-754 binary32 并通过可往返的十进制序列化（serialization_model = ieee754_binary32_round_trip）；对每个解析值 v 取相邻可表示 binary32 值（下/上邻值）与 ULP，单值舍入界限 = max(|v-lower|, |upper-v|)（恰好可表示时取全间距，保守）。差分/线性/直径实验的观测误差界限按系数绝对值传播（M1-M0：b1+b0；M2-2M1+M0：b2+2b1+b0；M3-M1：b3+b1）。预测端误差单独记录：|预测值| × predicted_float32_error_factor（2^-21，覆盖 float32 结算链 ≤8 次运算的 2^-24 相对误差与 float64 往返）。最终判定容差 = 动态观测误差界限 + 预测误差 + 明确的实验裕量 experiment_margin_t。直径变化阈值单位是米（diameter_min_delta_m）。"
+ },
+ "design_note": "配对差分：M1−M0 隔离单个降落伞的实际增量；M2 检查线性与实例计数；M3 检查 RealChute 的 chute mass 是否真正进入 loadmeta。本实验用于打破现有样本中 parachuteSingle 与 mk1pod.v2 的完全共线。绝对质量仅用于诊断，不作模型判定。观测误差界限按 IEEE-754 binary32 往返序列化动态计算；小数位数只用于诊断，不用于推导精度。",
+ "fingerprints": {
+  "ksp_root": "D:\\SteamLibrary\\steamapps\\common\\Kerbal Space Program",
+  "config_cache_path": "D:\\SteamLibrary\\steamapps\\common\\Kerbal Space Program\\GameData\\ModuleManager.ConfigCache",
+  "config_cache_sha256": "15c6d8dd36fd9310c964d67f0172906311956e19824ae38f66a1269a2bccaff3",
+  "dlls": {
+   "RealChute": {
+    "path": "D:\\SteamLibrary\\steamapps\\common\\Kerbal Space Program\\GameData\\RealChute\\Plugins\\RealChute.dll",
+    "sha256": "884acb3f4537a2164fa4b6d798be538c6fed54997c5de0a7674527bc973b56d5"
+   },
+   "RealFuels": {
+    "path": "D:\\SteamLibrary\\steamapps\\common\\Kerbal Space Program\\GameData\\RealFuels\\Plugins\\RealFuels.dll",
+    "sha256": "6c6629ed95955f4f0bd88041319444da45115223415bdc20febdb04a33377b5b"
+   }
+  }
+ },
+ "fingerprints_matches_manifest": true,
+ "attachment_plan": {
+  "mode": "stack",
+  "surface_path_available": false,
+  "stack_path_available": true,
+  "supports_experiment": true,
+  "M1_one_chute_default": [
+   "node_stack_top"
+  ],
+  "M2_two_chutes_default": [
+   "node_stack_top",
+   "node_stack_bottom"
+  ],
+  "M3_one_chute_changed_diameter": [
+   "node_stack_top"
+  ],
+  "reasons": [
+   "stack 路径可用：M1/M3 使用 node_stack_top，M2 使用 node_stack_top 与 node_stack_bottom（两个独立节点，不串联）"
+  ]
+ },
+ "runtime_mass_diagnostics": {
+  "M0_control": {
+   "core_mod_mass_t": 0.0,
+   "core_participates_in_design_validation": true,
+   "chutes": [],
+   "zero_noise_reference_scale_t": 0.0940142441738634
+  },
+  "M1_one_chute_default": {
+   "core_mod_mass_t": 0.0,
+   "core_participates_in_design_validation": true,
+   "chutes": [
+    {
+     "raw_value": "3.7252903E-09",
+     "parsed_value_t": 3.7252903e-09,
+     "within_binary32_zero_noise": true,
+     "zero_noise_bound_t": 7.450580596923828e-09,
+     "participates_in_design_validation": false
+    }
+   ],
+   "zero_noise_reference_scale_t": 0.0940142441738634
+  },
+  "M2_two_chutes_default": {
+   "core_mod_mass_t": 0.0,
+   "core_participates_in_design_validation": true,
+   "chutes": [
+    {
+     "raw_value": "3.7252903E-09",
+     "parsed_value_t": 3.7252903e-09,
+     "within_binary32_zero_noise": true,
+     "zero_noise_bound_t": 7.450580596923828e-09,
+     "participates_in_design_validation": false
+    },
+    {
+     "raw_value": "3.7252903E-09",
+     "parsed_value_t": 3.7252903e-09,
+     "within_binary32_zero_noise": true,
+     "zero_noise_bound_t": 7.450580596923828e-09,
+     "participates_in_design_validation": false
+    }
+   ],
+   "zero_noise_reference_scale_t": 0.0940142441738634
+  },
+  "M3_one_chute_changed_diameter": {
+   "core_mod_mass_t": 0.0,
+   "core_participates_in_design_validation": true,
+   "chutes": [
+    {
+     "raw_value": "0.00872013345",
+     "parsed_value_t": 0.00872013345,
+     "within_binary32_zero_noise": false,
+     "zero_noise_bound_t": 7.450580596923828e-09,
+     "participates_in_design_validation": false
+    }
+   ],
+   "zero_noise_reference_scale_t": 0.0940142441738634
+  },
+  "predicted_diameter_mass_delta_t": 0.00872013159096241
+ },
+ "validation": {
+  "valid": true,
+  "diffs": [],
+  "root_part": "probeCoreOcto2.v2",
+  "part_counts": {
+   "M0_control": 1,
+   "M1_one_chute_default": 2,
+   "M2_two_chutes_default": 3,
+   "M3_one_chute_changed_diameter": 2
+  },
+  "chute_counts": {
+   "M0_control": 0,
+   "M1_one_chute_default": 1,
+   "M2_two_chutes_default": 2,
+   "M3_one_chute_changed_diameter": 1
+  },
+  "total_mass_t": {
+   "M0_control": 0.0399999991,
+   "M1_one_chute_default": 0.134014249,
+   "M2_two_chutes_default": 0.228028491,
+   "M3_one_chute_changed_diameter": 0.142734379
+  }
+ },
+ "crafts": {
+  "M0_control": {
+   "part_count": 1,
+   "chute_count": 0,
+   "root_part": "probeCoreOcto2.v2_4293424566",
+   "loadmeta_total_mass_t": 0.0399999991,
+   "ship_name": "M0_control"
+  },
+  "M1_one_chute_default": {
+   "part_count": 2,
+   "chute_count": 1,
+   "root_part": "probeCoreOcto2.v2_4293424566",
+   "loadmeta_total_mass_t": 0.134014249,
+   "ship_name": "M1_one_chute_default"
+  },
+  "M2_two_chutes_default": {
+   "part_count": 3,
+   "chute_count": 2,
+   "root_part": "probeCoreOcto2.v2_4293424566",
+   "loadmeta_total_mass_t": 0.228028491,
+   "ship_name": "M2_two_chutes_default"
+  },
+  "M3_one_chute_changed_diameter": {
+   "part_count": 2,
+   "chute_count": 1,
+   "root_part": "probeCoreOcto2.v2_4293424566",
+   "loadmeta_total_mass_t": 0.142734379,
+   "ship_name": "M3_one_chute_changed_diameter"
+  }
+ },
+ "differential": {
+  "observed_one_chute_t": 0.0940142497420311,
+  "observed_two_chutes_t": 0.1880284920334816,
+  "observed_diameter_effect_t": 0.00872012972831726,
+  "loadmeta_numbers": {
+   "M0_control": {
+    "raw_decimal": "0.0399999991",
+    "parsed_decimal_t": 0.0399999991,
+    "stored_f32_t": 0.03999999910593033,
+    "decimal_roundtrip_delta_t": 5.930325674974313e-12,
+    "serialization_model": "ieee754_binary32_round_trip",
+    "serialization_valid": true,
+    "lower_neighbour_t": 0.03999999538064003,
+    "upper_neighbour_t": 0.04000000283122063,
+    "lower_midpoint_t": 0.03999999724328518,
+    "upper_midpoint_t": 0.04000000096857548,
+    "quantization_bound_t": 1.862645149230957e-09,
+    "fractional_digit_count": 10
+   },
+   "M1_one_chute_default": {
+    "raw_decimal": "0.134014249",
+    "parsed_decimal_t": 0.134014249,
+    "stored_f32_t": 0.13401424884796143,
+    "decimal_roundtrip_delta_t": 1.5203857617329675e-10,
+    "serialization_model": "ieee754_binary32_round_trip",
+    "serialization_valid": true,
+    "lower_neighbour_t": 0.13401423394680023,
+    "upper_neighbour_t": 0.13401426374912262,
+    "lower_midpoint_t": 0.13401424139738083,
+    "upper_midpoint_t": 0.13401425629854202,
+    "quantization_bound_t": 7.450580596923828e-09,
+    "fractional_digit_count": 9
+   },
+   "M2_two_chutes_default": {
+    "raw_decimal": "0.228028491",
+    "parsed_decimal_t": 0.228028491,
+    "stored_f32_t": 0.22802849113941193,
+    "decimal_roundtrip_delta_t": 1.39411926447508e-10,
+    "serialization_model": "ieee754_binary32_round_trip",
+    "serialization_valid": true,
+    "lower_neighbour_t": 0.22802847623825073,
+    "upper_neighbour_t": 0.22802850604057312,
+    "lower_midpoint_t": 0.22802848368883133,
+    "upper_midpoint_t": 0.22802849858999252,
+    "quantization_bound_t": 7.450580596923828e-09,
+    "fractional_digit_count": 9
+   },
+   "M3_one_chute_changed_diameter": {
+    "raw_decimal": "0.142734379",
+    "parsed_decimal_t": 0.142734379,
+    "stored_f32_t": 0.1427343785762787,
+    "decimal_roundtrip_delta_t": 4.2372130804047003e-10,
+    "serialization_model": "ieee754_binary32_round_trip",
+    "serialization_valid": true,
+    "lower_neighbour_t": 0.1427343636751175,
+    "upper_neighbour_t": 0.14273439347743988,
+    "lower_midpoint_t": 0.1427343711256981,
+    "upper_midpoint_t": 0.14273438602685928,
+    "quantization_bound_t": 7.450580596923828e-09,
+    "fractional_digit_count": 9
+   }
+  },
+  "serialization_model": "ieee754_binary32_round_trip",
+  "evidence": {
+   "prefab_part_mass_t": 0.075,
+   "case_mass_t": 0.075000003,
+   "material": "Nylon",
+   "area_density_t_per_unit": 5.65e-05,
+   "diameter_m1_m": 20.7,
+   "diameter_m3_m": 25.0,
+   "chute_mass_m1_t": 0.01901424117386341,
+   "chute_mass_m3_t": 0.02773437276482582,
+   "realchute_mass_delta_t": 0.01901424303650856,
+   "predicted_settled_part_mass_t": 0.09401424303650856,
+   "missing": [],
+   "diagnostics": []
+  },
+  "models": {
+   "prefab_base_only": {
+    "name": "prefab_base_only",
+    "description": "单个降落伞的贡献 = 补丁后 PART mass",
+    "applicable": true,
+    "evidence_complete": true,
+    "predicted_increment_t": 0.075,
+    "observed_increment_t": 0.0940142497420311,
+    "absolute_error_t": 0.0190142497420311,
+    "observed_error_bound_t": 9.313225746154785e-09,
+    "predicted_error_t": 3.5762786865234374e-08,
+    "verdict_tolerance_t": 1.4507601261138916e-07,
+    "verdict": "contradicted"
+   },
+   "realchute_settled_mass": {
+    "name": "realchute_settled_mass",
+    "description": "单个降落伞的贡献 = caseMass + ChuteMass",
+    "applicable": true,
+    "evidence_complete": true,
+    "predicted_increment_t": 0.09401424303650856,
+    "observed_increment_t": 0.0940142497420311,
+    "absolute_error_t": 6.705522540007003e-09,
+    "observed_error_bound_t": 9.313225746154785e-09,
+    "predicted_error_t": 4.4829484480146674e-08,
+    "verdict_tolerance_t": 1.5414271022630146e-07,
+    "verdict": "supported"
+   },
+   "part_effectively_excluded": {
+    "name": "part_effectively_excluded",
+    "description": "单个降落伞的贡献 ≈ 0",
+    "applicable": true,
+    "evidence_complete": true,
+    "predicted_increment_t": 0.0,
+    "observed_increment_t": 0.0940142497420311,
+    "absolute_error_t": 0.0940142497420311,
+    "observed_error_bound_t": 9.313225746154785e-09,
+    "predicted_error_t": 0.0,
+    "verdict_tolerance_t": 1.0931322574615478e-07,
+    "verdict": "contradicted"
+   }
+  },
+  "linearity_check": {
+   "predicted_two_chutes_t": 0.1880284994840622,
+   "observed_two_chutes_t": 0.1880284920334816,
+   "absolute_error_t": 7.450580596923828e-09,
+   "observed_error_bound_t": 2.421438694000244e-08,
+   "predicted_error_t": 0.0,
+   "verdict_tolerance_t": 1.2421438694000244e-07,
+   "within_tolerance": true,
+   "verdict": "supported"
+  },
+  "diameter_check": {
+   "predicted_chute_mass_delta_t": 0.00872013159096241,
+   "observed_diameter_effect_t": 0.00872012972831726,
+   "absolute_error_t": 1.862645149230957e-09,
+   "observed_error_bound_t": 1.4901161193847656e-08,
+   "predicted_error_t": 4.158082766991811e-09,
+   "verdict_tolerance_t": 1.1905924396083946e-07,
+   "verdict": "supported"
+  },
+  "design_note": "配对差分：M1−M0 隔离单个降落伞的实际增量；M2 检查线性与实例计数；M3 检查 RealChute 的 chute mass 是否真正进入 loadmeta。本实验用于打破现有样本中 parachuteSingle 与 mk1pod.v2 的完全共线。绝对质量仅用于诊断，不作模型判定。观测误差界限按 IEEE-754 binary32 往返序列化动态计算；小数位数只用于诊断，不用于推导精度。"
+ },
+ "caveat": "本分析的有效性完全取决于用户采集的 craft/loadmeta 是否真实且未被污染；synthetic 夹具的结果不构成真实 KSP 证据。"
+}

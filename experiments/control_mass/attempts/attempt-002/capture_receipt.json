@@ -1,0 +1,146 @@
+{
+ "attempt": "attempt-002",
+ "capture_timestamp": "2026-08-02T15:18:18.892784+00:00",
+ "parent_attempt": "attempt-001",
+ "source_save_directory": "D:\\SteamLibrary\\steamapps\\common\\Kerbal Space Program\\saves\\测试\\Ships\\VAB",
+ "ksp": {
+  "ksp_root": "D:\\SteamLibrary\\steamapps\\common\\Kerbal Space Program",
+  "config_cache_sha256": "15c6d8dd36fd9310c964d67f0172906311956e19824ae38f66a1269a2bccaff3",
+  "dlls": {
+   "RealChute": {
+    "path": "D:\\SteamLibrary\\steamapps\\common\\Kerbal Space Program\\GameData\\RealChute\\Plugins\\RealChute.dll",
+    "sha256": "884acb3f4537a2164fa4b6d798be538c6fed54997c5de0a7674527bc973b56d5"
+   },
+   "RealFuels": {
+    "path": "D:\\SteamLibrary\\steamapps\\common\\Kerbal Space Program\\GameData\\RealFuels\\Plugins\\RealFuels.dll",
+    "sha256": "6c6629ed95955f4f0bd88041319444da45115223415bdc20febdb04a33377b5b"
+   }
+  }
+ },
+ "inherited_files": {
+  "M0_control.craft": {
+   "source": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-001\\input\\M0_control.craft",
+   "sha256": "c54e4e90564bf6e92582a75fa3cb5d87506592493b698d1cb9255870026fc3b6",
+   "note": "从 attempt-001 不可变归档复制，未做任何修改"
+  },
+  "M0_control.loadmeta": {
+   "source": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-001\\input\\M0_control.loadmeta",
+   "sha256": "66820d4f78fe366a8380905c152f0abbb1101078a9bcb42d6c4b04c9ea5b09de",
+   "note": "从 attempt-001 不可变归档复制，未做任何修改"
+  },
+  "M1_one_chute_default.craft": {
+   "source": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-001\\input\\M1_one_chute_default.craft",
+   "sha256": "58cb4088e2a2c4512b5ddb2727a16164905c652f2a1a353ebe2429791de2addb",
+   "note": "从 attempt-001 不可变归档复制，未做任何修改"
+  },
+  "M1_one_chute_default.loadmeta": {
+   "source": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-001\\input\\M1_one_chute_default.loadmeta",
+   "sha256": "20979b3aa84f57acef4ba37a6585d443841de368d80ba4c4b2148d61b9357e52",
+   "note": "从 attempt-001 不可变归档复制，未做任何修改"
+  },
+  "M3_one_chute_changed_diameter.craft": {
+   "source": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-001\\input\\M3_one_chute_changed_diameter.craft",
+   "sha256": "8462e474ea747ad499ce4e72b87779876071e3c52f54778d46cb92635d6d5a7e",
+   "note": "从 attempt-001 不可变归档复制，未做任何修改"
+  },
+  "M3_one_chute_changed_diameter.loadmeta": {
+   "source": "E:\\Create\\Code\\c3_plot\\experiments\\control_mass\\attempts\\attempt-001\\input\\M3_one_chute_changed_diameter.loadmeta",
+   "sha256": "203da0a6368cc7ed44f36716fb5933ecc8140d2b21bb45f1ccbaa9d58ed428a2",
+   "note": "从 attempt-001 不可变归档复制，未做任何修改"
+  }
+ },
+ "replaced_old_m2": {
+  "M2_two_chutes_default.craft": "6c847435deab67b1f13b2fa7278e704193a31110726611245cb0dfba1866477e",
+  "M2_two_chutes_default.loadmeta": "b514025742b65977a87b666f22395c65dfac66bad899ae3970c00b3cb615de56",
+  "note": "attempt-001 中的旧 M2（calcSelect=True，Automatic）已被用户重新保存的版本替换"
+ },
+ "new_m2": {
+  "M2_two_chutes_default.craft": {
+   "source_path": "D:\\SteamLibrary\\steamapps\\common\\Kerbal Space Program\\saves\\测试\\Ships\\VAB\\M2_two_chutes_default.craft",
+   "source_size": 30593,
+   "source_mtime": "2026-08-02T23:13:53.101285+08:00",
+   "sha256": "c1f6a9b6861ffaae00594537a13c0cf3c934e4bbef6fb074251c3aab9ed07df6"
+  },
+  "M2_two_chutes_default.loadmeta": {
+   "source_path": "D:\\SteamLibrary\\steamapps\\common\\Kerbal Space Program\\saves\\测试\\Ships\\VAB\\M2_two_chutes_default.loadmeta",
+   "source_size": 905,
+   "source_mtime": "2026-08-02T23:13:46.959400+08:00",
+   "sha256": "5ffd208c2037ea91be4be57c7303777b0e7aec60a9455ef7d5755f9a849064d2"
+  }
+ },
+ "design_evidence": {
+  "calc_select_false_parsed": [
+   {
+    "part": "parachuteSingle_4293421634",
+    "calcSelect": "False"
+   },
+   {
+    "part": "parachuteSingle_4293420688",
+    "calcSelect": "False"
+   }
+  ],
+  "chute_design_identical": true,
+  "core_attn_rows": [
+   "bottom,parachuteSingle_4293420688_0|-0.0610621013|0_0|-1|0_0|-0.0610621013|0_0|-1|0",
+   "top,parachuteSingle_4293421634_0|0.0610621013|0_0|1|0_0|0.0610621013|0_0|1|0"
+  ],
+  "top_chute": "parachuteSingle_4293421634",
+  "bottom_chute": "parachuteSingle_4293420688",
+  "topology": {
+   "node_stack_top": "parachuteSingle_4293421634",
+   "node_stack_bottom": "parachuteSingle_4293420688"
+  }
+ },
+ "copy_status": "complete",
+ "operator_note": "M0/M1/M3 六个文件从 attempt-001 归档继承；M2 两个文件从用户重新保存的 KSP VAB 目录只读复制。canonical input/、attempt-001、原 capture_receipt.json 与 result.json 均未改写。",
+ "files": [
+  {
+   "name": "M0_control.craft",
+   "origin": "inherited_from_attempt-001",
+   "size": 20363,
+   "sha256": "c54e4e90564bf6e92582a75fa3cb5d87506592493b698d1cb9255870026fc3b6"
+  },
+  {
+   "name": "M0_control.loadmeta",
+   "origin": "inherited_from_attempt-001",
+   "size": 766,
+   "sha256": "66820d4f78fe366a8380905c152f0abbb1101078a9bcb42d6c4b04c9ea5b09de"
+  },
+  {
+   "name": "M1_one_chute_default.craft",
+   "origin": "inherited_from_attempt-001",
+   "size": 25477,
+   "sha256": "58cb4088e2a2c4512b5ddb2727a16164905c652f2a1a353ebe2429791de2addb"
+  },
+  {
+   "name": "M1_one_chute_default.loadmeta",
+   "origin": "inherited_from_attempt-001",
+   "size": 905,
+   "sha256": "20979b3aa84f57acef4ba37a6585d443841de368d80ba4c4b2148d61b9357e52"
+  },
+  {
+   "name": "M3_one_chute_changed_diameter.craft",
+   "origin": "inherited_from_attempt-001",
+   "size": 25477,
+   "sha256": "8462e474ea747ad499ce4e72b87779876071e3c52f54778d46cb92635d6d5a7e"
+  },
+  {
+   "name": "M3_one_chute_changed_diameter.loadmeta",
+   "origin": "inherited_from_attempt-001",
+   "size": 914,
+   "sha256": "203da0a6368cc7ed44f36716fb5933ecc8140d2b21bb45f1ccbaa9d58ed428a2"
+  },
+  {
+   "name": "M2_two_chutes_default.craft",
+   "origin": "new_user_recapture",
+   "size": 30593,
+   "sha256": "c1f6a9b6861ffaae00594537a13c0cf3c934e4bbef6fb074251c3aab9ed07df6"
+  },
+  {
+   "name": "M2_two_chutes_default.loadmeta",
+   "origin": "new_user_recapture",
+   "size": 905,
+   "sha256": "5ffd208c2037ea91be4be57c7303777b0e7aec60a9455ef7d5755f9a849064d2"
+  }
+ ]
+}

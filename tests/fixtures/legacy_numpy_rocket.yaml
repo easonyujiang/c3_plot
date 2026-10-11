@@ -1,0 +1,20 @@
+# Fixed compatibility fixture; never use mutable production results in this test.
+rocket:
+  name: legacy-codec-fixture
+stages:
+  - wet_mass_t: 10
+    dry_mass_t: 2
+    engines:
+      cfg: SC-ENG-Merlin-1B.cfg
+      count: 1
+calibration:
+  - {payload_t: 0.2, orbit_alt_km: 220, dv_rem_m_s: 1000}
+  - {payload_t: 0.5, orbit_alt_km: 220, dv_rem_m_s: 700}
+  - {payload_t: 1.0, orbit_alt_km: 220, dv_rem_m_s: 200}
+reference_missions:
+  gto:
+    label: GTO
+    c3: -16.35
+    apoapsis_km: 35786
+    dv: !!python/object/apply:numpy.core.multiarray.scalar
+      - ignored-legacy-cached-value

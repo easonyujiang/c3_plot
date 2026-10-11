@@ -1,0 +1,47 @@
+ship = Anonymous Simple
+version = 1.12.5
+description = minimal anonymous fixture
+type = VAB
+PART
+{
+	part = TestEngine-1_4293000001
+	persistentId = 4293000001
+	istg = 2
+	dstg = 2
+	sidx = 0
+	sqor = 2
+	sepI = 1
+	modCost = 0
+	modMass = 0
+	attN = decoupler1_4293000000
+	attN = decoupler1_4293000000
+	sym = TestEngine-1_4293000002
+	MODULE
+	{
+		name = ModuleEnginesFX
+		engineID = main
+		thrustPercentage = 100
+		PROPELLANT
+		{
+			name = LiquidFuel
+			ratio = 1
+		}
+		PROPELLANT
+		{
+			name = Oxidizer
+			ratio = 1
+		}
+	}
+	RESOURCE
+	{
+		name = LiquidFuel
+		amount = 100
+		maxAmount = 100
+	}
+	RESOURCE
+	{
+		name = Oxidizer
+		amount = 120
+		maxAmount = 120
+	}
+}

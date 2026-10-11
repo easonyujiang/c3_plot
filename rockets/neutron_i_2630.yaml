@@ -1,0 +1,72 @@
+rocket:
+  name: Neutron I 2630
+stages:
+- wet_mass_t: 132.03
+  dry_mass_t: 6.046
+  engines:
+    cfg: SC-ENG-Merlin-1B.cfg
+    count: 6
+  engine_groups:
+  - cfg: SC-ENG-Merlin-1B.cfg
+    count: 6
+  multi_ignition: false
+  parallel: false
+- wet_mass_t: 19.467
+  dry_mass_t: 0.899
+  engines:
+    cfg: SC-ENG-LR81-8096.cfg
+    count: 3
+  engine_groups:
+  - cfg: SC-ENG-LR81-8096.cfg
+    count: 3
+  multi_ignition: true
+  parallel: false
+calibration:
+- payload_t: 4.0
+  orbit_alt_km: 200.0
+  dv_rem_m_s: 500.0
+- payload_t: 2.5
+  orbit_alt_km: 220.0
+  dv_rem_m_s: 1581.0
+- payload_t: 1.055
+  orbit_alt_km: 220.0
+  dv_rem_m_s: 3162.8
+reference_missions:
+  gto:
+    label: GTO
+    color: orange
+    apoapsis_km: 35786.0
+    c3: -16.35
+    payload_t: 1.609
+    dv: 2450.7
+  tli:
+    label: TLI
+    color: purple
+    apoapsis_km: 384400.0
+    c3: -2.01
+    payload_t: 1.078
+    dv: 3129.6
+  escape:
+    label: Earth Escape
+    color: darkred
+    c3: 0
+    payload_t: 1.015
+    dv: 3221.2
+  venus:
+    label: Venus
+    color: teal
+    c3: 5.2
+    payload_t: 0.865
+    dv: 3455.1
+  mars:
+    label: Mars
+    color: sienna
+    c3: 8.7
+    payload_t: 0.772
+    dv: 3609.9
+  jupiter:
+    label: Jupiter
+    color: magenta
+    c3: 55
+    payload_t: null
+    dv: 5488.1

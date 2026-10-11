@@ -1,0 +1,102 @@
+ship = Anonymous Nested
+version = 1.12.5
+type = VAB
+PART
+{
+	part = TestMultiMode-2_4294000001
+	persistentId = 4294000001
+	istg = 3
+	dstg = 8
+	modCost = 0
+	modMass = 0
+	MODULE
+	{
+		name = MultiModeEngine
+		primaryEngineID = air
+		secondaryEngineID = rocket
+	}
+	MODULE
+	{
+		name = ModuleEngines
+		engineID = air
+		thrustPercentage = 100
+		PROPELLANT
+		{
+			name = IntakeAir
+			ratio = 1
+		}
+	}
+	MODULE
+	{
+		name = ModuleEngines
+		engineID = rocket
+		thrustPercentage = 100
+		PROPELLANT
+		{
+			name = LiquidFuel
+			ratio = 1
+		}
+	}
+}
+PART
+{
+	part = TestCluster-3_4294000002
+	persistentId = 4294000002
+	istg = 1
+	dstg = 1
+	modCost = 0
+	modMass = 0
+	MODULE
+	{
+		name = SSTUModularEngineCluster
+		currentEngineLayoutName = Triple
+		engineModelName = TestEngineModel
+	}
+	MODULE
+	{
+		name = ModuleEnginesFX
+		engineID = clusterCore
+		thrustPercentage = 100
+	}
+}
+PART
+{
+	part = TestTank-4_4294000003
+	persistentId = 4294000003
+	istg = 0
+	dstg = 0
+	modCost = 0
+	modMass = 0
+	MODULE
+	{
+		name = ModuleFuelTanks
+		type = Default
+		utilization = 16
+		volume = 94.247799999999998
+		mass = 0.00942477584
+		TANK
+		{
+			name = LiquidFuel
+			amount = 200
+			maxAmount = 200
+		}
+		TANK
+		{
+			name = Oxidizer
+			amount = 240
+			maxAmount = 240
+		}
+	}
+	RESOURCE
+	{
+		name = LiquidFuel
+		amount = 200
+		maxAmount = 200
+	}
+	RESOURCE
+	{
+		name = LiquidFuel
+		amount = 0
+		maxAmount = 200
+	}
+}
