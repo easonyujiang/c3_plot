@@ -12,8 +12,6 @@ ENGINES_DIR = os.path.join(BASE_DIR, 'engines')
 OUTPUT_DIR = os.environ.get('C3_MASS_OUTPUT_DIR', os.path.join(BASE_DIR, 'output'))
 DB_PATH = os.environ.get('C3_MASS_DB_PATH', os.path.join(BASE_DIR, 'c3_plot.db'))
 MIGRATIONS_DIR = os.path.join(BASE_DIR, 'migrations')
-DASHBOARD_DIR = os.path.join(BASE_DIR, 'dashboard')
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 # Server
 PORT = 8765

@@ -22,7 +22,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ksp_mass_control_experiment import (
+from tools.research.control_mass_experiment import (
     CRAFT_NAMES,
     EXIT_INVALID,
     SCHEMA_VERSION,
@@ -558,7 +558,7 @@ class AwaitingCaptureTests(ExperimentSetup):
 class ToleranceModelTests(ExperimentSetup):
     def test_fixed_seven_decimal_constants_removed(self):
         # the fixed 7-decimal assumption must NOT participate in verdicts
-        from ksp_mass_control_experiment import TOLERANCES
+        from tools.research.control_mass_experiment import TOLERANCES
         for obsolete in ('loadmeta_resolution_t',
                          'single_value_max_rounding_error_t',
                          'difference_max_rounding_error_t',
@@ -1482,7 +1482,7 @@ class ControlCoreSelectionTests(unittest.TestCase):
         self.assertEqual(names, ['goodCore'])
 
     def test_core_summary_hash_includes_attach_rules(self):
-        from ksp_mass_control_experiment import _core_summary_sha256
+        from tools.research.control_mass_experiment import _core_summary_sha256
         base = self._record('probeCore', ['ModuleCommand'], mass=0.04)
         first = _core_summary_sha256(base)
         modified = dict(base)
@@ -1995,7 +1995,7 @@ class AnalyzerFixTests(unittest.TestCase):
                 report.get('validation', {}).get('diffs', [])]
 
     def test_canonical_map_dot_to_underscore_unique(self):
-        from ksp_mass_control_experiment import _canonical_part_map
+        from tools.research.control_mass_experiment import _canonical_part_map
         from server.vab_parser import parse_craft
         draft = parse_craft(
             open((Path(__file__).resolve().parents[1] / 'experiments/control_mass/input/M0_control.craft'), encoding='utf-8-sig').read(),
@@ -2008,7 +2008,7 @@ class AnalyzerFixTests(unittest.TestCase):
         self.assertEqual(core_info['strategy'], 'dot_to_underscore')
 
     def test_exact_name_wins_over_dot_normalization(self):
-        from ksp_mass_control_experiment import _canonical_part_map
+        from tools.research.control_mass_experiment import _canonical_part_map
         draft = {
             'parts': [{'index': 0, 'part': 'parachuteSingle_1',
                        'base_part': 'parachuteSingle'}]}
@@ -2027,7 +2027,7 @@ class AnalyzerFixTests(unittest.TestCase):
         draft = {
             'parts': [{'index': 0, 'part': 'probeCoreOcto2.v2_1',
                        'base_part': 'probeCoreOcto2.v2'}]}
-        from ksp_mass_control_experiment import _canonical_part_map
+        from tools.research.control_mass_experiment import _canonical_part_map
         cmap = _canonical_part_map(draft, index)
         self.assertEqual(cmap[0]['status'], 'ambiguous')
         self.assertEqual(cmap[0]['raw_base'], 'probeCoreOcto2.v2')
@@ -2036,14 +2036,14 @@ class AnalyzerFixTests(unittest.TestCase):
         draft = {
             'parts': [{'index': 0, 'part': 'noSuchPart_1',
                        'base_part': 'noSuchPart'}]}
-        from ksp_mass_control_experiment import _canonical_part_map
+        from tools.research.control_mass_experiment import _canonical_part_map
         cmap = _canonical_part_map(draft, self.index)
         self.assertEqual(cmap[0]['status'], 'missing')
         # the canonical name falls back to the requested raw name
         self.assertEqual(cmap[0]['canonical'], 'noSuchPart')
 
     def test_core_attn_topology_top_and_bottom(self):
-        from ksp_mass_control_experiment import (
+        from tools.research.control_mass_experiment import (
             _canonical_part_map, _normalize_stack_topology)
         from server.vab_parser import parse_craft
         draft = parse_craft(
@@ -2061,7 +2061,7 @@ class AnalyzerFixTests(unittest.TestCase):
     def test_child_trailing_node_index_not_used_for_core_node(self):
         # the chute's attN target ends with _0/_1; the core node must come
         # from the CORE's own attN rows ('top'/'bottom')
-        from ksp_mass_control_experiment import (
+        from tools.research.control_mass_experiment import (
             _canonical_part_map, _normalize_stack_topology)
         from server.vab_parser import parse_craft
         draft = parse_craft(
@@ -2077,7 +2077,7 @@ class AnalyzerFixTests(unittest.TestCase):
         self.assertEqual(topology['unconnected'], [])
 
     def test_null_targets_ignored(self):
-        from ksp_mass_control_experiment import (
+        from tools.research.control_mass_experiment import (
             _canonical_part_map, _normalize_stack_topology)
         from server.vab_parser import parse_craft
         draft = parse_craft(
@@ -2166,7 +2166,7 @@ class AuditTankDefinitionTests(unittest.TestCase):
     last-value-wins."""
 
     def test_conflicting_mlilayers_values_are_ambiguous(self):
-        from audit_ksp_mass_residuals import _tank_definition_mlilayers
+        from tools.research.audit_ksp_mass_residuals import _tank_definition_mlilayers
         tank_definitions = {
             'ServiceModule': {'values': [0, 10],
                               'definition_count': 2},
@@ -2179,7 +2179,7 @@ class AuditTankDefinitionTests(unittest.TestCase):
         self.assertIsNone(result['value'])
 
     def test_duplicate_identical_values_are_determined(self):
-        from audit_ksp_mass_residuals import _tank_definition_mlilayers
+        from tools.research.audit_ksp_mass_residuals import _tank_definition_mlilayers
         tank_definitions = {
             'ServiceModule': {'values': [0, 0], 'definition_count': 2},
         }
@@ -2190,7 +2190,7 @@ class AuditTankDefinitionTests(unittest.TestCase):
         self.assertEqual(result['value'], 0)
 
     def test_illegal_value_is_ambiguous(self):
-        from audit_ksp_mass_residuals import _tank_definition_mlilayers
+        from tools.research.audit_ksp_mass_residuals import _tank_definition_mlilayers
         tank_definitions = {
             'ServiceModule': {'values': [None], 'definition_count': 1},
         }
@@ -2201,7 +2201,7 @@ class AuditTankDefinitionTests(unittest.TestCase):
         self.assertEqual(result['source'], 'ambiguous')
 
     def test_config_cache_parser_keeps_all_values(self):
-        from audit_ksp_mass_residuals import (
+        from tools.research.audit_ksp_mass_residuals import (
             _tank_definitions_from_config_cache)
         tmp = tempfile.mkdtemp(prefix='ksp_exp_td_')
         cache = Path(tmp) / 'ModuleManager.ConfigCache'

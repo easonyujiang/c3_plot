@@ -1,127 +1,77 @@
-# C3-Mass 运力数据库
+# C3-Mass 火箭运力工作台
 
-这是面向个人 KSP/RSS 火箭库的本地运力分析工具：查询自己设计的火箭向不同轨道能运送多少载荷，并比较型号能力。
+查询自己设计的 KSP/RSS 火箭向不同轨道能运送多少载荷，并比较型号能力。目前提供游戏火箭导入、质量和发动机来源核对、实测基准校准、C3 曲线与轨道任务分析。
 
-后续产品目标是建立火箭库的任务覆盖图、识别能力与经济性缺口，并结合实际模组和 MechJeb 提供经过实飞验证的发射方案及程序。当前已有配置导入、运力曲线和任务分析；覆盖缺口分析、自动试飞优化与发射程序生成尚未实现。
-
-当前执行方向见 [产品路线图](docs/PRODUCT_ROADMAP.md)，本机游戏和模组核查见 [安装分析](docs/KSP_INSTALLATION_AUDIT_20261021.md)。
+后续按 [产品路线图](docs/PRODUCT_ROADMAP.md) 建立型号覆盖缺口、MechJeb 自动试飞优化及可重放发射程序；这些功能尚未实现。本机环境见 [游戏安装分析](docs/ksp/KSP_INSTALLATION_AUDIT_20261021.md)。
 
 ## 安装与启动
 
-已验证环境：Windows、Python 3.12。项目可搬迁，路径根据源码位置解析。
+已验证环境为 Windows、Python 3.12。前端静态产物随源码提供，日常使用无需 Node.js。
 
 ```powershell
 py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements-lock.txt
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe run.py
 ```
 
-也可以双击 `启动C3-Mass.bat`。浏览器地址为 http://localhost:8765。
-端口可用 `python run.py 8876` 指定。运行时依赖快照在 requirements-lock.txt，
-开发测试依赖在 requirements-dev.txt。不要复制其他机器的 .venv，重新创建即可。
+也可双击 `启动C3-Mass.bat`，访问 http://localhost:8765。端口可用 `python run.py 8876` 指定。首页与 `/workspace/` 提供同一个 React 工作台；旧版界面已移除。
 
-浏览器默认打开新版工作台，分为运力概览、只读火箭档案、工具箱。修改火箭须进入独立修改界面，取消不写入。旧界面保留在 `/legacy/`，构建说明见 [前端说明](frontend/README.md)。
+## 使用流程
 
-## 游戏保存到运力曲线
+1. 安装或更新游戏导出插件后，重新启动 KSP，在 VAB 保存火箭并等待约两秒。
+2. 打开工作台“工具箱 → 游戏火箭导入”，选择 craft 并核对自动识别信息。
+3. 为同一构型填写三个实测基准：220 km 圆轨道、220 × 35786 km 转移轨道、地球逃逸 C3=0；也可展开自定义基准。
+4. 保存火箭档案，查看曲线；在任务工具中输入载荷、近远地点和倾角，比较火箭库。
 
-本机的编辑器导出插件已安装。首次使用请重新启动 KSP，让插件加载，然后在 VAB 正常保存火箭，等约两秒。
+净载荷以模板外额外携带质量为基准，模板设备不要重复计入。火箭构型、燃料、发动机或模组改变后，应重新保存、核对并校准。缺少匹配快照、来源过期或分级有歧义时，需要复核。
 
-1. 打开工具箱 → 游戏火箭导入，列表自动读取当前安装各存档的 VAB craft；找到火箭并点击导入。
-2. 软件核对 craft 版本与当前 mod，自动填写分级质量、已配置发动机、油箱容积和点火限制。
-3. 默认只填写三个任务的实测运力：220 km 圆轨道、220 × 35786 km 转移轨道、地球逃逸 C3=0；已有其他基准点可展开自定义轨道与剩余速度。
-4. 保存后查看火箭档案与曲线；在工具箱填写卫星质量、近远地点和倾角，筛选整个火箭库。
+当前模型采用实测校准与理想燃烧序列。有限推力、FAR 气动、级寿命、蒸发和 Principia 多体轨迹尚未被完整仿真；外推结果不能视为已验证运力。整流罩选项只扣减可用载荷，不模拟抛弃。历史证据及其边界见 [验证基线](docs/validation/BASELINE.md)。
 
-基准运力指该 craft 模板之外额外携带的质量，模板中已有设备不要重复填写。设计、燃料配比、发动机配置或 mod 发生变化后，请在游戏重新保存并重新校准。缺少匹配快照、来源过期或分级有歧义时，软件明确提示，避免把静态配置猜测值当作实际质量。
+## 命令行与检查
 
-完整实机与浏览器验收、700 kg 案例和识别范围见 [工作流验收](docs/WORKFLOW_ACCEPTANCE_20261011.md)。
-
-## 直接绘制当前游戏安装对应的曲线
-
-```powershell
-.\.venv\Scripts\python.exe plot_capacity.py rockets/neutron_i_2630.yaml --ksp-root "D:\SteamLibrary\steamapps\common\Kerbal Space Program" --output output/my_curve
-```
-
-打开输出目录的 `C3_mass.html` 即可交互查看，离线可用；同时生成 CSV、计算结果和来源指纹。
-发动机参数读取该安装的最终 ModuleManager 配置，质量、发动机数量及校准仍取自 YAML。
-蓝线表示已有校准载荷范围内的模型，橙色虚线为外推；现有校准原始记录未回填，不能据此声称精度已验证。
-当前不支持自动选择多模式发动机或 RealFuels 可切换配置，遇到歧义会中止而非猜测。
-
-游戏内被动采样与本次精度修复见 [推进记录](docs/CURVE_ACCURACY_20261010.md)。
-已完成独立存档副本的在轨采样验收，实际数据与范围见 [游戏内验收记录](docs/GAME_VALIDATION_20261010.md)。
-
-## 数据与模型边界
-
-mod 动态质量审查的历史过程见 [自动导入推进记录](docs/AUTOMATIC_IMPORT_20261010.md)，最新结果以上述工作流验收为准。性能曲线支持额外整流罩质量扣减，只改变净载荷，不模拟抛弃或修改基准点。
-
-- SQLite（c3_plot.db）是运行时主数据；rockets/*.yaml 是配置备份和首启恢复输入。
-- output 是可重新生成的产物；VAB、experiments 是应保留的来源与实验证据。
-- SQL 和 YAML 写入有异常回滚，但跨文件与数据库的断电原子性仍有限；定期备份。
-- 当前任务分析是经验校准与理想燃烧序列模型，不代表完整上升段或有限推力仿真。
-- 有限推力、级寿命、并联详细任务燃烧等限制仍有效；测试通过不能证明物理精度。
-- 新工作流对支持的串联构型自动填写质量与发动机，用户提供三个实测基准；旧 VAB 草稿导入保留人工确认方式。
-- RealChute 只支持已有实验授权的窄域，指纹或适用范围不符时保持 unresolved。
-- 旧数据没有来源记录时显示来源未回填；不能据此宣称经过来源验证。
-
-## 检查与测试
-
-所有测试运行前，将临时目录和数据库指向副本，避免 create_app 初始化写入正式数据库。
+从项目根目录运行工具，统一使用 `python -m`：
 
 ```powershell
 .\.venv\Scripts\python.exe run_tests.py
-.\.venv\Scripts\python.exe data_tools.py audit
+.\.venv\Scripts\python.exe -m tools.data audit
+.\.venv\Scripts\python.exe -m tools.plot_capacity rockets/neutron_i_2630.yaml --ksp-root "D:\SteamLibrary\steamapps\common\Kerbal Space Program" --output output/my_curve
 ```
 
-审计区分 matching、different、sql_only、yaml_only、invalid，只读，不自动选择覆盖方向。
-比较忽略键顺序及衍生显示值，保留质量、发动机组、校准和任务目标的语义。
-迁移失败会中止启动；若提示同级文件夹重名，应先备份、明确重命名方案，不删除数据。
+测试使用隔离数据库、YAML 副本和临时输出。审计只读，不自动覆盖数据。绘图生成离线 HTML、CSV 和来源记录，不初始化正式数据库。更多命令见 [工具说明](tools/README.md)。
 
-## 备份与恢复
+## 数据备份与恢复
 
-先停止服务和其他写入程序，让 SQLite 与 YAML 处在同一个业务时点。
+先停止所有数据写入程序，使数据库和 YAML 处于同一业务时点。
 
 ```powershell
-.\.venv\Scripts\python.exe data_tools.py backup E:\Backups\c3-20261009
-.\.venv\Scripts\python.exe data_tools.py --root E:\Backups\c3-20261009 restore E:\Recovered\c3-20261009
-.\.venv\Scripts\python.exe data_tools.py --root E:\Recovered\c3-20261009 audit
+.\.venv\Scripts\python.exe -m tools.data backup E:\Backups\c3-snapshot
+.\.venv\Scripts\python.exe -m tools.data --root E:\Backups\c3-snapshot restore E:\Recovered\c3-snapshot
+.\.venv\Scripts\python.exe -m tools.data --root E:\Recovered\c3-snapshot audit
 ```
 
-目的目录必须不存在。备份包含 SQLite、YAML、发动机定义、VAB 和实验证据，
-恢复前核验 SHA-256，恢复后检查完整性与配置一致性。恢复数据不会覆盖当前项目；
-使用恢复数据时，应另行复制源码并安装依赖。正式数据修复须明确方向并先备份。
+目标目录必须不存在。备份核验 SHA-256，恢复到新目录；正式数据库、火箭设计、原始 craft 和受控实验不能当作缓存清理。SQLite 与 YAML 的跨介质断电原子性仍有限。
 
-## 项目目录
+## 目录
 
 ```text
-c3_mass/       计算模型：C3 曲线、发动机解析、任务燃烧与载荷搜索
-server/        Flask API、数据库、游戏导入与质量证据
-frontend/      React 工作台源码与随版本交付的 dist/
-dashboard/     旧版界面（/legacy/）
-static/        共享静态资源和离线 Plotly
-migrations/    SQLite 数据库迁移
-game_plugin/   KSP 游戏内导出与采样插件源码
-tools/         发布、诊断、游戏验证和浏览器检查脚本
-tests/         自动化测试与 fixtures/
-docs/          模型说明、验收记录、维护指南
-engines/       发动机历史样例
-rockets/       火箭 YAML 配置与首启恢复输入
-VAB/           craft 来源样例
-experiments/   应保留的实验原始证据
-output/        生成产物（Git 忽略）
-backups/       本地备份（Git 忽略）
+c3_mass/        计算、发动机解析与任务模型
+server/         Flask API、存储、游戏导入和质量证据
+frontend/       React 源码、统一浏览器检查与交付用 dist/
+game_plugin/    编辑器导出、被动遥测和隔离回放插件源码
+migrations/     按顺序执行的数据库迁移
+tools/          数据审计、绘图、game/、research/、release/、dev/
+tests/          Python 回归测试与合成 fixtures/
+docs/           当前路线、models/、ksp/、validation/ 与证据清单
+engines/        仍用于首启和计算的发动机样例
+rockets/        YAML 配置及首启恢复输入
+VAB/            用于来源核对和测试的原始 craft 样例
+experiments/    仍被质量证据门控使用的原始实验
+output/         生成产物与本地验证记录（忽略）
+backups/        本地数据备份（忽略）
 ```
 
-根目录保留启动、测试、备份审计和绘图入口，以及独立质量实验工具。
-计算模块统一从 `c3_mass.*` 导入；命令行计算改用
-`python -m c3_mass.compute_c3_mass --all`，发动机检查用
-`python -m c3_mass.engine_parser`。旧文档中的根目录模型文件现位于 `c3_mass/`。
-文档导航见 [文档索引](docs/README.md)，产品阶段见 [产品路线图](docs/PRODUCT_ROADMAP.md)，工程配套见 [改进计划](docs/NEXT_STEPS.md)。
+数据库 `c3_plot.db` 是运行时主数据，`rockets/*.yaml` 是写穿备份和恢复输入。依赖环境、缓存、凭据和生成产物不提交。数据库迁移、历史输入和原始实验仍有实际用途，完整保留。
 
-## 文件分类与维护
+[文档导航](docs/README.md) · [前端开发](frontend/README.md) · [整理记录](docs/MAINTENANCE.md) · [变更记录](CHANGELOG.md)
 
-源码、tests、migrations、docs、依赖文件适合纳入版本控制。
-运行时数据库保留在本地；现有 YAML、VAB、发动机样例和实验证据已纳入版本控制，更新时应核对来源。
-.venv、缓存、SQLite 临时文件、生成输出和 backups 已列入忽略规则。
-Git 使用 main 分支与 v0.1.0 发布标签；公开仓库为 [easonyujiang/c3_plot](https://github.com/easonyujiang/c3_plot)。数据库、依赖环境、备份和生成输出不提交。
-保留的 engines、VAB、rockets 和 experiments 是本地历史样例与验证材料，不代表当前游戏运行时数据。
-
-当前版本与安装说明见 [0.1.0 发布说明](docs/RELEASE_0.1.0.md)，历史修复和规划保留用于追溯。
+公开仓库：[easonyujiang/c3_plot](https://github.com/easonyujiang/c3_plot)。旧版本可通过 Git 历史与 `v0.1.0` 标签查阅。

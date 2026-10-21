@@ -1,6 +1,6 @@
-# 前端工作台
+# React 工作台
 
-React + TypeScript + Vite。构建后的页面由现有 Flask 服务提供，无需单独启动 Node 服务。
+React、TypeScript、Vite，构建后由 Flask 提供。仅保留这一套界面，首页和 `/workspace/` 是同一入口。
 
 ```powershell
 cd frontend
@@ -8,14 +8,22 @@ npm ci
 npm run build
 ```
 
-启动项目后首页就是新版工作台；`/workspace/` 同样可用，原界面保留在 `/legacy/`。
+`dist/` 是日常启动所需的交付产物，应与源码同步更新并提交。开发时可用 `npm run dev`，其 API 代理指向本地 8878 端口。
 
-- `#/dashboard`：概览、火箭库入口和任务入口。
-- `#/dictionary/<slug>`：只读火箭数据、基准点和曲线。
-- `#/tools/mission`：自定义轨道与载荷筛选。
-- `#/tools/import`：发现并导入游戏火箭。
-- `#/edit/<slug>`：独立修改；取消不写入，保存后返回档案。
+路由：`#/dashboard` 概览，`#/dictionary/<slug>` 火箭档案，`#/tools/mission` 轨道筛选，`#/tools/import` 游戏导入，`#/edit/<slug>` 独立编辑。
 
-整流罩开关是显示与任务筛选的额外载荷扣减，不修改基准点，不模拟抛弃。
-曲线支持滚轮缩放、框选、平移、悬停读数及双击恢复。工具箱同时显示目标轨道 C3 和含倾角速度修正的等效 C3。
-真实编辑器保存、自动识别、有限点火次数、来源持久化和完整浏览器流程已验收。详见 [工作流验收](../docs/WORKFLOW_ACCEPTANCE_20261011.md)。
+浏览器检查集中在 `tests/workspace.cjs`，覆盖三个屏幕尺寸、图表悬停/缩放/平移/恢复、整流罩切换、取消编辑不写入及任务查询。先从项目根目录启动隔离服务：
+
+```powershell
+.\.venv\Scripts\python.exe -m tools.dev.serve_validation --output output/ui-check --port 8878
+```
+
+在另一个终端运行：
+
+```powershell
+cd frontend
+npx playwright install chromium
+npm run check:ui
+```
+
+可用环境变量 `C3_TEST_URL`、`C3_BROWSER_OUTPUT` 设置服务与输出目录，`C3_BROWSER_CHANNEL=msedge` 使用已安装的 Edge。检查使用 Neutron 历史样例与模型数值，不能代替实际飞行验证。隔离服务每次使用新的输出目录，避免覆盖之前证据。

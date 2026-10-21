@@ -14,7 +14,7 @@
 
 ## 本机条件与设计决策
 
-本轮只读核查的游戏是 KSP 1.12.5.3190。当前 MechJeb DLL 文件版本 2.14.2.0，kOS 1.6.0.1；安装中包含 RSS、FAR、RealFuels、SMURFF、SSTU、Principia 等，详见 [安装分析](KSP_INSTALLATION_AUDIT_20261021.md)。
+本轮只读核查的游戏是 KSP 1.12.5.3190。当前 MechJeb DLL 文件版本 2.14.2.0，kOS 1.6.0.1；安装中包含 RSS、FAR、RealFuels、SMURFF、SSTU、Principia 等，详见 [安装分析](ksp/KSP_INSTALLATION_AUDIT_20261021.md)。
 
 - 第一执行器选 MechJeb 2.14.2 的 PVG。先复现当前用户的发射方式，再围绕它搜索参数。
 - 保留现有经验模型作为快速估算器，加入游戏实飞结果和可重复试验。模型负责筛选候选，游戏负责验证边界。

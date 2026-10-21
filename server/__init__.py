@@ -1,18 +1,14 @@
-"""
-Flask application factory for C3-Mass Dashboard.
-Uses Jinja2 templates for server-rendered pages.
-"""
+"""Flask API and static React workspace application."""
 import os
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify
 from .database import init_db
-from . import models
 
 def create_app():
     app = Flask(
         __name__,
         static_folder='../static',
         static_url_path='/static',
-        template_folder='../dashboard',
+        template_folder=None,
     )
 
     init_db(app)
@@ -38,7 +34,6 @@ def create_app():
     app.register_blueprint(query_bp)
     app.register_blueprint(compare_bp)
 
-    # Serve CSS/JS from dashboard directory
     @app.route('/')
     def workspace_home():
         return modern_workspace()
@@ -46,44 +41,11 @@ def create_app():
     @app.route('/workspace/')
     @app.route('/workspace/<path:filename>')
     def modern_workspace(filename='index.html'):
-        """Component frontend, independent of the preserved legacy dashboard."""
+        """Serve the built workspace and its assets."""
         from flask import send_from_directory
         return send_from_directory(
             os.path.join(app.root_path, '..', 'frontend', 'dist'), filename,
             max_age=0 if filename == 'index.html' else 3600)
-
-    @app.route('/css/<path:filename>')
-    def css_files(filename):
-        from flask import send_from_directory
-        return send_from_directory(
-            os.path.join(app.root_path, '..', 'dashboard', 'css'),
-            filename,
-            max_age=0,
-        )
-
-    @app.route('/js/<path:filename>')
-    def js_files(filename):
-        from flask import send_from_directory
-        return send_from_directory(
-            os.path.join(app.root_path, '..', 'dashboard', 'js'),
-            filename,
-            max_age=0,
-        )
-
-    @app.route('/legacy/')
-    def index():
-        """Render dashboard with all data pre-loaded."""
-        import json
-        rockets = models.list_rockets()
-        engines = models.list_engines()
-        missions = models.list_standard_missions()
-        folders = models.get_folder_tree()
-        return render_template('index.html',
-            rockets_json=rockets,
-            engines_json=engines,
-            missions_json=missions,
-            folders_json=folders,
-        )
 
     @app.errorhandler(404)
     def not_found(e):

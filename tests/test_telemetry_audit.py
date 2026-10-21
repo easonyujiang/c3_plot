@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.analyze_telemetry import analyze
+from tools.game.analyze_telemetry import analyze
 
 
 class TelemetryAuditTests(unittest.TestCase):

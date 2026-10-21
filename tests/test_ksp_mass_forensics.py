@@ -705,13 +705,13 @@ class ForensicReworkTests(unittest.TestCase):
 
 
 class CliContractTests(unittest.TestCase):
-    """audit_ksp_mass_residuals.py CLI contract (determinism / exit codes)."""
+    """Mass-residual module CLI contract (determinism / exit codes)."""
 
     def _run_cli(self, *args):
         import subprocess
         import sys
         return subprocess.run(
-            [sys.executable, 'audit_ksp_mass_residuals.py', *args],
+            [sys.executable, '-m', 'tools.research.audit_ksp_mass_residuals', *args],
             capture_output=True, text=True, encoding='utf-8',
             cwd=str(Path(__file__).resolve().parent.parent))
 

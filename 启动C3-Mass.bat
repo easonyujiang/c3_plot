@@ -13,8 +13,6 @@ if exist ".venv\Scripts\python.exe" goto use_venv
 py -3 -c "import sys" >nul 2>&1
 if not errorlevel 1 goto use_py
 
-if exist "C:\ProgramData\anaconda3\python.exe" goto use_conda
-
 python -c "import sys" >nul 2>&1
 if not errorlevel 1 goto use_python
 
@@ -31,11 +29,6 @@ goto done
 :use_py
 echo Using Python launcher
 py -3 run.py
-goto done
-
-:use_conda
-echo Using Anaconda Python
-"C:\ProgramData\anaconda3\python.exe" run.py
 goto done
 
 :use_python

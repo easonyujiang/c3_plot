@@ -884,7 +884,7 @@ class RealSpecialVehicleTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         from server.ksp_install_index import build_ksp_index
-        from audit_ksp_mass_residuals import _mft_il_evidence
+        from tools.research.audit_ksp_mass_residuals import _mft_il_evidence
         cls.index = build_ksp_index(REAL_KSP)
         cls.mft_il_evidence = _mft_il_evidence(REAL_KSP,
                                                vab_dir='VAB')

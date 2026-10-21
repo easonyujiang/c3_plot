@@ -11,11 +11,13 @@ def main():
     os.chdir(root)
     scratch = root / '.tmp'
     scratch.mkdir(exist_ok=True)
-    # Individual tests also use tempfile; keep their files inside the workspace.
-    tempfile.tempdir = str(scratch)
-    os.environ['TEMP'] = os.environ['TMP'] = str(scratch)
     with tempfile.TemporaryDirectory(prefix='c3-tests-', dir=scratch) as temporary:
         temporary = Path(temporary)
+        # Include files left by individual mkdtemp() calls in session cleanup.
+        test_scratch = temporary / 'scratch'
+        test_scratch.mkdir()
+        tempfile.tempdir = str(test_scratch)
+        os.environ['TEMP'] = os.environ['TMP'] = str(test_scratch)
         shutil.copytree(root / 'rockets', temporary / 'rockets')
         os.environ['C3_MASS_DB_PATH'] = str(temporary / 'test.db')
         os.environ['C3_MASS_ROCKETS_DIR'] = str(temporary / 'rockets')

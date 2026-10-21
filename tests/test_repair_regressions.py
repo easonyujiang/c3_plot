@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from flask import Flask, render_template
+from flask import Flask
 from c3_mass.compute_c3_mass import compute_rocket
 from server import models, create_app
 from server.import_service import _preview_one, confirm_batch
@@ -32,25 +32,6 @@ class RepairRegressions(unittest.TestCase):
         for p in self.patches:
             p.start()
             self.addCleanup(p.stop)
-
-    def test_script_terminator_is_escaped_in_all_bootstrap_data(self):
-        attack = '</script><script>window.auditMarker=1</script>'
-        app = Flask(__name__, template_folder=str(ROOT / 'dashboard'))
-        with app.app_context():
-            body = render_template('index.html', rockets_json=[{'name': attack}],
-                                   engines_json=[{'name': attack}],
-                                   missions_json=[{'label': attack}], folders_json={'name': attack})
-        self.assertNotIn(attack, body)
-        self.assertIn('\\u003c/script\\u003e', body)
-
-    def test_index_passes_objects_to_template(self):
-        with patch('server.init_db'), patch('server.models.list_rockets', return_value=[]), \
-                patch('server.models.list_engines', return_value=[]), \
-                patch('server.models.list_standard_missions', return_value=[]), \
-                patch('server.models.get_folder_tree', return_value={}):
-            response = create_app().test_client().get('/legacy/')
-        self.assertEqual(response.status_code, 200)
-        self.assertIn('window.__ROCKETS = [];', response.get_data(as_text=True))
 
     def test_duplicate_folders_rejected_at_root_and_child_levels(self):
         parent = models.create_folder('root')
@@ -143,7 +124,7 @@ class RepairRegressions(unittest.TestCase):
 
 
     def test_audit_detects_drift_missing_and_invalid_files(self):
-        from data_tools import audit
+        from tools.data import audit
         cfg, result = self.config_and_result()
         slug = models.create_rocket(cfg['rocket']['name'], cfg, result)
         root = Path(self.tmp.name)
@@ -173,7 +154,7 @@ class RepairRegressions(unittest.TestCase):
         self.assertEqual(statuses['bad'], 'invalid')
 
     def test_recovery_refuses_tampering_and_existing_destination(self):
-        from data_tools import backup, restore
+        from tools.data import backup, restore
         cfg, result = self.config_and_result()
         models.create_rocket(cfg['rocket']['name'], cfg, result)
         root = Path(self.tmp.name)
