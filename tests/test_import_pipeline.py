@@ -1,7 +1,7 @@
 import unittest
 from pathlib import Path
 
-from compute_c3_mass import compute_rocket
+from c3_mass.compute_c3_mass import compute_rocket
 from server.vab_parser import parse_craft
 from server.validation import validate_rocket
 from server.yaml_codec import load_config

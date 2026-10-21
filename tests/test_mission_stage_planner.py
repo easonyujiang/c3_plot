@@ -4,17 +4,17 @@ import math
 import unittest
 from pathlib import Path
 
-from mission_adapters import normalize_stages
-from mission_parking_replay import replay_serial_ascent_to_parking
-from mission_simulation import (
+from c3_mass.mission_adapters import normalize_stages
+from c3_mass.mission_parking_replay import replay_serial_ascent_to_parking
+from c3_mass.mission_simulation import (
     BurnRequirement,
     DataQuality,
     FailureCode,
     IgnitionKind,
     StageState,
 )
-from mission_solver import simulate_multistage_sequence
-from mission_stage_planner import PostParkingPlanResult, plan_post_parking_sequence
+from c3_mass.mission_solver import simulate_multistage_sequence
+from c3_mass.mission_stage_planner import PostParkingPlanResult, plan_post_parking_sequence
 from server.yaml_codec import load_config
 
 G = 9.80665
@@ -441,8 +441,8 @@ class NeutronIntegrationTests(unittest.TestCase):
             self.assertEqual(predicted.to_dict(), executed.to_dict())
 
     def test_infeasible_geo_retrograde_combined_mission(self):
-        from compute_c3_mass import compute_orbit_mission
-        from mission_adapters import burn_sequence_to_requirements
+        from c3_mass.compute_c3_mass import compute_orbit_mission
+        from c3_mass.mission_adapters import burn_sequence_to_requirements
         stages, vehicle, payload = self._parking_state()
         mission_model = compute_orbit_mission(
             35786, 180, orbit_type='circular', arrival_strategy='combined')
@@ -570,7 +570,7 @@ class DiagnosisRegressionTests(unittest.TestCase):
         self.assertEqual(plan.failure_code, FailureCode.PROPELLANT_INSUFFICIENT)
 
     def test_unexpected_failure_code_not_classified_as_restart(self):
-        from mission_stage_planner import _classify_failure_code
+        from c3_mass.mission_stage_planner import _classify_failure_code
         self.assertEqual(
             _classify_failure_code([FailureCode.NO_STAGE_ASSIGNED]),
             FailureCode.DATA_INSUFFICIENT)

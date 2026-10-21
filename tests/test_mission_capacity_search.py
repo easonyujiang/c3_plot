@@ -5,14 +5,14 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from compute_c3_mass import compute_orbit_mission, compute_rocket
-from mission_adapters import burn_sequence_to_requirements, normalize_stages
-from mission_capacity_search import (
+from c3_mass.compute_c3_mass import compute_orbit_mission, compute_rocket
+from c3_mass.mission_adapters import burn_sequence_to_requirements, normalize_stages
+from c3_mass.mission_capacity_search import (
     MissionCapacityResult,
     find_max_payload_for_mission,
 )
-from mission_payload_evaluator import PayloadFeasibilityResult
-from mission_simulation import (
+from c3_mass.mission_payload_evaluator import PayloadFeasibilityResult
+from c3_mass.mission_simulation import (
     BurnRequirement,
     DataQuality,
     FailureCode,
@@ -100,7 +100,7 @@ def _make_mock(threshold, data_band=None, call_log=None,
 
 def _search(threshold, **kwargs):
     call_log = []
-    with mock.patch('mission_capacity_search.evaluate_payload_for_mission',
+    with mock.patch('c3_mass.mission_capacity_search.evaluate_payload_for_mission',
                     _make_mock(threshold, call_log=call_log)):
         result = find_max_payload_for_mission(
             'R', [_stage(0), _stage(1)], [_req(100.0, 'b1', 1)],
@@ -177,7 +177,7 @@ class StatusTests(unittest.TestCase):
     def test_data_insufficient_during_sampling(self):
         # band spanning sampling points -> stop during the guard grid
         call_log = []
-        with mock.patch('mission_capacity_search.evaluate_payload_for_mission',
+        with mock.patch('c3_mass.mission_capacity_search.evaluate_payload_for_mission',
                         _make_mock(0.5, data_band=(0.4, 0.6),
                                    call_log=call_log)):
             result = find_max_payload_for_mission(
@@ -192,7 +192,7 @@ class StatusTests(unittest.TestCase):
     def test_data_insufficient_during_bisection(self):
         # narrow band between two samples: only bisection mids hit it
         call_log = []
-        with mock.patch('mission_capacity_search.evaluate_payload_for_mission',
+        with mock.patch('c3_mass.mission_capacity_search.evaluate_payload_for_mission',
                         _make_mock(0.5, data_band=(0.499, 0.5),
                                    call_log=call_log)):
             result = find_max_payload_for_mission(
@@ -212,7 +212,7 @@ class StatusTests(unittest.TestCase):
                 return _mock_feasible_result(p)
             return _mock_infeasible_result(p)
         call_log = []
-        with mock.patch('mission_capacity_search.evaluate_payload_for_mission',
+        with mock.patch('c3_mass.mission_capacity_search.evaluate_payload_for_mission',
                         mock_eval):
             result = find_max_payload_for_mission(
                 'R', [_stage(0), _stage(1)], [_req(100.0, 'b1', 1)],
@@ -277,7 +277,7 @@ class CacheAndSummaryTests(unittest.TestCase):
 
     def test_max_search_nodes_passed_through(self):
         seen = []
-        with mock.patch('mission_capacity_search.evaluate_payload_for_mission',
+        with mock.patch('c3_mass.mission_capacity_search.evaluate_payload_for_mission',
                         _make_mock(0.5, max_search_nodes_seen=seen)):
             find_max_payload_for_mission(
                 'R', [_stage(0), _stage(1)], [_req(100.0, 'b1', 1)],
@@ -334,7 +334,7 @@ class ValidationAndSafetyTests(unittest.TestCase):
         stages_before = [s.to_dict() for s in stages]
         reqs_before = [r.to_dict() for r in reqs]
         curve_before = copy.deepcopy(curve)
-        with mock.patch('mission_capacity_search.evaluate_payload_for_mission',
+        with mock.patch('c3_mass.mission_capacity_search.evaluate_payload_for_mission',
                         _make_mock(0.5)):
             find_max_payload_for_mission('R', stages, reqs, curve)
         self.assertEqual([s.to_dict() for s in stages], stages_before)
@@ -345,7 +345,7 @@ class ValidationAndSafetyTests(unittest.TestCase):
         stages = [_stage(0), _stage(1)]
         reqs = [_req(100.0, 'b1', 1)]
         curve = _monotonic_curve()
-        with mock.patch('mission_capacity_search.evaluate_payload_for_mission',
+        with mock.patch('c3_mass.mission_capacity_search.evaluate_payload_for_mission',
                         _make_mock(0.5)):
             result = find_max_payload_for_mission('R', stages, reqs, curve)
         result.metadata['stage_count'] = 99
@@ -358,12 +358,12 @@ class ValidationAndSafetyTests(unittest.TestCase):
         for threshold, kwargs in [(0.5, {}), (0.0, {}), (2.0, {}),
                                   (0.5, {'max_evaluations': 20})]:
             with mock.patch(
-                    'mission_capacity_search.evaluate_payload_for_mission',
+                    'c3_mass.mission_capacity_search.evaluate_payload_for_mission',
                     _make_mock(threshold)):
                 scenarios.append(find_max_payload_for_mission(
                     'R', [_stage(0), _stage(1)], [_req(100.0, 'b1', 1)],
                     _monotonic_curve(), **kwargs))
-        with mock.patch('mission_capacity_search.evaluate_payload_for_mission',
+        with mock.patch('c3_mass.mission_capacity_search.evaluate_payload_for_mission',
                         _make_mock(0.5, data_band=(0.4, 0.6))):
             scenarios.append(find_max_payload_for_mission(
                 'R', [_stage(0), _stage(1)], [_req(100.0, 'b1', 1)],
@@ -375,7 +375,7 @@ class ValidationAndSafetyTests(unittest.TestCase):
     def test_deterministic_results(self):
         def run():
             with mock.patch(
-                    'mission_capacity_search.evaluate_payload_for_mission',
+                    'c3_mass.mission_capacity_search.evaluate_payload_for_mission',
                     _make_mock(0.5)):
                 return find_max_payload_for_mission(
                     'R', [_stage(0), _stage(1)], [_req(100.0, 'b1', 1)],

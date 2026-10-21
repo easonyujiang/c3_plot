@@ -6,7 +6,7 @@ runtime snapshot supplies the actual selection. No silent local-CFG fallback.
 import math
 from pathlib import Path
 
-from compute_c3_mass import _stage_engine_groups
+from c3_mass.compute_c3_mass import _stage_engine_groups
 from server.ksp_confignode import parse
 from server.ksp_install_index import build_ksp_index
 

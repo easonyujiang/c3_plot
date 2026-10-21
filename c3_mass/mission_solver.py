@@ -43,7 +43,7 @@ import math
 from numbers import Real
 from typing import List, Tuple
 
-from mission_simulation import (
+from c3_mass.mission_simulation import (
     BurnRequirement,
     BurnResult,
     DataQuality,

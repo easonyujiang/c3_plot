@@ -1,7 +1,7 @@
 import math
 import unittest
 
-from compute_c3_mass import MU, R_EARTH, compute_orbit_mission
+from c3_mass.compute_c3_mass import MU, R_EARTH, compute_orbit_mission
 from server.routes_data import _parse_mission_query
 
 

@@ -9,7 +9,7 @@ Engine parameters read from engines/*.cfg via engine_parser.
 
 import sys, os, json, yaml
 import numpy as np
-from engine_parser import extract_engine_params
+from c3_mass.engine_parser import extract_engine_params
 
 # =============================================================================
 # Fixed parameters (RSS Earth, Cape Canaveral equivalent)
@@ -560,7 +560,7 @@ if __name__ == '__main__':
 
     rocket_files = []
     if all_rockets:
-        rockets_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'rockets')
+        rockets_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'rockets')
         if os.path.isdir(rockets_dir):
             rocket_files = [
                 os.path.join(rockets_dir, f) for f in os.listdir(rockets_dir)

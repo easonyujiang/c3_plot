@@ -61,7 +61,7 @@ def extract_engine_params(cfg_filename):
         isp_type:   'vacuum_only' | 'linear' | 'multi_segment' | 'altitude_compensating'
         engine_name: display name from cfg title field
     """
-    engines_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'engines')
+    engines_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'engines')
     filepath = os.path.join(engines_dir, os.path.basename(cfg_filename))
 
     with open(filepath, 'r', encoding='utf-8') as f:

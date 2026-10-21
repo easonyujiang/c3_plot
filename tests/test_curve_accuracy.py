@@ -5,7 +5,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from compute_c3_mass import compute_rocket, compute_orbit_mission, total_vac_dv, G0
+from c3_mass.compute_c3_mass import compute_rocket, compute_orbit_mission, total_vac_dv, G0
 from server.mission_analysis import analyze_rocket_for_mission
 from server.models import interpolate_payload
 from server.yaml_codec import load_config
@@ -30,7 +30,7 @@ class CurveAccuracyTests(unittest.TestCase):
 
     def test_parallel_delta_v_obeys_independent_mass_balance(self):
         cfg, perf = self.parallel_config()
-        with patch('compute_c3_mass.resolve_stage_engine_performance', side_effect=perf):
+        with patch('c3_mass.compute_c3_mass.resolve_stage_engine_performance', side_effect=perf):
             data = compute_rocket(cfg)
         stages = [dict(wet=s['wet'], dry=s['dry'], isp_vac=s['isp_vac']) for s in data['stages']]
         for payload in (0.1, 1.0, 4.0):
@@ -43,7 +43,7 @@ class CurveAccuracyTests(unittest.TestCase):
     def test_parallel_core_first_burnout_is_not_silently_extrapolated(self):
         cfg, perf = self.parallel_config()
         perf[1]['thrust'] = 300
-        with patch('compute_c3_mass.resolve_stage_engine_performance', side_effect=perf):
+        with patch('c3_mass.compute_c3_mass.resolve_stage_engine_performance', side_effect=perf):
             with self.assertRaisesRegex(ValueError, 'burnout'):
                 compute_rocket(cfg)
 

@@ -38,12 +38,12 @@ from dataclasses import dataclass
 from numbers import Real
 from typing import List, Optional
 
-from mission_simulation import (
+from c3_mass.mission_simulation import (
     DataQuality,
     FailureCode,
     to_dict as _contract_to_dict,
 )
-from mission_payload_evaluator import (
+from c3_mass.mission_payload_evaluator import (
     PayloadFeasibilityResult,
     calibration_payload_bounds,
     evaluate_payload_for_mission,

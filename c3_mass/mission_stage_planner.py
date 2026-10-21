@@ -50,14 +50,14 @@ from dataclasses import dataclass
 from numbers import Integral, Real
 from typing import Dict, List, Optional
 
-from mission_simulation import (
+from c3_mass.mission_simulation import (
     BurnRequirement,
     DataQuality,
     FailureCode,
     StageState,
     to_dict as _contract_to_dict,
 )
-from mission_solver import (
+from c3_mass.mission_solver import (
     MASS_TOLERANCE_T,
     available_delta_v_m_s,
     execute_burn,

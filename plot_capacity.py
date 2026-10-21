@@ -9,7 +9,7 @@ import html
 import json
 from pathlib import Path
 
-from compute_c3_mass import compute_rocket, ideal_dv_to_orbit, MU, R_EARTH, H_PARK, v_orbit
+from c3_mass.compute_c3_mass import compute_rocket, ideal_dv_to_orbit, MU, R_EARTH, H_PARK, v_orbit
 from installed_engine_audit import installed_engine_resolver
 from server.validation import validate_rocket
 from server.yaml_codec import load_config

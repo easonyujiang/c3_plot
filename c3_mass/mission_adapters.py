@@ -35,8 +35,8 @@ from dataclasses import dataclass, field
 from numbers import Integral, Real
 from typing import Any, List, Optional
 
-from compute_c3_mass import resolve_stage_engine_performance
-from mission_simulation import (
+from c3_mass.compute_c3_mass import resolve_stage_engine_performance
+from c3_mass.mission_simulation import (
     BurnRequirement,
     DataQuality,
     StageState,

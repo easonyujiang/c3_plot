@@ -33,7 +33,7 @@ from dataclasses import dataclass
 from numbers import Real
 from typing import List, Optional
 
-from mission_simulation import (
+from c3_mass.mission_simulation import (
     BurnRequirement,
     DataQuality,
     FailureCode,
@@ -41,16 +41,16 @@ from mission_simulation import (
     StageState,
     to_dict as _contract_to_dict,
 )
-from mission_solver import (
+from c3_mass.mission_solver import (
     MASS_TOLERANCE_T,
     available_delta_v_m_s,
     simulate_multistage_sequence,
 )
-from mission_parking_replay import (
+from c3_mass.mission_parking_replay import (
     ParkingOrbitReplayResult,
     replay_serial_ascent_to_parking,
 )
-from mission_stage_planner import (
+from c3_mass.mission_stage_planner import (
     PostParkingPlanResult,
     plan_post_parking_sequence,
 )

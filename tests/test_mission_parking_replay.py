@@ -4,13 +4,13 @@ import math
 import unittest
 from pathlib import Path
 
-from mission_adapters import normalize_stages
-from mission_parking_replay import (
+from c3_mass.mission_adapters import normalize_stages
+from c3_mass.mission_parking_replay import (
     DV_TOLERANCE_M_S,
     ParkingOrbitReplayResult,
     replay_serial_ascent_to_parking,
 )
-from mission_simulation import DataQuality, FailureCode, StageState
+from c3_mass.mission_simulation import DataQuality, FailureCode, StageState
 from server.yaml_codec import load_config
 
 G = 9.80665

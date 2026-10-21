@@ -6,16 +6,16 @@ from pathlib import Path
 
 import numpy as np
 
-from compute_c3_mass import compute_orbit_mission, compute_rocket
-from mission_adapters import burn_sequence_to_requirements, normalize_stages
-from mission_payload_evaluator import (
+from c3_mass.compute_c3_mass import compute_orbit_mission, compute_rocket
+from c3_mass.mission_adapters import burn_sequence_to_requirements, normalize_stages
+from c3_mass.mission_payload_evaluator import (
     PARKING_DV_CHECK_TOLERANCE_M_S,
     PayloadFeasibilityResult,
     compute_serial_stack_vacuum_dv,
     evaluate_payload_for_mission,
     interpolate_calibrated_remaining_dv,
 )
-from mission_simulation import (
+from c3_mass.mission_simulation import (
     BurnRequirement,
     DataQuality,
     FailureCode,
@@ -310,7 +310,7 @@ class SuccessPipelineTests(unittest.TestCase):
         self.assertAlmostEqual(check, 2000.0, delta=0.01)
 
     def test_manufactured_parking_inconsistency_rejected(self):
-        import mission_payload_evaluator as mpe
+        from c3_mass import mission_payload_evaluator as mpe
         # The parking self-check error is float noise (~1e-13); a patched
         # tolerance below that floor makes the consistency gate trip.
         original = mpe.PARKING_DV_CHECK_TOLERANCE_M_S
@@ -329,7 +329,7 @@ class SuccessPipelineTests(unittest.TestCase):
             mpe.PARKING_DV_CHECK_TOLERANCE_M_S = original
 
     def test_manufactured_plan_simulation_mismatch_rejected(self):
-        import mission_payload_evaluator as mpe
+        from c3_mass import mission_payload_evaluator as mpe
         real_simulate = mpe.simulate_multistage_sequence
 
         def tampered(*args, **kwargs):
@@ -546,7 +546,7 @@ class VerificationCompletenessTests(unittest.TestCase):
     extra/missing burns, replaced burn_ids and wrong burn order."""
 
     def _run_with_tampered_simulation(self, tamper):
-        import mission_payload_evaluator as mpe
+        from c3_mass import mission_payload_evaluator as mpe
         real_simulate = mpe.simulate_multistage_sequence
 
         def wrapper(*args, **kwargs):

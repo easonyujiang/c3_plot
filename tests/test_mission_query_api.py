@@ -5,9 +5,9 @@ from unittest import mock
 
 from flask import Flask
 
-from compute_c3_mass import compute_rocket
-from mission_capacity_search import MissionCapacityResult
-from mission_simulation import DataQuality, FailureCode
+from c3_mass.compute_c3_mass import compute_rocket
+from c3_mass.mission_capacity_search import MissionCapacityResult
+from c3_mass.mission_simulation import DataQuality, FailureCode
 from server.mission_analysis import RocketMissionAnalysisResult
 from server.yaml_codec import load_config
 

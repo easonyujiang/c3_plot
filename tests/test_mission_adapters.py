@@ -6,15 +6,15 @@ from pathlib import Path
 
 import numpy as np
 
-from compute_c3_mass import compute_orbit_mission
-from engine_parser import extract_engine_params
-from mission_adapters import (
+from c3_mass.compute_c3_mass import compute_orbit_mission
+from c3_mass.engine_parser import extract_engine_params
+from c3_mass.mission_adapters import (
     BurnSequenceConversionResult,
     StageNormalizationResult,
     burn_sequence_to_requirements,
     normalize_stages,
 )
-from mission_simulation import DataQuality
+from c3_mass.mission_simulation import DataQuality
 from server.yaml_codec import load_config
 
 

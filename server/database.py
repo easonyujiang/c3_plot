@@ -181,8 +181,8 @@ def _auto_migrate(db, yaml_files):
     if _proj_root not in sys.path:
         sys.path.insert(0, _proj_root)
 
-    from compute_c3_mass import compute_rocket
-    from engine_parser import extract_engine_params
+    from c3_mass.compute_c3_mass import compute_rocket
+    from c3_mass.engine_parser import extract_engine_params
 
     for fname in sorted(yaml_files):
         filepath = os.path.join(ROCKETS_DIR, fname)
@@ -322,7 +322,7 @@ def _import_engines(db):
     _proj_root = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
     if _proj_root not in sys.path:
         sys.path.insert(0, _proj_root)
-    from engine_parser import extract_engine_params
+    from c3_mass.engine_parser import extract_engine_params
 
     for fname in sorted(os.listdir(ENGINES_DIR)):
         if not fname.endswith('.cfg'):

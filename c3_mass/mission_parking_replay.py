@@ -34,14 +34,14 @@ from dataclasses import dataclass
 from numbers import Real
 from typing import List, Optional
 
-from mission_simulation import (
+from c3_mass.mission_simulation import (
     BurnRequirement,
     DataQuality,
     FailureCode,
     StageState,
     to_dict as _contract_to_dict,
 )
-from mission_solver import MASS_TOLERANCE_T, execute_burn
+from c3_mass.mission_solver import MASS_TOLERANCE_T, execute_burn
 
 # Remaining delta-v at or below this value counts as "arrived".
 DV_TOLERANCE_M_S = 1e-6

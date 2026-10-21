@@ -31,7 +31,7 @@ def main():
     subprocess.run(['git', '-C', str(ROOT), 'archive', '--format=zip',
                     f'--prefix={prefix}/', f'--output={source_zip}', f'v{version}'], check=True)
     tracked = [ROOT / p.decode('utf-8') for p in git('ls-files', '-z').split(b'\0') if p]
-    runtime_dirs = {'server', 'dashboard', 'static', 'engines', 'rockets', 'migrations', 'docs', 'licenses', 'game_plugin'}
+    runtime_dirs = {'c3_mass', 'server', 'dashboard', 'static', 'engines', 'rockets', 'migrations', 'docs', 'licenses', 'game_plugin'}
     files = []
     for file in tracked:
         relative = file.relative_to(ROOT)

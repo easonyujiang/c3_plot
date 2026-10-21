@@ -27,21 +27,21 @@ from dataclasses import dataclass
 from numbers import Real
 from typing import List, Optional
 
-from mission_adapters import (
+from c3_mass.mission_adapters import (
     BurnSequenceConversionResult,
     StageNormalizationResult,
     burn_sequence_to_requirements,
     normalize_stages,
 )
-from mission_capacity_search import (
+from c3_mass.mission_capacity_search import (
     MissionCapacityResult,
     find_max_payload_for_mission,
 )
-from mission_payload_evaluator import (
+from c3_mass.mission_payload_evaluator import (
     PayloadFeasibilityResult,
     evaluate_payload_for_mission,
 )
-from mission_simulation import (
+from c3_mass.mission_simulation import (
     DataQuality,
     FailureCode,
     to_dict as _contract_to_dict,

@@ -7,7 +7,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from flask import Flask, render_template
-from compute_c3_mass import compute_rocket
+from c3_mass.compute_c3_mass import compute_rocket
 from server import models, create_app
 from server.import_service import _preview_one, confirm_batch
 from server.routes_import import bp

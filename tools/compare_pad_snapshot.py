@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from compute_c3_mass import _stage_engine_groups
+from c3_mass.compute_c3_mass import _stage_engine_groups
 from server.ksp_confignode import parse
 from server.yaml_codec import load_config
 

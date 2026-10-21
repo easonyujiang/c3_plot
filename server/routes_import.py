@@ -12,7 +12,7 @@ _PROJ_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _PROJ_ROOT not in sys.path:
     sys.path.insert(0, _PROJ_ROOT)
 
-from compute_c3_mass import compute_rocket
+from c3_mass.compute_c3_mass import compute_rocket
 from . import models
 from . import import_service
 from .validation import validate_rocket
@@ -48,7 +48,7 @@ def preview_saved_craft():
     item = import_service.preview_craft(filename, content, loadmeta)
     if item.get('status') == 'error':
         return jsonify(item), 400
-    from compute_c3_mass import compute_orbit_mission, MU, R_EARTH
+    from c3_mass.compute_c3_mass import compute_orbit_mission, MU, R_EARTH
     import math
     benchmarks = [
         {'payload_t':0, 'orbit_alt_km':220, 'dv_rem_m_s':0, 'benchmark':'220 km 圆轨道'},

@@ -8,6 +8,14 @@ output/
 backups/
 .tmp/
 .vscode/
-frontend/node_modules/
+node_modules/
 c3_plot.db
-# Preserve database, rockets, VAB and experiment evidence locally.
+# Database stays local; versioned samples in rockets/, VAB/ and experiments/ are retained.
+
+# Local credentials and generated diagnostics
+.env
+.env.*
+!.env.example
+*.log
+.coverage
+htmlcov/

@@ -1,6 +1,6 @@
 import unittest
 
-from compute_c3_mass import compute_orbit_mission
+from c3_mass.compute_c3_mass import compute_orbit_mission
 from server.models import interpolate_payload_for_dv
 
 

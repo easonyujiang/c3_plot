@@ -4,7 +4,7 @@ from __future__ import annotations
 import hashlib
 import os
 
-from compute_c3_mass import compute_rocket
+from c3_mass.compute_c3_mass import compute_rocket
 from . import models
 from .ksp_confignode import CraftParseError
 from .ksp_craft_mass_reconciliation import reconcile_craft_mass

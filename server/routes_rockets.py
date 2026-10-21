@@ -12,7 +12,7 @@ _PROJ_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _PROJ_ROOT not in sys.path:
     sys.path.insert(0, _PROJ_ROOT)
 
-from compute_c3_mass import compute_rocket
+from c3_mass.compute_c3_mass import compute_rocket
 from . import models
 from .validation import validate_rocket
 

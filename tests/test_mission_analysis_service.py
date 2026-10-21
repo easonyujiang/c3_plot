@@ -5,9 +5,9 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from compute_c3_mass import compute_orbit_mission, compute_rocket
-from mission_adapters import normalize_stages
-from mission_simulation import DataQuality, FailureCode
+from c3_mass.compute_c3_mass import compute_orbit_mission, compute_rocket
+from c3_mass.mission_adapters import normalize_stages
+from c3_mass.mission_simulation import DataQuality, FailureCode
 from server.mission_analysis import (
     RocketMissionAnalysisResult,
     analyze_rocket_for_mission,

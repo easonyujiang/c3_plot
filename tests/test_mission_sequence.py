@@ -2,14 +2,14 @@ import json
 import math
 import unittest
 
-from mission_simulation import (
+from c3_mass.mission_simulation import (
     BurnRequirement,
     DataQuality,
     FailureCode,
     IgnitionKind,
     StageState,
 )
-from mission_solver import (
+from c3_mass.mission_solver import (
     MASS_TOLERANCE_T,
     execute_burn,
     simulate_stage_sequence,

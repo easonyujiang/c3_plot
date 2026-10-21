@@ -85,10 +85,37 @@ mod 动态质量审查的历史过程见 [自动导入推进记录](docs/AUTOMAT
 恢复前核验 SHA-256，恢复后检查完整性与配置一致性。恢复数据不会覆盖当前项目；
 使用恢复数据时，应另行复制源码并安装依赖。正式数据修复须明确方向并先备份。
 
+## 项目目录
+
+```text
+c3_mass/       计算模型：C3 曲线、发动机解析、任务燃烧与载荷搜索
+server/        Flask API、数据库、游戏导入与质量证据
+frontend/      React 工作台源码与随版本交付的 dist/
+dashboard/     旧版界面（/legacy/）
+static/        共享静态资源和离线 Plotly
+migrations/    SQLite 数据库迁移
+game_plugin/   KSP 游戏内导出与采样插件源码
+tools/         发布、诊断、游戏验证和浏览器检查脚本
+tests/         自动化测试与 fixtures/
+docs/          模型说明、验收记录、维护指南
+engines/       发动机历史样例
+rockets/       火箭 YAML 配置与首启恢复输入
+VAB/           craft 来源样例
+experiments/   应保留的实验原始证据
+output/        生成产物（Git 忽略）
+backups/       本地备份（Git 忽略）
+```
+
+根目录保留启动、测试、备份审计和绘图入口，以及独立质量实验工具。
+计算模块统一从 `c3_mass.*` 导入；命令行计算改用
+`python -m c3_mass.compute_c3_mass --all`，发动机检查用
+`python -m c3_mass.engine_parser`。旧文档中的根目录模型文件现位于 `c3_mass/`。
+文档导航见 [文档索引](docs/README.md)，后续工作见 [改进计划](docs/NEXT_STEPS.md)。
+
 ## 文件分类与维护
 
 源码、tests、migrations、docs、依赖文件适合纳入版本控制。
-数据库、YAML、VAB、实验证据保留在本地，是否提交由使用者根据大小和用途决定。
+运行时数据库保留在本地；现有 YAML、VAB、发动机样例和实验证据已纳入版本控制，更新时应核对来源。
 .venv、缓存、SQLite 临时文件、生成输出和 backups 已列入忽略规则。
 本地 Git 使用 main 分支与 v0.1.0 发布标签；未配置远程仓库。数据库、依赖环境、备份和生成输出不提交。
 保留的 engines、VAB、rockets 和 experiments 是本地历史样例与验证材料，不代表当前游戏运行时数据。

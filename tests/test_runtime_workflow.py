@@ -3,8 +3,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from mission_simulation import StageState, BurnRequirement, FailureCode
-from mission_solver import execute_burn
+from c3_mass.mission_simulation import StageState, BurnRequirement, FailureCode
+from c3_mass.mission_solver import execute_burn
 from server.editor_snapshot import checked_runtime_performance, verify_sources
 
 

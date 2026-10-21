@@ -3,14 +3,14 @@ import json
 import math
 import unittest
 
-from mission_simulation import (
+from c3_mass.mission_simulation import (
     BurnRequirement,
     DataQuality,
     FailureCode,
     IgnitionKind,
     StageState,
 )
-from mission_solver import simulate_multistage_sequence
+from c3_mass.mission_solver import simulate_multistage_sequence
 
 G = 9.80665
 
