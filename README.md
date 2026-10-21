@@ -1,6 +1,10 @@
 # C3-Mass 运力数据库
 
-这是面向 KSP/RSS 火箭的本地运力管理、C3/载荷曲线和地球轨道任务分析工具。
+这是面向个人 KSP/RSS 火箭库的本地运力分析工具：查询自己设计的火箭向不同轨道能运送多少载荷，并比较型号能力。
+
+后续产品目标是建立火箭库的任务覆盖图、识别能力与经济性缺口，并结合实际模组和 MechJeb 提供经过实飞验证的发射方案及程序。当前已有配置导入、运力曲线和任务分析；覆盖缺口分析、自动试飞优化与发射程序生成尚未实现。
+
+当前执行方向见 [产品路线图](docs/PRODUCT_ROADMAP.md)，本机游戏和模组核查见 [安装分析](docs/KSP_INSTALLATION_AUDIT_20261021.md)。
 
 ## 安装与启动
 
@@ -110,14 +114,14 @@ backups/       本地备份（Git 忽略）
 计算模块统一从 `c3_mass.*` 导入；命令行计算改用
 `python -m c3_mass.compute_c3_mass --all`，发动机检查用
 `python -m c3_mass.engine_parser`。旧文档中的根目录模型文件现位于 `c3_mass/`。
-文档导航见 [文档索引](docs/README.md)，后续工作见 [改进计划](docs/NEXT_STEPS.md)。
+文档导航见 [文档索引](docs/README.md)，产品阶段见 [产品路线图](docs/PRODUCT_ROADMAP.md)，工程配套见 [改进计划](docs/NEXT_STEPS.md)。
 
 ## 文件分类与维护
 
 源码、tests、migrations、docs、依赖文件适合纳入版本控制。
 运行时数据库保留在本地；现有 YAML、VAB、发动机样例和实验证据已纳入版本控制，更新时应核对来源。
 .venv、缓存、SQLite 临时文件、生成输出和 backups 已列入忽略规则。
-本地 Git 使用 main 分支与 v0.1.0 发布标签；未配置远程仓库。数据库、依赖环境、备份和生成输出不提交。
+Git 使用 main 分支与 v0.1.0 发布标签；公开仓库为 [easonyujiang/c3_plot](https://github.com/easonyujiang/c3_plot)。数据库、依赖环境、备份和生成输出不提交。
 保留的 engines、VAB、rockets 和 experiments 是本地历史样例与验证材料，不代表当前游戏运行时数据。
 
 当前版本与安装说明见 [0.1.0 发布说明](docs/RELEASE_0.1.0.md)，历史修复和规划保留用于追溯。

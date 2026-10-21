@@ -2,6 +2,11 @@
 
 日常安装与启动见 [项目说明](../README.md)。本轮目录整理将原根目录的计算与任务模块迁入 `c3_mass/`；历史文档的旧路径、行号和阶段状态保留用于追溯。
 
+## 当前产品方向
+
+- [产品路线图](PRODUCT_ROADMAP.md)：不同轨道的单箭运力、型号覆盖缺口、MechJeb 实飞优化与发射程序的阶段目标。
+- [本机安装分析](KSP_INSTALLATION_AUDIT_20261021.md)：2026-10-21 实际游戏、模组版本与源码接口核查。
+
 ## 当前维护入口
 
 - [后续改进计划](NEXT_STEPS.md)：本轮代码检查后的优先级和验收条件。
@@ -27,4 +32,4 @@
 
 ## 历史记录
 
-`PROJECT_*`、`FINAL_ROADMAP.md`、`AI_STAGED_IMPLEMENTATION_PLAN.md` 以及带日期的修复、自动导入和游戏验证记录描述各自检查时点，阅读时先核对日期与后续验收。它们不代表当前待办列表；后续工作以本轮 [改进计划](NEXT_STEPS.md) 为入口。
+`PROJECT_*`、`FINAL_ROADMAP.md`、`AI_STAGED_IMPLEMENTATION_PLAN.md` 以及带日期的修复、自动导入和游戏验证记录描述各自检查时点，阅读时先核对日期与后续验收。它们不代表当前待办列表；后续产品执行以 [产品路线图](PRODUCT_ROADMAP.md) 为入口，工程工作参见 [改进计划](NEXT_STEPS.md)。
