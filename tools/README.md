@@ -13,6 +13,9 @@
 | 启动日志分析 | `python -m tools.game.inspect_game_startup --help` |
 | 准备隔离游戏回放 | `python -m tools.game.prepare_game_validation --help` |
 | 执行已准备的隔离回放 | `python -m tools.game.run_game_replay --help` |
+| 准备隔离基线试飞 | `python -m tools.game.prepare_baseline --help` |
+| 只读核对基线试飞 | `python -m tools.game.audit_baseline --help` |
+| 固化基线证据包 | `python -m tools.game.freeze_baseline_evidence --help` |
 | 质量残差诊断 | `python -m tools.research.audit_ksp_mass_residuals --help` |
 | 受控质量实验 | `python -m tools.research.control_mass_experiment --help` |
 | 游戏质量方法 IL 检查 | `python -m tools.research.audit_editor_mass --help` |
@@ -29,7 +32,7 @@ powershell -File tools/game/build_telemetry.ps1 -KspRoot "D:\SteamLibrary\steama
 powershell -File tools/game/build_validation.ps1 -KspRoot "D:\SteamLibrary\steamapps\common\Kerbal Space Program"
 ```
 
-产物写入 `output/plugins/`。默认只构建，`-Install` 才会安装；替换已有文件需要其预期哈希。`InspectKspApi.cs` 和 `InspectEditorApi.cs` 是只读程序集检查源码。验证插件只用于显式准备的独立回放，不属于正式发布包。
+产物写入 `output/plugins/`。默认只构建，`-Install` 才会安装；替换已有文件需要其预期哈希。`InspectKspApi.cs` 和 `InspectEditorApi.cs` 是只读程序集检查源码。验证插件只用于显式准备的独立回放或隔离基线试飞，不属于正式发布包。基线证据包写入 `docs/evidence/<folder>/`，由 `freeze_baseline_evidence` 只读复制并哈希。
 
 浏览器检查统一在 [frontend/tests/workspace.cjs](../frontend/tests/workspace.cjs)，执行说明见 [前端说明](../frontend/README.md)。
 

@@ -19,3 +19,4 @@ engines/** -text
 experiments/** -text -diff
 rockets/** -text
 tests/fixtures/** -text
+docs/evidence/** -text -diff

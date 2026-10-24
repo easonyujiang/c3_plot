@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "folder": "C3Baseline20261024F",
+  "status": "target_verified",
+  "flight": {
+    "payload_t": 0.9999999599531293,
+    "payload_t_nominal": 1.0,
+    "payload_parts": 11,
+    "payload_intact": true,
+    "fairing_shielded_on_pad": true,
+    "fairing_shielded_at_end": false,
+    "target_periapsis_m": 220000,
+    "target_apoapsis_m": 220000,
+    "target_inclination_deg": 20,
+    "final_periapsis_m": 219800.9055920923,
+    "final_apoapsis_m": 220045.23245149385,
+    "final_inclination_deg": 20.000077379930758,
+    "orbit_hold_s": 30.61999999997215,
+    "samples": 416,
+    "final_mass_t": 5.706453323364258,
+    "final_stage": 1,
+    "stage_events": [
+      {
+        "elapsed_s": 0.03999999999996362,
+        "stage": 5,
+        "altitude_m": 136.43890670780092,
+        "mass_t": 152.87899780273438
+      },
+      {
+        "elapsed_s": 5.139999999995325,
+        "stage": 4,
+        "altitude_m": 136.43890795577317,
+        "mass_t": 152.87899780273438
+      },
+      {
+        "elapsed_s": 6.179999999994379,
+        "stage": 3,
+        "altitude_m": 137.38858933653682,
+        "mass_t": 151.7086944580078
+      },
+      {
+        "elapsed_s": 187.77999999982922,
+        "stage": 2,
+        "altitude_m": 117284.68739618734,
+        "mass_t": 26.46596336364746
+      },
+      {
+        "elapsed_s": 188.7999999998283,
+        "stage": 1,
+        "altitude_m": 118276.71873783041,
+        "mass_t": 20.41086196899414
+      }
+    ]
+  },
+  "provenance": {
+    "craft_sha256_prepared": "bada007c94d06b94442d98f362f0dcbd3f7b230e807fe0517b5a325c29744763",
+    "craft_sha256_flown": "D18E0502D35A8DFA3418114BFE85D35B79513D0E37EA66EF45BBE1D9739194FE",
+    "source_save_sha256": "423d2ecf553033e26e02571477aa4c6ebacecd8acb7f83a9d973c3ba44b11841",
+    "environment_sha256": {
+      "GameData/ModuleManager.ConfigCache": "15c6d8dd36fd9310c964d67f0172906311956e19824ae38f66a1269a2bccaff3",
+      "GameData/MechJeb2/Plugins/MechJeb2.dll": "277a285d4212ab594e157f03b46de408b283e03cab0518c4ec312c4caf91253b",
+      "GameData/C3MassValidation/Plugins/C3MassValidation.dll": "15427032cf0ac3acaf6842a115dba3ae44479a5e0c6675a9f5908e0ef301908a"
+    },
+    "source_files_checked": 78,
+    "source_files_changed": [],
+    "environment_files_changed": []
+  },
+  "files": [
+    {
+      "path": "flight.csv",
+      "role": "flight_telemetry",
+      "bytes": 77606,
+      "sha256": "dc2bc9d2bd23d2a79a4229c22a7df225236f8472bbd83fda81280ea846f86471"
+    },
+    {
+      "path": "C3Baseline20261024F.c3inspection",
+      "role": "pad_initial_snapshot",
+      "bytes": 11147,
+      "sha256": "a8f555269aadeb2b0e009a2b6aebdd8cb06a191a795c9360d1ee9bd464ae1b8d"
+    },
+    {
+      "path": "before_ballast.c3inspection",
+      "role": "pad_before_ballast_snapshot",
+      "bytes": 11146,
+      "sha256": "1ee40cbd3ceb2c8bef4d837f9e425af62ae9dd387a208ece4e191546805b2b4e"
+    },
+    {
+      "path": "configured.c3inspection",
+      "role": "pad_configured_snapshot",
+      "bytes": 11119,
+      "sha256": "bc8ca9f13f324e4d1d665ba61c50821a9342309a97661069e1bb5c2dbf302730"
+    },
+    {
+      "path": "final.c3inspection",
+      "role": "flight_final_snapshot",
+      "bytes": 8835,
+      "sha256": "12cf19fe33ed6dedfa5f6d55ef600475308c91cf4acf10a76c526829894ba949"
+    },
+    {
+      "path": "prepared-inputs.json",
+      "role": "prepared_input_manifest",
+      "bytes": 10861,
+      "sha256": "f05665c55fa499336bbc18099176226840d41f4debf6b373be5b537d383be257"
+    },
+    {
+      "path": "flown-craft.craft",
+      "role": "flown_craft",
+      "bytes": 128994,
+      "sha256": "d18e0502d35a8dfa3418114bfe85d35b79513d0e37ea66ef45bbe1d9739194fe"
+    },
+    {
+      "path": "editor-snapshot.c3snapshot",
+      "role": "editor_snapshot",
+      "bytes": 43360,
+      "sha256": "eb2f2160c4eec75623880c2e2ebb40df5afc580f3d4c3c4d9518a9ccc50fe740"
+    },
+    {
+      "path": "harness-status.txt",
+      "role": "harness_status",
+      "bytes": 1173,
+      "sha256": "de3238d11a858060c476174ef841de97cd215b9aec2a5111fc98827330606b06"
+    },
+    {
+      "path": "audit.json",
+      "role": "audit_result",
+      "bytes": 3944,
+      "sha256": "5c2b37adb8951a2d37602eede47b33442a0d8a581a7b31f97b2f47c08425832a"
+    }
+  ],
+  "caveats": [
+    "One flight; it verifies one delivered payload point, not maximum payload or a success rate.",
+    "The C3 curve is not calibrated from this point by this command.",
+    "The final mass includes remaining propellant; remaining delta-v is a model output, not an orbit reading.",
+    "The flown craft differs from the prepared input after the editor fairing rebuild; both hashes are recorded."
+  ]
+}

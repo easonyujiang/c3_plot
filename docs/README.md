@@ -6,6 +6,7 @@
 
 - [本机 KSP/模组与 MechJeb 接口分析](ksp/KSP_INSTALLATION_AUDIT_20261021.md)
 - [当前验证基线与精度边界](validation/BASELINE.md)
+- [基线飞行证据 20261024F：1 t / 220 km / 20°](evidence/C3Baseline20261024F/README.md)
 - [VAB 导入设计](ksp/VAB_IMPORT_DESIGN.md)、[批量导入 API](ksp/BATCH_IMPORT.md)
 - [安装索引](ksp/KSP_INSTALL_INDEX.md)、[部件匹配](ksp/KSP_PART_MATCHING.md)
 - [质量证据](ksp/KSP_MASS_EVIDENCE.md)、[整箭对账](ksp/KSP_CRAFT_MASS_RECONCILIATION.md)

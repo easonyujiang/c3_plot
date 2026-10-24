@@ -29,4 +29,6 @@ htmlcov/
 /engines/
 /experiments/
 /rockets/
-/docs/evidence/
+# Old evidence was cleared; explicitly frozen flight bundles are versioned.
+/docs/evidence/*
+!/docs/evidence/C3Baseline20261024F/
