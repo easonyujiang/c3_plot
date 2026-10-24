@@ -2,7 +2,8 @@
 
 ## 未发布
 
-- 基线 harness 支持可配置载荷目标：`prepare_baseline --payload-t` 按目标扩大 payload 舱配重容量，插件按请求中的 `payload_t` 调整 ballast 并通过相同的 pad gate；已准备 2.5 t 隔离存档用于载荷阶梯。
+- 基线 harness 支持可配置载荷目标：`prepare_baseline --payload-t` 按目标扩大 payload 舱配重容量，插件按请求中的 `payload_t` 调整 ballast 并通过相同的 pad gate。
+- 完成 `C3Baseline20261024G` 的 2.500 t / 220 × 220 km / 20° 飞行，`target_verified`，保持 30.60 s，载荷 11/11 完整；证据包在 `docs/evidence/C3Baseline20261024G/`。`audit_baseline` 改为按 `target_payload_t` 校验，不再硬编码 1.0 t；新增对应回归测试。
 - 修复导入预览重复验证：`read_snapshot` 的已验证来源直接传给验证流程，一次预览只做一次完整 `GameData` 扫描；新增按来源签名失效的跨进程缓存（6 小时 TTL，记录文件/顶层目录/记录路径祖先的 size+mtime）。实测 195–245 秒降到冷启动 71–73 秒、缓存命中 2.75–3.96 秒；新增缓存失效与单次扫描测试。该修复在 `v0.2.0` 标签之后。
 
 ## 0.2.0 — 2026-10-24

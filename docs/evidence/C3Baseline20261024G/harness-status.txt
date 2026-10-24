@@ -1,0 +1,13 @@
+2026-10-24T15:04:50.5748713Z armed_pad_inspection C3Baseline20261024G
+2026-10-24T15:05:06.1625480Z rebuilding_fairings_in_editor
+2026-10-24T15:05:31.5615179Z editor_rebuild_saved sha256=0BD9E9931AB38496E4065B465A6E6AEE15880028FD3B46739A74AB4BC4462F77
+2026-10-24T15:05:34.5635644Z loading_pad
+2026-10-24T15:05:47.3376168Z pad_ready
+2026-10-24T15:06:02.3577914Z measured payload_t=3.0050000147894025 vessel_t=154.88400268554688 controllable=True mj=True
+2026-10-24T15:06:02.3597914Z refueling_pumps_disabled count=4
+2026-10-24T15:06:02.3607896Z ballast_adjustment target=2.5 old=250 new=205.46736979058875 density=0.011339999735355377
+2026-10-24T15:06:05.3728453Z measured payload_t=2.4999999003484845 vessel_t=154.37899780273438 controllable=True mj=True
+2026-10-24T15:06:05.3883868Z measured payload_t=2.4999999003484845 vessel_t=154.37899780273438 controllable=True mj=True
+2026-10-24T15:06:05.4054203Z flight_countdown target=220000x220000 inclination=20 payload_t=2.4999999003484845 target_payload_t=2.5
+2026-10-24T15:13:21.5924309Z measured payload_t=2.4999999003484845 vessel_t=5.8540239334106445 controllable=True mj=True
+2026-10-24T15:13:21.5967908Z flight_success_orbit_held_30s

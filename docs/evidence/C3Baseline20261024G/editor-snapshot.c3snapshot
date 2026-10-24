@@ -1,0 +1,2134 @@
+schema_version = 1
+craft_sha256 = 0bd9e9931ab38496e4065b465a6e6aee15880028fd3b46739a74ab4bc4462f77
+craft_path = D:\SteamLibrary\steamapps\common\Kerbal Space Program\saves\C3Baseline20261024G\Ships\VAB\C3 Neutrons I 2630 Payload Baseline.craft
+ship_name = C3 Neutrons I 2630 Payload Baseline
+config_cache_sha256 = 15c6d8dd36fd9310c964d67f0172906311956e19824ae38f66a1269a2bccaff3
+captured_utc = 2026-10-24T15:05:33.0645950Z
+game_mass_method = ShipConstruct.GetShipMass(out dry, out resource); no crew manifest
+editor_dry_mass_t = 7.49721622467041
+editor_resource_mass_t = 147.38679504394531
+editor_total_mass_t = 154.88401794433594
+infinite_propellant = False
+rf_limited_ignitions = True
+PLUGIN_SOURCE
+{
+	path = GameData/999_Scale_Redist.dll
+	sha256 = 8e2bde5325ef9badc96a48def9ca958aed33b876dc9778c1049f9b70d1af9ee4
+}
+PLUGIN_SOURCE
+{
+	path = GameData/ModuleManager.4.2.3.dll
+	sha256 = 95847827ab293b9e82a19b7efb97ffea3e98cc03b181862536ac8eb572e30d7d
+}
+PLUGIN_SOURCE
+{
+	path = GameData/000_ClickThroughBlocker/Plugins/ClickThroughBlocker.dll
+	sha256 = d5eac225dcd7dd841b2e4adf40b1fb7e463541e68c944353470856a32a9242f7
+}
+PLUGIN_SOURCE
+{
+	path = GameData/000_Harmony/0Harmony.dll
+	sha256 = 19ce60ac3280f72ec1751d36a40cb7e2fece2934df8345969dc7feb83bd633e4
+}
+PLUGIN_SOURCE
+{
+	path = GameData/000_Harmony/HarmonyInstallChecker.dll
+	sha256 = f11e659e91a52c21c5bda78e52b82a7bdc246bcab6a999733af3c69a11a9dc0e
+}
+PLUGIN_SOURCE
+{
+	path = GameData/000_KSPBurst/Plugins/KSPBurst.dll
+	sha256 = 6955bc0a369f39f5f377c28cfb833349eab682aac1f18b51d71e426a54157e60
+}
+PLUGIN_SOURCE
+{
+	path = GameData/000_KSPBurst/Plugins/Microsoft.Extensions.FileSystemGlobbing.dll
+	sha256 = 4bee1a2e2b2e3505f9c068a924dc1c90fb2951d37837b4f5e1dfc868f5452344
+}
+PLUGIN_SOURCE
+{
+	path = GameData/000_KSPBurst/Plugins/System.IO.Compression.dll
+	sha256 = 1540e6b310efee0a3e28c0475915d1fd4e45b546441f0bc2c0798bf3f0d5e6e9
+}
+PLUGIN_SOURCE
+{
+	path = GameData/000_KSPBurst/Plugins/System.IO.Compression.FileSystem.dll
+	sha256 = a874de253c8d658b12bccceecc6eacdf559e714aaba2fe924a41e7f3d35b05e2
+}
+PLUGIN_SOURCE
+{
+	path = GameData/000_KSPBurst/Plugins/System.Runtime.CompilerServices.Unsafe.dll
+	sha256 = f6ef966d019b1c406659ce18f3ab00c3c7c9334e4dadc0249bc6721cdb77ee9a
+}
+PLUGIN_SOURCE
+{
+	path = GameData/000_KSPBurst/Plugins/System.Runtime.dll
+	sha256 = cb904ffd053b8b673afd2c1e6cfc8c39a4ff5078a05447c9bf7fd6eda5ef6695
+}
+PLUGIN_SOURCE
+{
+	path = GameData/000_KSPBurst/Plugins/Unity.Burst.dll
+	sha256 = 13d9656cd92045c4247e90b14ca549468d1f538947cc63853b433db6381eee8b
+}
+PLUGIN_SOURCE
+{
+	path = GameData/000_KSPBurst/Plugins/Unity.Burst.Unsafe.dll
+	sha256 = f39e0b8d2e069ef2264220f7a33b91fdf9ed10212a848b2533e9e2c65ef12c8b
+}
+PLUGIN_SOURCE
+{
+	path = GameData/000_KSPBurst/Plugins/Unity.Collections.dll
+	sha256 = ad6bf4eacd20a0564c544db7b219b087bbd291351ffba7708af3f9e764ff0f7e
+}
+PLUGIN_SOURCE
+{
+	path = GameData/000_KSPBurst/Plugins/Unity.Jobs.dll
+	sha256 = 72312895aeddbdde5c46e292d7a77c3ac2f0644c29a1a46fa4326636c22537bc
+}
+PLUGIN_SOURCE
+{
+	path = GameData/000_KSPBurst/Plugins/Unity.Mathematics.dll
+	sha256 = 32f53cad9db0ce3e0bb6114e4718b34fcf5adfa5deb96536312a134254e93691
+}
+PLUGIN_SOURCE
+{
+	path = GameData/000_TexturesUnlimited/Plugins/BlendshapeModelLoader.dll
+	sha256 = 245d7f8afe6c4d82ae1bdb11d6b2533de2f3943a0d19a10574069650b884ce3f
+}
+PLUGIN_SOURCE
+{
+	path = GameData/000_TexturesUnlimited/Plugins/TexturesUnlimited.dll
+	sha256 = d93d339af858510d7fd6a6e0c43c27c7243ddfb8ece5c6118af701a4096fa9d0
+}
+PLUGIN_SOURCE
+{
+	path = GameData/000_Toolbar/Plugins/aaa_Toolbar.dll
+	sha256 = 1d10dc4f56de85bc58fcd137470b3665f49ac24d616a899e4e1235be1a039f59
+}
+PLUGIN_SOURCE
+{
+	path = GameData/001_ToolbarControl/Plugins/ToolbarControl.dll
+	sha256 = c9340d70148b0f124145a367859f47ec8138f5b59646b9dcecf3ab06db43250d
+}
+PLUGIN_SOURCE
+{
+	path = GameData/ASET/ASET_Props/Plugin/ASETPropsIdentifier.dll
+	sha256 = de67fa4b61ead19cab9dd48d24d2e2a265f7ad8ec930c9d2729ce8c06b9088f9
+}
+PLUGIN_SOURCE
+{
+	path = GameData/AtmosphereAutopilot/AtmosphereAutopilot.dll
+	sha256 = 90c492e54587a48a47eed953730cce650ae6bf5fb324b0a0de105581cc38f130
+}
+PLUGIN_SOURCE
+{
+	path = GameData/AtmosphereAutopilot/AtmosphereAutopilot.UI.dll
+	sha256 = 76b8044d8f34789f4709efed9dd6c25cc03a25ddeb0017720a42d66a0c86c540
+}
+PLUGIN_SOURCE
+{
+	path = GameData/B9AnimationModules/Plugins/B9AnimationModules.dll
+	sha256 = 4a9e52508335cc3cf64aacf937625abe39cf6def8c901c129326c613fe7e7c7a
+}
+PLUGIN_SOURCE
+{
+	path = GameData/B9PartSwitch/Plugins/B9PartSwitch.dll
+	sha256 = 625d3b10edd5b8f76bdaffdb808c965229e68b8edc57e8abdc68efe11938bd85
+}
+PLUGIN_SOURCE
+{
+	path = GameData/C3MassTelemetry/Plugins/C3MassTelemetry.dll
+	sha256 = 51dc8a05866bc4c56275d4fb7e6a79e9587e1fc4c8839602e987c66ea6e71153
+}
+PLUGIN_SOURCE
+{
+	path = GameData/C3MassValidation/Plugins/C3MassValidation.dll
+	sha256 = 7a1e697b538ad6b13c623bc09c53814e26cc4eca1dee6c4ea0f6e6955597e2aa
+}
+PLUGIN_SOURCE
+{
+	path = GameData/CameraTools/Plugins/CameraTools.dll
+	sha256 = a53344daa2698c2b7365cada4e8065972f008ce0c2f087c688e5d45c09e4b417
+}
+PLUGIN_SOURCE
+{
+	path = GameData/CommunityCategoryKit/CCK.dll
+	sha256 = c139accf47abe6cf6aa3772c5f7bd7b10da049d7da8706b3e8c7fbf743a107fc
+}
+PLUGIN_SOURCE
+{
+	path = GameData/CommunityTraitIcons/Plugins/CommunityTraitIcons.dll
+	sha256 = 80e2647f40e65487a5b091e698ebfe63729d356c3fb87827bde3fc8acfe3edef
+}
+PLUGIN_SOURCE
+{
+	path = GameData/ContractConfigurator/CC_RemoteTech.dll
+	sha256 = 359036f4194b8c33f6b3744ed20cb2a58fccc88d445c8371e882e3ac20ddebe4
+}
+PLUGIN_SOURCE
+{
+	path = GameData/ContractConfigurator/ContractConfigurator.dll
+	sha256 = 08b32381acbc29cd2a9ed8a3f664adf54a83385770dc7483e7ebd7eb39f6d112
+}
+PLUGIN_SOURCE
+{
+	path = GameData/ContractConfigurator/KerKonConConExt.dll
+	sha256 = 0a36fb1fd8db5b8af472d19afdab6cf21578559b25c3fbee75282b74c5d7f74c
+}
+PLUGIN_SOURCE
+{
+	path = GameData/CriticalTemperatureGauge/Plugins/CriticalTemperatureGauge.dll
+	sha256 = 29dd92f4a3107a5d2fa0dfb218607fe67b86d90ed4706f3cd7e8ebd45602013a
+}
+PLUGIN_SOURCE
+{
+	path = GameData/CryoTanks/Plugins/SimpleBoiloff.dll
+	sha256 = e51c8a358312d65bb7c814fdf3ca5dfb561079acfaccad2ae8da14f13d9be2d1
+}
+PLUGIN_SOURCE
+{
+	path = GameData/DeployableEngines/Plugins/DeployableEngines.dll
+	sha256 = 6223c9ed38d08f2526df3433fc8816caa8b5953959c188d5d3dcf87e97660dd5
+}
+PLUGIN_SOURCE
+{
+	path = GameData/DynamicBatteryStorage/Plugins/DynamicBatteryStorage.dll
+	sha256 = 59760d9b403a98147419a9274aabd97043aba9a6b9b649b0000cc25e87a3eaca
+}
+PLUGIN_SOURCE
+{
+	path = GameData/EnvironmentalVisualEnhancements/Plugins/Atmosphere.dll
+	sha256 = 02f76ebea3da7fa6bdf91ad42c0cd4f47f135b0c55e11f2a956aad847c25b580
+}
+PLUGIN_SOURCE
+{
+	path = GameData/EnvironmentalVisualEnhancements/Plugins/CelestialShadows.dll
+	sha256 = 1fa0d3acb9559a033d3b993b8d75d28010150a21b6db3d9576a2e110b062a27f
+}
+PLUGIN_SOURCE
+{
+	path = GameData/EnvironmentalVisualEnhancements/Plugins/CityLights.dll
+	sha256 = 192c08fe678ab4ffd50b3d415c5fdfed7ac08240ab610425988534b37882bc42
+}
+PLUGIN_SOURCE
+{
+	path = GameData/EnvironmentalVisualEnhancements/Plugins/EVEManager.dll
+	sha256 = e2f41d966634a09300866d9431b11208264f39b63a82e276b9612229f18e9ed0
+}
+PLUGIN_SOURCE
+{
+	path = GameData/EnvironmentalVisualEnhancements/Plugins/PartFX.dll
+	sha256 = c88561a711cb568bd29bbd3c4046a17e88c219b53afd3c6a10996214d9616cd2
+}
+PLUGIN_SOURCE
+{
+	path = GameData/EnvironmentalVisualEnhancements/Plugins/PQSManager.dll
+	sha256 = c4e1734014ec53c0cc8cd64596ec02f2f8f7203ab0ef8575303136f56f632e83
+}
+PLUGIN_SOURCE
+{
+	path = GameData/EnvironmentalVisualEnhancements/Plugins/ShaderLoader.dll
+	sha256 = 3046fd57392c838151e7489d4e31197de49bbde2f43e14cdd7e27294c07087bc
+}
+PLUGIN_SOURCE
+{
+	path = GameData/EnvironmentalVisualEnhancements/Plugins/Terrain.dll
+	sha256 = 32968cbfe234783f495d072b06d8ad1a9bb3bbef5b0ed2cc09c1888a754566e1
+}
+PLUGIN_SOURCE
+{
+	path = GameData/EnvironmentalVisualEnhancements/Plugins/TextureConfig.dll
+	sha256 = b047e171bce082acb533d8e24c98c018effce108b2bbcdf911a4c1bad01a106d
+}
+PLUGIN_SOURCE
+{
+	path = GameData/EnvironmentalVisualEnhancements/Plugins/Utils.dll
+	sha256 = 8acc2c355c72edc42aa41f373ce48fc85c26178132ea78be91526c741fe5a187
+}
+PLUGIN_SOURCE
+{
+	path = GameData/EnvironmentalVisualEnhancements/Plugins/_BuildManager.dll
+	sha256 = ea25df7f53049539595acbea747607633ce0f1f3bc780f66599d4586bea91a18
+}
+PLUGIN_SOURCE
+{
+	path = GameData/FerramAerospaceResearch/Plugins/FerramAerospaceResearch.Base.dll
+	sha256 = 130f166b53b8210cea8148ff74f21ee6fef7d1a85ee9095c954f8bb6c19a7fd3
+}
+PLUGIN_SOURCE
+{
+	path = GameData/FerramAerospaceResearch/Plugins/FerramAerospaceResearch.dll
+	sha256 = cd902484e9b9cdc5f09914968e6b66d966e25fa5a854e561e124a96b17f7f4b0
+}
+PLUGIN_SOURCE
+{
+	path = GameData/FerramAerospaceResearch/Plugins/ferramGraph.dll
+	sha256 = e5f348d555e3bc5c95b406787998f0955195947cf1df72527865a915a8131af4
+}
+PLUGIN_SOURCE
+{
+	path = GameData/Firespitter/Plugins/Firespitter.dll
+	sha256 = f727ac6a9718e30f46b0976238eb0aa7061e1163d83cd65129b9877297bac5bc
+}
+PLUGIN_SOURCE
+{
+	path = GameData/FShangarExtender/Plugins/HangerExtenderExtended.dll
+	sha256 = a6e7036f95d776f1decccdf2ee24974906dd5ec1ce331f000fc6008dfae4c532
+}
+PLUGIN_SOURCE
+{
+	path = GameData/Historian/Historian.dll
+	sha256 = 786607eaa586e48f251b3b4a80d0c2ae35ba1370c5393e29762555bcb17fe344
+}
+PLUGIN_SOURCE
+{
+	path = GameData/JSI/RasterPropMonitor/Plugins/MechJebRPM.dll
+	sha256 = e6ce8557f73e24049efdbe6e197226fbcd4f15394ef2934f10833fbee2b6dd17
+}
+PLUGIN_SOURCE
+{
+	path = GameData/JSI/RasterPropMonitor/Plugins/RasterPropMonitor.dll
+	sha256 = eceb62609d2b60ef07ed8c8c9fbb2708c3c714cc0e2b6cfc6c832b9bbbd2ae0a
+}
+PLUGIN_SOURCE
+{
+	path = GameData/KerbalChangelog/Plugins/KerbalChangelog.dll
+	sha256 = bb33b7aa2de3ba0ea2fd93e9e4f3098ffaa55727feff194a4e8d17dd34fab273
+}
+PLUGIN_SOURCE
+{
+	path = GameData/KerbalEngineer/KerbalEngineer.dll
+	sha256 = ee8cbd4aab1ee3c2a5cc61354c03975c1921fc4cc5d288b9e1d70c4646526960
+}
+PLUGIN_SOURCE
+{
+	path = GameData/KerbalEngineer/KerbalEngineer.Unity.dll
+	sha256 = 9bef85fb0820a41fb59e0166dba9e79e38de0e2557e01b28c0338e0e4912e8c6
+}
+PLUGIN_SOURCE
+{
+	path = GameData/KerbalJointReinforcement/Plugin/KerbalJointReinforcement.dll
+	sha256 = 2bf0ac39528f44b05b0e2afe12f4756afd07d598fe6cea2f051c6eec81d0fe6e
+}
+PLUGIN_SOURCE
+{
+	path = GameData/KerbetrotterLtd/000_KerbetrotterTools/Plugins/KerbetrotterTools.dll
+	sha256 = 758734f360446918218ca8f0af4edd139c68f13ffd0e80b2a9f1aab48552c080
+}
+PLUGIN_SOURCE
+{
+	path = GameData/Kopernicus/Plugins/Kopernicus.dll
+	sha256 = 36591318f35d02ccbefd231938b2998fac12640d7f6e1ee09a5857756514fa51
+}
+PLUGIN_SOURCE
+{
+	path = GameData/Kopernicus/Plugins/Kopernicus.Parser.dll
+	sha256 = 9fa6ce5e6b83af8bdac51c232f48d9855e9aef34a9978e42315472efc6e9c648
+}
+PLUGIN_SOURCE
+{
+	path = GameData/kOS/Plugins/ICSharpCode.SharpZipLib.dll
+	sha256 = 40b3d590f95191f3e33e5d00e534fa40f823d9b1bb2a9afe05f139c4e0a3af8d
+}
+PLUGIN_SOURCE
+{
+	path = GameData/kOS/Plugins/kOS.dll
+	sha256 = fa778010db230cd9ada5ff1fc8e21880da4771579278efa8af70f19d8202260e
+}
+PLUGIN_SOURCE
+{
+	path = GameData/kOS/Plugins/kOS.Safe.dll
+	sha256 = e96a22b6ef26e039a53f9e5ea85df863b0fe01ec795d29e856ebf5304eec0f67
+}
+PLUGIN_SOURCE
+{
+	path = GameData/KronalVesselViewer/Plugins/KronalUtils.dll
+	sha256 = 351a11cd7b618cf4771ee27f76a0c3fcbd10c138c356ca25646d5de7b0049db6
+}
+PLUGIN_SOURCE
+{
+	path = GameData/KSCSwitcher/Plugins/KSCSwitcher.dll
+	sha256 = 6cdfe059d8f13a3c7827d1d78390bcd717660ac6f4e3dbace296d6156c38b761
+}
+PLUGIN_SOURCE
+{
+	path = GameData/KSP-AVC/Plugins/KSP-AVC.dll
+	sha256 = 4d3ac899c0dc2cf68ece70e03060d930ee012c90aaf3dce13e911d755208bd51
+}
+PLUGIN_SOURCE
+{
+	path = GameData/KSPCommunityFixes/Plugins/0_MultipleModuleInPartAPI.dll
+	sha256 = df4a22fb0535de7fa154ca234b50dd7c2fc6be879e4a877d9bad1f87bafafcbf
+}
+PLUGIN_SOURCE
+{
+	path = GameData/KSPCommunityFixes/Plugins/KSPCommunityFixes.dll
+	sha256 = e08ebbec7ab34f4f7ff56d6e900051bb0d259a4bc092881d7db3ca2f9f2e9a11
+}
+PLUGIN_SOURCE
+{
+	path = GameData/KSPTextureLoader/Plugins/KSPTextureLoader.dll
+	sha256 = 0020f4418dda10a4694425855da95d4de9d3eda4b7ee8693e1c88ed280ea0c3c
+}
+PLUGIN_SOURCE
+{
+	path = GameData/KSPTextureLoader/Plugins/SharpDX.Direct3D11.dll
+	sha256 = 56f525e33494f4cd2a560a71cdf237303a3fb54a8fa44e1693eba35c9245c60a
+}
+PLUGIN_SOURCE
+{
+	path = GameData/KSPTextureLoader/Plugins/SharpDX.dll
+	sha256 = a0af255ea4b09a8cdb995b8c6fd1075e46f098e23c2351c974e6ded9b8b620cf
+}
+PLUGIN_SOURCE
+{
+	path = GameData/KSPTextureLoader/Plugins/SharpDX.DXGI.dll
+	sha256 = bc0243134c93c55ea105d0e9c2a43b6030e973290d0a061cf3a61986a2268a88
+}
+PLUGIN_SOURCE
+{
+	path = GameData/KSPWheel/Plugin/KSPWheel.dll
+	sha256 = 2fa902c9231b0b57d21522da6e5f70e37bde7525b0672c3d0992959628f8aded
+}
+PLUGIN_SOURCE
+{
+	path = GameData/MechJeb2/Plugins/JetBrains.Annotations.dll
+	sha256 = 5494939d0b986b953582fa150435b0cc784b180a214ee4dcca9785058e585b6f
+}
+PLUGIN_SOURCE
+{
+	path = GameData/MechJeb2/Plugins/MechJeb2.dll
+	sha256 = 277a285d4212ab594e157f03b46de408b283e03cab0518c4ec312c4caf91253b
+}
+PLUGIN_SOURCE
+{
+	path = GameData/MechJeb2/Plugins/System.Buffers.dll
+	sha256 = accccfbe45d9f08ffeed9916e37b33e98c65be012cfff6e7fa7b67210ce1fefb
+}
+PLUGIN_SOURCE
+{
+	path = GameData/ModularFlightIntegrator/ModularFlightIntegrator.dll
+	sha256 = 280b6a7b2452673697a8a54b8b449730d7f9344fd05e81ce72f97f48b35d91d9
+}
+PLUGIN_SOURCE
+{
+	path = GameData/Parallax/Grass.dll
+	sha256 = 73d49495ebe0ba8087b238227d60ad2d18b729c5e6e20c7584f2629fd78b0551
+}
+PLUGIN_SOURCE
+{
+	path = GameData/Parallax/ParallaxOptimized.dll
+	sha256 = af3df41b39d503e74f55879b929a47d52497a389265909c67a6e87059f031096
+}
+PLUGIN_SOURCE
+{
+	path = GameData/Parallax/ParallaxQualityLibrary.dll
+	sha256 = 5f451e4ab6e90a9947a47903ba78f80cd43f2281cf1bd40f2cf73f3c815e127f
+}
+PLUGIN_SOURCE
+{
+	path = GameData/PlanetaryBaseInc/BaseSystem/Plugins/PlanetarySurfaceStructures.dll
+	sha256 = c1847320dcffb8d7656f49c28abd0fdc8872d49cc1ea152340441c49f040b066
+}
+PLUGIN_SOURCE
+{
+	path = GameData/PortraitStats/Plugins/PortraitStats.dll
+	sha256 = 57db146a01b0d0065e0845761bc896375a5635684d6ff86006dc490d8af8ef3f
+}
+PLUGIN_SOURCE
+{
+	path = GameData/Principia/ksp_plugin_adapter.dll
+	sha256 = 4cde002b37cc940851e031619858bd4a49bd0567ab467362a526d4c7870a98ee
+}
+PLUGIN_SOURCE
+{
+	path = GameData/Principia/x64/principia.dll
+	sha256 = 74ccfd0f916388ceec57fae7f60fb3d84348ccc528527d25eff9241c68ee04dd
+}
+PLUGIN_SOURCE
+{
+	path = GameData/ProceduralFairings/Plugins/ProceduralFairings.dll
+	sha256 = c2e7d148ed1fd5f375d5c19e3bbdcffd744c98f5e25f428224472196d0882419
+}
+PLUGIN_SOURCE
+{
+	path = GameData/ProceduralParts/Plugins/ProceduralParts.dll
+	sha256 = 88b48728166eb40a187d3ca2cc0dc7d07c47d8d902074629c8346df0eb4971dc
+}
+PLUGIN_SOURCE
+{
+	path = GameData/RealChute/Plugins/RealChute.dll
+	sha256 = 884acb3f4537a2164fa4b6d798be538c6fed54997c5de0a7674527bc973b56d5
+}
+PLUGIN_SOURCE
+{
+	path = GameData/RealFuels/Plugins/RealFuels.dll
+	sha256 = 6c6629ed95955f4f0bd88041319444da45115223415bdc20febdb04a33377b5b
+}
+PLUGIN_SOURCE
+{
+	path = GameData/RealHeat/Plugins/RealHeat.dll
+	sha256 = 8a088b5fa9affeddc9633aef2e494ee2fd249c1e1e3e3d4d920a84b9e35092f9
+}
+PLUGIN_SOURCE
+{
+	path = GameData/RealSolarSystem/Plugins/RealSolarSystem.dll
+	sha256 = 60c5f484d41993fc803fa76de9008d2756636ec3e02a2a6f50445b1c7b7f0eb5
+}
+PLUGIN_SOURCE
+{
+	path = GameData/ROUtils/Plugins/ROUtils.dll
+	sha256 = e911e25ede290589c7ee1d852300ef9a1e0ac9b918142e29f1bd262d4794e916
+}
+PLUGIN_SOURCE
+{
+	path = GameData/RSSDateTime/Plugins/RSSTimeFormatter.dll
+	sha256 = 5ab2c0787342b1d066aabce2cf2e525fc5b697e7b54e6471e86debf457ad7969
+}
+PLUGIN_SOURCE
+{
+	path = GameData/SCANsat/Plugins/SCANmechjeb.dll
+	sha256 = 5c8e4bb1cca7002c649314b24425aed0dfe254c1bee483cc92730867d93aa668
+}
+PLUGIN_SOURCE
+{
+	path = GameData/SCANsat/Plugins/SCANsat.dll
+	sha256 = 8ee4aa88956230bc828a5da1426eba922845b326e432bcb0c8ad5a78ccebbe90
+}
+PLUGIN_SOURCE
+{
+	path = GameData/SCANsat/Plugins/SCANsat.Unity.dll
+	sha256 = 97b8b37771952484238fa7a9872abeb0f40e2b0be53c15e3a7f579d40da373bb
+}
+PLUGIN_SOURCE
+{
+	path = GameData/Scatterer/Scatterer.dll
+	sha256 = 43951a267c035d9de2e159b14a7dbf53c833eb9859ee302e69d5e4c4cb3f4e62
+}
+PLUGIN_SOURCE
+{
+	path = GameData/SmokeScreen/SmokeScreen.dll
+	sha256 = e6145b65a91785cacc6208a46ac57fe35b1e392ba559afa01f321ab1be098028
+}
+PLUGIN_SOURCE
+{
+	path = GameData/SolverEngines/Plugins/SolverEngines.dll
+	sha256 = 9b9bf50f31cf72745025877c6dd8bed98848216de61c6477d7cc5c2b08d2435c
+}
+PLUGIN_SOURCE
+{
+	path = GameData/SpaceTuxLibrary/Plugins/ButtonManager.dll
+	sha256 = 6ff9b47c3a1bf6fef8e6ecb8fde92f7a6dad01c9f96b3ac8f553eace009ed603
+}
+PLUGIN_SOURCE
+{
+	path = GameData/SpaceTuxLibrary/Plugins/KSP_ColorPicker.dll
+	sha256 = fba3106ac4628ec1a3218831dc3c165e5f5a6ac9633eb882b8b871f0edf9fd4a
+}
+PLUGIN_SOURCE
+{
+	path = GameData/SpaceTuxLibrary/Plugins/KSP_Log.dll
+	sha256 = 813e5c64aa08262e603c6466e783725424adde2245ecf719aea954937df29a43
+}
+PLUGIN_SOURCE
+{
+	path = GameData/SpaceTuxLibrary/Plugins/KSP_PartHighlighter.dll
+	sha256 = 9f48d27ca50284d0b2afe76ca1589ed76ae40dd4a9e2edcbbd5b0b4d36d442f6
+}
+PLUGIN_SOURCE
+{
+	path = GameData/SpaceTuxLibrary/Plugins/SpaceTuxUtility.dll
+	sha256 = 6e7ede8d3b9781e8a1d4058c019811cb8254131f9b1f343542cbe142f62c57b3
+}
+PLUGIN_SOURCE
+{
+	path = GameData/SpaceTuxLibrary/Plugins/VesselModuleSave.dll
+	sha256 = ab9da4fb5ab1c99f03c00386226c896a88dc07bfb6064be6b6f6e4e7822e0d6d
+}
+PLUGIN_SOURCE
+{
+	path = GameData/Squad/Plugins/KSPSteamCtrlr.dll
+	sha256 = 1675fa4fcb61d014eb1babe7eed703e7f76a1008537ee57ca7cec65cd9ff94ac
+}
+PLUGIN_SOURCE
+{
+	path = GameData/SSTU/MiniAVC/MiniAVC.dll
+	sha256 = 9ee10c46cb6f86417f005046ae72fedda156e1d47c92febcb84c68f50e03f08a
+}
+PLUGIN_SOURCE
+{
+	path = GameData/SSTU/Plugins/SSTUTools.dll
+	sha256 = 9797edc55413aa6af98c7f074fe46cc99ce19edba9b9427ed7f35ecdf8533b71
+}
+PLUGIN_SOURCE
+{
+	path = GameData/Trajectories/Plugins/Trajectories.dll
+	sha256 = eb90ffd26ae3d5f0b35f5474c4ffe3d62ca5ed176abd1ad37108cbdf5e48ef2a
+}
+PLUGIN_SOURCE
+{
+	path = GameData/TriggerTech/KSPAlternateResourcePanel/KSPAlternateResourcePanel.dll
+	sha256 = dfac793c3d29ca0a95e00d681295f581d71e903eb4f72599e4d15840949e1b94
+}
+PLUGIN_SOURCE
+{
+	path = GameData/VesselView/Plugins/VesselView.dll
+	sha256 = 5d6d592ad42741364a72436cf0e1702dace6b2d0e2c2370b70554ee5f1fa0b3e
+}
+PLUGIN_SOURCE
+{
+	path = GameData/VesselView/Plugins/VesselViewRPM.dll
+	sha256 = f4370dff547fa194e6a9868dfedd2300671d9c647a8644765136c1e3b43dbc90
+}
+PLUGIN_SOURCE
+{
+	path = GameData/VesselView/Plugins/VVDiscoDisplay.dll
+	sha256 = 3fa0951b8e61953a6f0e97ab27d77455be7048cdad0ae9dc8e524a4eb4fcb902
+}
+PLUGIN_SOURCE
+{
+	path = GameData/VesselView/Plugins/VVPartSelector.dll
+	sha256 = 9dacda1151b1ea24531f26f8c0fe627b488568153d33f54c473dd752cf66dfa9
+}
+PLUGIN_SOURCE
+{
+	path = GameData/WaypointManager/Plugins/WaypointManager.dll
+	sha256 = 192bc7120940f4c6a68b006d9a759c11ef00e181193707b53eecc1b42209bcb7
+}
+PLUGIN_SOURCE
+{
+	path = GameData/[x]_Science!/Plugins/[x]_Science!.dll
+	sha256 = 17946cc4a70bb6a5b13e54a39ab6dc0b5627880d22d812c72ccd18924ad38ac6
+}
+PART
+{
+	name = probeCoreOcto.v2
+	craft_id = 4293355658
+	parent_craft_id = none
+	inverse_stage = -1
+	fuel_cross_feed = True
+	prefab_mass_t = 0.10000000149011612
+	settled_dry_mass_t = 0.10000000149011612
+	resource_mass_t = 0
+	current_wet_mass_t = 0.10000000149011612
+	ATTACHMENT
+	{
+		node_id = bottom
+		attached_craft_id = 4292688532
+	}
+	ATTACHMENT
+	{
+		node_id = top
+		attached_craft_id = 4292965278
+	}
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 10
+		max_amount = 10
+		density_t_per_unit = 0
+		flow_state = True
+	}
+	MODULE_STATE
+	{
+		name = ModuleCommand
+	}
+	MODULE_STATE
+	{
+		name = ModuleReactionWheel
+	}
+	MODULE_STATE
+	{
+		name = ModuleSAS
+	}
+	MODULE_STATE
+	{
+		name = ModuleKerbNetAccess
+	}
+	MODULE_STATE
+	{
+		name = ModuleDataTransmitter
+	}
+	MODULE_STATE
+	{
+		name = ModuleCargoPart
+	}
+	MODULE_STATE
+	{
+		name = MechJebCore
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+	MODULE_STATE
+	{
+		name = TrajectoriesVesselSettings
+	}
+	MODULE_STATE
+	{
+		name = FlightEngineerModule
+	}
+	MODULE_STATE
+	{
+		name = kOSProcessor
+	}
+	MODULE_STATE
+	{
+		name = ModuleTripLogger
+	}
+}
+PART
+{
+	name = batteryPack
+	craft_id = 4293342236
+	parent_craft_id = 4293355658
+	inverse_stage = -1
+	fuel_cross_feed = True
+	prefab_mass_t = 0.004999999888241291
+	settled_dry_mass_t = 0.004999999888241291
+	resource_mass_t = 0
+	current_wet_mass_t = 0.004999999888241291
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 100
+		max_amount = 100
+		density_t_per_unit = 0
+		flow_state = True
+	}
+	MODULE_STATE
+	{
+		name = ModuleCargoPart
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+}
+PART
+{
+	name = batteryPack
+	craft_id = 4293341542
+	parent_craft_id = 4293355658
+	inverse_stage = -1
+	fuel_cross_feed = True
+	prefab_mass_t = 0.004999999888241291
+	settled_dry_mass_t = 0.004999999888241291
+	resource_mass_t = 0
+	current_wet_mass_t = 0.004999999888241291
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 100
+		max_amount = 100
+		density_t_per_unit = 0
+		flow_state = True
+	}
+	MODULE_STATE
+	{
+		name = ModuleCargoPart
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+}
+PART
+{
+	name = batteryPack
+	craft_id = 4293341494
+	parent_craft_id = 4293355658
+	inverse_stage = -1
+	fuel_cross_feed = True
+	prefab_mass_t = 0.004999999888241291
+	settled_dry_mass_t = 0.004999999888241291
+	resource_mass_t = 0
+	current_wet_mass_t = 0.004999999888241291
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 100
+		max_amount = 100
+		density_t_per_unit = 0
+		flow_state = True
+	}
+	MODULE_STATE
+	{
+		name = ModuleCargoPart
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+}
+PART
+{
+	name = batteryPack
+	craft_id = 4293341446
+	parent_craft_id = 4293355658
+	inverse_stage = -1
+	fuel_cross_feed = True
+	prefab_mass_t = 0.004999999888241291
+	settled_dry_mass_t = 0.004999999888241291
+	resource_mass_t = 0
+	current_wet_mass_t = 0.004999999888241291
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 100
+		max_amount = 100
+		density_t_per_unit = 0
+		flow_state = True
+	}
+	MODULE_STATE
+	{
+		name = ModuleCargoPart
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+}
+PART
+{
+	name = batteryPack
+	craft_id = 4293341398
+	parent_craft_id = 4293355658
+	inverse_stage = -1
+	fuel_cross_feed = True
+	prefab_mass_t = 0.004999999888241291
+	settled_dry_mass_t = 0.004999999888241291
+	resource_mass_t = 0
+	current_wet_mass_t = 0.004999999888241291
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 100
+		max_amount = 100
+		density_t_per_unit = 0
+		flow_state = True
+	}
+	MODULE_STATE
+	{
+		name = ModuleCargoPart
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+}
+PART
+{
+	name = batteryPack
+	craft_id = 4293341350
+	parent_craft_id = 4293355658
+	inverse_stage = -1
+	fuel_cross_feed = True
+	prefab_mass_t = 0.004999999888241291
+	settled_dry_mass_t = 0.004999999888241291
+	resource_mass_t = 0
+	current_wet_mass_t = 0.004999999888241291
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 100
+		max_amount = 100
+		density_t_per_unit = 0
+		flow_state = True
+	}
+	MODULE_STATE
+	{
+		name = ModuleCargoPart
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+}
+PART
+{
+	name = batteryPack
+	craft_id = 4293341302
+	parent_craft_id = 4293355658
+	inverse_stage = -1
+	fuel_cross_feed = True
+	prefab_mass_t = 0.004999999888241291
+	settled_dry_mass_t = 0.004999999888241291
+	resource_mass_t = 0
+	current_wet_mass_t = 0.004999999888241291
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 100
+		max_amount = 100
+		density_t_per_unit = 0
+		flow_state = True
+	}
+	MODULE_STATE
+	{
+		name = ModuleCargoPart
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+}
+PART
+{
+	name = batteryPack
+	craft_id = 4293341254
+	parent_craft_id = 4293355658
+	inverse_stage = -1
+	fuel_cross_feed = True
+	prefab_mass_t = 0.004999999888241291
+	settled_dry_mass_t = 0.004999999888241291
+	resource_mass_t = 0
+	current_wet_mass_t = 0.004999999888241291
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 100
+		max_amount = 100
+		density_t_per_unit = 0
+		flow_state = True
+	}
+	MODULE_STATE
+	{
+		name = ModuleCargoPart
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+}
+PART
+{
+	name = proceduralTankRealFuels
+	craft_id = 4292688532
+	parent_craft_id = 4293355658
+	inverse_stage = -1
+	fuel_cross_feed = True
+	prefab_mass_t = 1
+	settled_dry_mass_t = 0.02499997615814209
+	resource_mass_t = 2.8350000381469727
+	current_wet_mass_t = 2.8600000143051147
+	ATTACHMENT
+	{
+		node_id = top
+		attached_craft_id = 4293355658
+	}
+	ATTACHMENT
+	{
+		node_id = bottom
+		attached_craft_id = 4293182940
+	}
+	RESOURCE
+	{
+		name = LeadBallast
+		amount = 250
+		max_amount = 250
+		density_t_per_unit = 0.011339999735355377
+		flow_state = True
+	}
+	MODULE_STATE
+	{
+		name = ProceduralPart
+	}
+	MODULE_STATE
+	{
+		name = ProceduralShapeCylinder
+	}
+	MODULE_STATE
+	{
+		name = ProceduralShapeCone
+	}
+	MODULE_STATE
+	{
+		name = ProceduralShapePill
+	}
+	MODULE_STATE
+	{
+		name = ProceduralShapeBezierCone
+	}
+	MODULE_STATE
+	{
+		name = ProceduralShapePolygon
+	}
+	MODULE_STATE
+	{
+		name = ProceduralShapeHollowCylinder
+	}
+	MODULE_STATE
+	{
+		name = ProceduralShapeHollowCone
+	}
+	MODULE_STATE
+	{
+		name = ProceduralShapeHollowPill
+	}
+	MODULE_STATE
+	{
+		name = ProceduralShapeHollowTruss
+	}
+	MODULE_STATE
+	{
+		name = ModuleFuelTanks
+		FIELD
+		{
+			name = volume
+			value = 250
+			declared_type = System.Double
+		}
+		FIELD
+		{
+			name = totalVolume
+			value = 1562.5
+			declared_type = System.Double
+		}
+		FIELD
+		{
+			name = utilization
+			value = 16
+			declared_type = System.Single
+		}
+		FIELD
+		{
+			name = mass
+			value = 0.025
+			declared_type = System.Single
+		}
+		FIELD
+		{
+			name = massIsAdditive
+			value = False
+			declared_type = System.Boolean
+		}
+		FIELD
+		{
+			name = type
+			value = Default
+			declared_type = System.String
+		}
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+	MODULE_STATE
+	{
+		name = SSTURecolorGUI
+	}
+	MODULE_STATE
+	{
+		name = KSPTextureSwitch
+	}
+	MODULE_STATE
+	{
+		name = KSPTextureSwitch
+	}
+}
+PART
+{
+	name = longAntenna
+	craft_id = 4292965278
+	parent_craft_id = 4293355658
+	inverse_stage = -1
+	fuel_cross_feed = True
+	prefab_mass_t = 0.004999999888241291
+	settled_dry_mass_t = 0.004999999888241291
+	resource_mass_t = 0
+	current_wet_mass_t = 0.004999999888241291
+	ATTACHMENT
+	{
+		node_id = bottom
+		attached_craft_id = 4293355658
+	}
+	MODULE_STATE
+	{
+		name = ModuleDeployableAntenna
+	}
+	MODULE_STATE
+	{
+		name = ModuleDataTransmitter
+	}
+	MODULE_STATE
+	{
+		name = ModuleCargoPart
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+}
+PART
+{
+	name = SSTU-SC-GEN-PDC
+	craft_id = 4293182940
+	parent_craft_id = 4292688532
+	inverse_stage = 0
+	fuel_cross_feed = False
+	prefab_mass_t = 0.026389379054307938
+	settled_dry_mass_t = 0.026389384642243385
+	resource_mass_t = 0
+	current_wet_mass_t = 0.026389384642243385
+	ATTACHMENT
+	{
+		node_id = bottom
+		attached_craft_id = 4293334428
+	}
+	ATTACHMENT
+	{
+		node_id = top
+		attached_craft_id = 4292688532
+	}
+	MODULE_STATE
+	{
+		name = SSTUProceduralDecoupler
+	}
+	MODULE_STATE
+	{
+		name = ModuleDecouple
+		explosive_node_id = top
+		omni_decoupler = False
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+	MODULE_STATE
+	{
+		name = SSTURecolorGUI
+	}
+}
+PART
+{
+	name = KzResizableFairingBase
+	craft_id = 4293334428
+	parent_craft_id = 4293182940
+	inverse_stage = 0
+	fuel_cross_feed = False
+	prefab_mass_t = 0
+	settled_dry_mass_t = 0.15665625035762787
+	resource_mass_t = 0
+	current_wet_mass_t = 0.15665625035762787
+	ATTACHMENT
+	{
+		node_id = bottom
+		attached_craft_id = 4293304068
+	}
+	ATTACHMENT
+	{
+		node_id = connect01
+		attached_craft_id = 4292872796
+	}
+	ATTACHMENT
+	{
+		node_id = connect02
+		attached_craft_id = 4292873248
+	}
+	ATTACHMENT
+	{
+		node_id = interstage01u
+		attached_craft_id = 4293182940
+	}
+	MODULE_STATE
+	{
+		name = ProceduralFairingBase
+	}
+	MODULE_STATE
+	{
+		name = KzNodeNumberTweaker
+	}
+	MODULE_STATE
+	{
+		name = ModuleDecouple
+		explosive_node_id = top
+		omni_decoupler = False
+	}
+	MODULE_STATE
+	{
+		name = ModuleToggleCrossfeed
+	}
+	MODULE_STATE
+	{
+		name = ModulePartVariants
+	}
+	MODULE_STATE
+	{
+		name = TUPartVariant
+	}
+	MODULE_STATE
+	{
+		name = SSTURecolorGUI
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+}
+PART
+{
+	name = SSTU-TANK-MFT-A
+	craft_id = 4293304068
+	parent_craft_id = 4293334428
+	inverse_stage = 0
+	fuel_cross_feed = False
+	prefab_mass_t = 4.6649999618530273
+	settled_dry_mass_t = 0.27121496200561523
+	resource_mass_t = 18.567937850952148
+	current_wet_mass_t = 18.839152812957764
+	ATTACHMENT
+	{
+		node_id = top
+		attached_craft_id = 4293334428
+	}
+	ATTACHMENT
+	{
+		node_id = bottom
+		attached_craft_id = 4289891638
+	}
+	RESOURCE
+	{
+		name = Aerozine50
+		amount = 7901.25
+		max_amount = 7901.25
+		density_t_per_unit = 0.00089999998454004526
+		flow_state = True
+	}
+	RESOURCE
+	{
+		name = NTO
+		amount = 7901.25
+		max_amount = 7901.25
+		density_t_per_unit = 0.001449999981559813
+		flow_state = True
+	}
+	MODULE_STATE
+	{
+		name = SSTUModularPart
+		FIELD
+		{
+			name = subtractMass
+			value = False
+			declared_type = System.Boolean
+		}
+	}
+	MODULE_STATE
+	{
+		name = SSTUNodeFairing
+	}
+	MODULE_STATE
+	{
+		name = SSTUNodeFairing
+	}
+	MODULE_STATE
+	{
+		name = SSTUFlagDecal
+	}
+	MODULE_STATE
+	{
+		name = SSTUSelectableNodes
+	}
+	MODULE_STATE
+	{
+		name = SSTUSelectableNodes
+	}
+	MODULE_STATE
+	{
+		name = ModuleToggleCrossfeed
+	}
+	MODULE_STATE
+	{
+		name = SSTURecolorGUI
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+	MODULE_STATE
+	{
+		name = ModuleFuelTanks
+		FIELD
+		{
+			name = volume
+			value = 15802.5
+			declared_type = System.Double
+		}
+		FIELD
+		{
+			name = totalVolume
+			value = 18375
+			declared_type = System.Double
+		}
+		FIELD
+		{
+			name = utilization
+			value = 86
+			declared_type = System.Single
+		}
+		FIELD
+		{
+			name = mass
+			value = 0.271215
+			declared_type = System.Single
+		}
+		FIELD
+		{
+			name = massIsAdditive
+			value = False
+			declared_type = System.Boolean
+		}
+		FIELD
+		{
+			name = type
+			value = Balloon
+			declared_type = System.String
+		}
+	}
+}
+PART
+{
+	name = SSTU-SC-ENG-LR81-8096
+	craft_id = 4289891638
+	parent_craft_id = 4293304068
+	inverse_stage = 1
+	fuel_cross_feed = True
+	prefab_mass_t = 0.14499999582767487
+	settled_dry_mass_t = 0.43500000238418579
+	resource_mass_t = 0
+	current_wet_mass_t = 0.43500000238418579
+	ATTACHMENT
+	{
+		node_id = top
+		attached_craft_id = 4293304068
+	}
+	ATTACHMENT
+	{
+		node_id = bottom
+		attached_craft_id = 4293234152
+	}
+	MODULE_STATE
+	{
+		name = ModuleGimbal
+	}
+	MODULE_STATE
+	{
+		name = SSTUModularEngineCluster
+		FIELD
+		{
+			name = currentEngineLayoutName
+			value = Triple
+			declared_type = System.String
+		}
+		FIELD
+		{
+			name = adjustMass
+			value = True
+			declared_type = System.Boolean
+		}
+	}
+	MODULE_STATE
+	{
+		name = ModuleEnginesFX
+		FIELD
+		{
+			name = ignitionThreshold
+			value = 0.1
+			declared_type = System.Single
+		}
+	}
+	ENGINE
+	{
+		module = ModuleEnginesFX
+		engine_id = LR81-8096
+		enabled = True
+		selected = True
+		max_thrust_kN = 213
+		min_thrust_kN = 0
+		vacuum_isp_s = 300
+		sea_level_isp_s = 10
+		thrust_limiter_percent = 100
+		PROPELLANT
+		{
+			name = Aerozine50
+			ratio = 1
+			ignore_for_isp = False
+			flow_mode = STACK_PRIORITY_SEARCH
+		}
+		PROPELLANT
+		{
+			name = NTO
+			ratio = 1
+			ignore_for_isp = False
+			flow_mode = STACK_PRIORITY_SEARCH
+		}
+	}
+	MODULE_STATE
+	{
+		name = ModuleSurfaceFX
+	}
+	MODULE_STATE
+	{
+		name = SSTUNodeFairing
+	}
+	MODULE_STATE
+	{
+		name = SSTUModelConstraint
+	}
+	MODULE_STATE
+	{
+		name = SSTUAnimateEngineHeat
+	}
+	MODULE_STATE
+	{
+		name = SSTUSelectableNodes
+	}
+	MODULE_STATE
+	{
+		name = SSTUCollisionHandler
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+	MODULE_STATE
+	{
+		name = SSTURecolorGUI
+	}
+}
+PART
+{
+	name = SSTU-SC-GEN-PDC
+	craft_id = 4293234152
+	parent_craft_id = 4289891638
+	inverse_stage = 1
+	fuel_cross_feed = False
+	prefab_mass_t = 0.026389379054307938
+	settled_dry_mass_t = 0.12566371262073517
+	resource_mass_t = 0
+	current_wet_mass_t = 0.12566371262073517
+	ATTACHMENT
+	{
+		node_id = bottom
+		attached_craft_id = 4293230126
+	}
+	ATTACHMENT
+	{
+		node_id = top
+		attached_craft_id = 4289891638
+	}
+	MODULE_STATE
+	{
+		name = SSTUProceduralDecoupler
+	}
+	MODULE_STATE
+	{
+		name = ModuleDecouple
+		explosive_node_id = top
+		omni_decoupler = False
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+	MODULE_STATE
+	{
+		name = SSTURecolorGUI
+	}
+}
+PART
+{
+	name = SSTU-TANK-MFT-A
+	craft_id = 4293230126
+	parent_craft_id = 4293234152
+	inverse_stage = 1
+	fuel_cross_feed = False
+	prefab_mass_t = 4.6649999618530273
+	settled_dry_mass_t = 1.8031020164489746
+	resource_mass_t = 125.98384857177734
+	current_wet_mass_t = 127.78695058822632
+	ATTACHMENT
+	{
+		node_id = top
+		attached_craft_id = 4293234152
+	}
+	ATTACHMENT
+	{
+		node_id = bottom
+		attached_craft_id = 4289830992
+	}
+	RESOURCE
+	{
+		name = Kerosene
+		amount = 56888.998492956161
+		max_amount = 56888.998492956161
+		density_t_per_unit = 0.00082000001566484571
+		flow_state = True
+	}
+	RESOURCE
+	{
+		name = LqdOxygen
+		amount = 69531.001507043839
+		max_amount = 69531.001507043839
+		density_t_per_unit = 0.0011409999569877982
+		flow_state = True
+	}
+	MODULE_STATE
+	{
+		name = SSTUModularPart
+		FIELD
+		{
+			name = subtractMass
+			value = False
+			declared_type = System.Boolean
+		}
+	}
+	MODULE_STATE
+	{
+		name = SSTUNodeFairing
+	}
+	MODULE_STATE
+	{
+		name = SSTUNodeFairing
+	}
+	MODULE_STATE
+	{
+		name = SSTUFlagDecal
+	}
+	MODULE_STATE
+	{
+		name = SSTUSelectableNodes
+	}
+	MODULE_STATE
+	{
+		name = SSTUSelectableNodes
+	}
+	MODULE_STATE
+	{
+		name = ModuleToggleCrossfeed
+	}
+	MODULE_STATE
+	{
+		name = SSTURecolorGUI
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+	MODULE_STATE
+	{
+		name = ModuleFuelTanks
+		FIELD
+		{
+			name = volume
+			value = 126420
+			declared_type = System.Double
+		}
+		FIELD
+		{
+			name = totalVolume
+			value = 147000
+			declared_type = System.Double
+		}
+		FIELD
+		{
+			name = utilization
+			value = 86
+			declared_type = System.Single
+		}
+		FIELD
+		{
+			name = mass
+			value = 1.803102
+			declared_type = System.Single
+		}
+		FIELD
+		{
+			name = massIsAdditive
+			value = False
+			declared_type = System.Boolean
+		}
+		FIELD
+		{
+			name = type
+			value = Balloon
+			declared_type = System.String
+		}
+	}
+}
+PART
+{
+	name = SSTU-SC-ENG-Merlin-1B
+	craft_id = 4289830992
+	parent_craft_id = 4293230126
+	inverse_stage = 4
+	fuel_cross_feed = True
+	prefab_mass_t = 0.68000000715255737
+	settled_dry_mass_t = 4.0799999237060547
+	resource_mass_t = 0
+	current_wet_mass_t = 4.0799999237060547
+	ATTACHMENT
+	{
+		node_id = top
+		attached_craft_id = 4293230126
+	}
+	MODULE_STATE
+	{
+		name = ModuleGimbal
+	}
+	MODULE_STATE
+	{
+		name = SSTUModularEngineCluster
+		FIELD
+		{
+			name = currentEngineLayoutName
+			value = SixCenter
+			declared_type = System.String
+		}
+		FIELD
+		{
+			name = adjustMass
+			value = True
+			declared_type = System.Boolean
+		}
+	}
+	MODULE_STATE
+	{
+		name = ModuleEnginesFX
+		FIELD
+		{
+			name = ignitionThreshold
+			value = 0.1
+			declared_type = System.Single
+		}
+	}
+	ENGINE
+	{
+		module = ModuleEnginesFX
+		engine_id = Merlin-1B
+		enabled = True
+		selected = True
+		max_thrust_kN = 2400
+		min_thrust_kN = 0
+		vacuum_isp_s = 305
+		sea_level_isp_s = 276
+		thrust_limiter_percent = 100
+		PROPELLANT
+		{
+			name = Kerosene
+			ratio = 0.89999997615814209
+			ignore_for_isp = False
+			flow_mode = STACK_PRIORITY_SEARCH
+		}
+		PROPELLANT
+		{
+			name = LqdOxygen
+			ratio = 1.1000000238418579
+			ignore_for_isp = False
+			flow_mode = STACK_PRIORITY_SEARCH
+		}
+	}
+	MODULE_STATE
+	{
+		name = ModuleGimbal
+	}
+	MODULE_STATE
+	{
+		name = ModuleSurfaceFX
+	}
+	MODULE_STATE
+	{
+		name = SSTUNodeFairing
+	}
+	MODULE_STATE
+	{
+		name = SSTUModelConstraint
+	}
+	MODULE_STATE
+	{
+		name = SSTUAnimateEngineHeat
+	}
+	MODULE_STATE
+	{
+		name = SSTUSelectableNodes
+	}
+	MODULE_STATE
+	{
+		name = SSTUCollisionHandler
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+	MODULE_STATE
+	{
+		name = SSTURecolorGUI
+	}
+}
+PART
+{
+	name = launchClamp1
+	craft_id = 4289755066
+	parent_craft_id = 4293230126
+	inverse_stage = 3
+	fuel_cross_feed = False
+	prefab_mass_t = 0.10000000149011612
+	settled_dry_mass_t = 0.10000000149011612
+	resource_mass_t = 0
+	current_wet_mass_t = 0.10000000149011612
+	MODULE_STATE
+	{
+		name = LaunchClamp
+	}
+	MODULE_STATE
+	{
+		name = ModuleGenerator
+	}
+	MODULE_STATE
+	{
+		name = ModuleTestSubject
+	}
+	MODULE_STATE
+	{
+		name = RefuelingPump
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+}
+PART
+{
+	name = launchClamp1
+	craft_id = 4289754312
+	parent_craft_id = 4293230126
+	inverse_stage = 3
+	fuel_cross_feed = False
+	prefab_mass_t = 0.10000000149011612
+	settled_dry_mass_t = 0.10000000149011612
+	resource_mass_t = 0
+	current_wet_mass_t = 0.10000000149011612
+	MODULE_STATE
+	{
+		name = LaunchClamp
+	}
+	MODULE_STATE
+	{
+		name = ModuleGenerator
+	}
+	MODULE_STATE
+	{
+		name = ModuleTestSubject
+	}
+	MODULE_STATE
+	{
+		name = RefuelingPump
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+}
+PART
+{
+	name = launchClamp1
+	craft_id = 4289754186
+	parent_craft_id = 4293230126
+	inverse_stage = 3
+	fuel_cross_feed = False
+	prefab_mass_t = 0.10000000149011612
+	settled_dry_mass_t = 0.10000000149011612
+	resource_mass_t = 0
+	current_wet_mass_t = 0.10000000149011612
+	MODULE_STATE
+	{
+		name = LaunchClamp
+	}
+	MODULE_STATE
+	{
+		name = ModuleGenerator
+	}
+	MODULE_STATE
+	{
+		name = ModuleTestSubject
+	}
+	MODULE_STATE
+	{
+		name = RefuelingPump
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+}
+PART
+{
+	name = launchClamp1
+	craft_id = 4289754060
+	parent_craft_id = 4293230126
+	inverse_stage = 3
+	fuel_cross_feed = False
+	prefab_mass_t = 0.10000000149011612
+	settled_dry_mass_t = 0.10000000149011612
+	resource_mass_t = 0
+	current_wet_mass_t = 0.10000000149011612
+	MODULE_STATE
+	{
+		name = LaunchClamp
+	}
+	MODULE_STATE
+	{
+		name = ModuleGenerator
+	}
+	MODULE_STATE
+	{
+		name = ModuleTestSubject
+	}
+	MODULE_STATE
+	{
+		name = RefuelingPump
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+}
+PART
+{
+	name = KzProcFairingSide1
+	craft_id = 4292873248
+	parent_craft_id = 4293334428
+	inverse_stage = 2
+	fuel_cross_feed = False
+	prefab_mass_t = 0
+	settled_dry_mass_t = 0.014594463631510735
+	resource_mass_t = 0
+	current_wet_mass_t = 0.014594463631510735
+	ATTACHMENT
+	{
+		node_id = connect
+		attached_craft_id = 4293334428
+	}
+	MODULE_STATE
+	{
+		name = ProceduralFairingSide
+	}
+	MODULE_STATE
+	{
+		name = ProceduralFairingDecoupler
+	}
+	MODULE_STATE
+	{
+		name = ModuleAnimateGeneric
+	}
+	MODULE_STATE
+	{
+		name = ModulePartVariants
+	}
+	MODULE_STATE
+	{
+		name = ModuleSeeThroughObject
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+}
+PART
+{
+	name = KzProcFairingSide1
+	craft_id = 4292872796
+	parent_craft_id = 4293334428
+	inverse_stage = 2
+	fuel_cross_feed = False
+	prefab_mass_t = 0
+	settled_dry_mass_t = 0.014594463631510735
+	resource_mass_t = 0
+	current_wet_mass_t = 0.014594463631510735
+	ATTACHMENT
+	{
+		node_id = connect
+		attached_craft_id = 4293334428
+	}
+	MODULE_STATE
+	{
+		name = ProceduralFairingSide
+	}
+	MODULE_STATE
+	{
+		name = ProceduralFairingDecoupler
+	}
+	MODULE_STATE
+	{
+		name = ModuleAnimateGeneric
+	}
+	MODULE_STATE
+	{
+		name = ModulePartVariants
+	}
+	MODULE_STATE
+	{
+		name = ModuleSeeThroughObject
+	}
+	MODULE_STATE
+	{
+		name = GeometryPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARAeroPartModule
+	}
+	MODULE_STATE
+	{
+		name = FARPartModule
+	}
+	MODULE_STATE
+	{
+		name = KOSNameTag
+	}
+}

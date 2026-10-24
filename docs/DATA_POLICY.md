@@ -15,6 +15,7 @@
 ## 当前证据
 
 - [C3Baseline20261024F 基线飞行](evidence/C3Baseline20261024F/README.md)：1.000 t 到 220 × 220 km、20.00008°，保持 30.62 s。这是一次交付点，不是最大运力。
+- [C3Baseline20261024G 基线飞行](evidence/C3Baseline20261024G/README.md)：2.500 t 到 220 × 220 km、20.00010°，保持 30.60 s。这是第二个交付点，仍不是最大运力。
 - [KSP 安装与模组审计](evidence/ksp_installation_20261021.json)：2026-10-21 的安装文件与 CKAN 元数据快照。
 - 现场原始遥测仍保存在 KSP 的 `PluginData/C3Baseline/`；仓库中的证据包是经过复制和哈希的冻结副本。
 

@@ -132,13 +132,20 @@ def freeze(ksp_root: Path, folder: str, output: Path, *, force: bool = False) ->
     final = report.get('final') or {}
     last = report.get('last_sample') or {}
     initial = report.get('initial') or {}
+    target_payload = report.get('target_payload_t')
+    if target_payload is None:
+        target_payload = (final.get('target_payload_t') or initial.get('target_payload_t')
+                          or inputs.get('payload_t') or final.get('payload_mass_t') or 1.0)
     manifest = {
         'schema': 1,
         'folder': folder,
         'status': report.get('status'),
         'flight': {
             'payload_t': float(final.get('payload_mass_t', 0)),
-            'payload_t_nominal': 1.0,
+            'payload_t_nominal': float(target_payload),
+            'payload_capacity_units': inputs.get('payload_capacity_units'),
+            'payload_mass_matches_target': report.get('payload_mass_matches_target'),
+            'payload_controllable': final.get('controllable'),
             'payload_parts': final.get('payload_parts'),
             'payload_intact': final.get('payload_parts') == 11,
             'fairing_shielded_on_pad': as_bool(initial.get('payload_shielded')),
@@ -156,6 +163,8 @@ def freeze(ksp_root: Path, folder: str, output: Path, *, force: bool = False) ->
             'stage_events': report.get('stage_events'),
         },
         'provenance': {
+            'prepared_payload_t': inputs.get('payload_t'),
+            'prepared_ballast_amount': inputs.get('ballast_amount'),
             'craft_sha256_prepared': inputs.get('craft_sha256'),
             'craft_sha256_flown': final.get('craft_sha256'),
             'source_save_sha256': inputs.get('source_save_sha256'),

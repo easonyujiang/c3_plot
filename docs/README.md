@@ -5,6 +5,7 @@
 ## 当前证据与验证
 
 - [基线飞行 20261024F：1.000 t / 220 km / 20°](evidence/C3Baseline20261024F/README.md)
+- [基线飞行 20261024G：2.500 t / 220 km / 20°](evidence/C3Baseline20261024G/README.md)
 - [当前验证基线与证据边界](validation/BASELINE.md)
 - [本机 KSP/模组与 MechJeb 接口分析](ksp/KSP_INSTALLATION_AUDIT_20261021.md) · [安装哈希清单](evidence/ksp_installation_20261021.json)
 - [技术基座验证 2026-10-21](validation/FOUNDATION_20261021.md)（历史记录，数字已过期）

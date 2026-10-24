@@ -32,4 +32,5 @@ htmlcov/
 # Old evidence was cleared; explicitly frozen flight bundles are versioned.
 /docs/evidence/*
 !/docs/evidence/C3Baseline20261024F/
+!/docs/evidence/C3Baseline20261024G/
 !/docs/evidence/ksp_installation_20261021.json

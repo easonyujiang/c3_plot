@@ -37,8 +37,17 @@ def audit(root, folder):
     initial = snapshot(data/(folder+'.c3inspection'))
     configured = snapshot(data/(folder+'_configured.c3inspection'))
     final = snapshot(data/(folder+'_final.c3inspection'))
+    target_payload = None
+    for state in (initial, configured, final):
+        value = (state or {}).get('target_payload_t')
+        if value not in (None, ''):
+            target_payload = float(value)
+            break
+    if target_payload is None:
+        target_payload = float(manifest.get('payload_t', 1.0))
     result = {'folder':folder, 'source_files_checked':len(manifest['source_files']),
               'source_files_changed':changed, 'environment_files_changed':env_changed,
+              'target_payload_t':target_payload,
               'initial':initial, 'configured':configured, 'final':final,
               'status':'no_flight_evidence'}
     path = data/(folder+'_flight.csv')
@@ -69,10 +78,13 @@ def audit(root, folder):
     for row in rows:
         if not stage_events or row['stage']!=stage_events[-1]['stage']:
             stage_events.append({k:row[k] for k in ['elapsed_s','stage','altitude_m','mass_t']})
-    intact = bool(final and final['payload_parts']==11 and abs(float(final['payload_mass_t'])-1)<=0.001
+    payload_mass = float(final['payload_mass_t']) if final else None
+    payload_matches = bool(payload_mass is not None and abs(payload_mass-target_payload)<=0.001)
+    intact = bool(final and final['payload_parts']==11 and payload_matches
                   and final['controllable']=='True')
     result.update(status='target_verified' if hold>=30 and intact and not changed and not env_changed else 'target_not_verified',
                   samples=len(rows),last_sample=rows[-1],orbit_hold_s=hold,
+                  payload_mass_t=payload_mass,payload_mass_matches_target=payload_matches,
                   peak_altitude_m=max(r['altitude_m'] for r in rows),
                   min_electric_charge=min(r['electric_charge'] for r in rows),stage_events=stage_events)
     return result

@@ -1,0 +1,558 @@
+schema = 1
+utc = 2026-10-24T15:06:05.3678435Z
+save = C3Baseline20261024G
+craft_sha256 = 0BD9E9931AB38496E4065B465A6E6AEE15880028FD3B46739A74AB4BC4462F77
+vessel = C3 Neutrons I 2630 Payload Baseline
+mass_t = 154.37899780273438
+body = Earth
+body_radius_m = 6371000
+body_mu = 398600435436096
+latitude_deg = 19.613732593298085
+longitude_deg = 110.95532077385083
+altitude_m = 136.76873318478465
+situation = PRELAUNCH
+controllable = True
+ut_s = 1374.7799999990398
+payload_mass_t = 2.4999999003484845
+target_payload_t = 2.5
+payload_shielded = True
+mechjeb_master_found = True
+PART
+{
+	name = probeCoreOcto.v2
+	flight_id = 4163543
+	persistent_id = 333826079
+	parent_flight_id = none
+	stage = -1
+	mass_t = 0.10000000149011612
+	dry_mass_t = 0.10000000149011612
+	shielded = True
+	payload = True
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 10
+		capacity = 10
+		density = 0
+	}
+}
+PART
+{
+	name = batteryPack
+	flight_id = 3963937450
+	persistent_id = 1502024475
+	parent_flight_id = 4163543
+	stage = -1
+	mass_t = 0.004999999888241291
+	dry_mass_t = 0.004999999888241291
+	shielded = True
+	payload = True
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 100
+		capacity = 100
+		density = 0
+	}
+}
+PART
+{
+	name = batteryPack
+	flight_id = 1958937727
+	persistent_id = 1683922355
+	parent_flight_id = 4163543
+	stage = -1
+	mass_t = 0.004999999888241291
+	dry_mass_t = 0.004999999888241291
+	shielded = True
+	payload = True
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 100
+		capacity = 100
+		density = 0
+	}
+}
+PART
+{
+	name = batteryPack
+	flight_id = 3462085751
+	persistent_id = 1529433608
+	parent_flight_id = 4163543
+	stage = -1
+	mass_t = 0.004999999888241291
+	dry_mass_t = 0.004999999888241291
+	shielded = True
+	payload = True
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 100
+		capacity = 100
+		density = 0
+	}
+}
+PART
+{
+	name = batteryPack
+	flight_id = 2582580700
+	persistent_id = 3300329946
+	parent_flight_id = 4163543
+	stage = -1
+	mass_t = 0.004999999888241291
+	dry_mass_t = 0.004999999888241291
+	shielded = True
+	payload = True
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 100
+		capacity = 100
+		density = 0
+	}
+}
+PART
+{
+	name = batteryPack
+	flight_id = 945823491
+	persistent_id = 4068952487
+	parent_flight_id = 4163543
+	stage = -1
+	mass_t = 0.004999999888241291
+	dry_mass_t = 0.004999999888241291
+	shielded = True
+	payload = True
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 100
+		capacity = 100
+		density = 0
+	}
+}
+PART
+{
+	name = batteryPack
+	flight_id = 2419024633
+	persistent_id = 3454726588
+	parent_flight_id = 4163543
+	stage = -1
+	mass_t = 0.004999999888241291
+	dry_mass_t = 0.004999999888241291
+	shielded = True
+	payload = True
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 100
+		capacity = 100
+		density = 0
+	}
+}
+PART
+{
+	name = batteryPack
+	flight_id = 1421050149
+	persistent_id = 3329765574
+	parent_flight_id = 4163543
+	stage = -1
+	mass_t = 0.004999999888241291
+	dry_mass_t = 0.004999999888241291
+	shielded = True
+	payload = True
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 100
+		capacity = 100
+		density = 0
+	}
+}
+PART
+{
+	name = batteryPack
+	flight_id = 32926803
+	persistent_id = 607681028
+	parent_flight_id = 4163543
+	stage = -1
+	mass_t = 0.004999999888241291
+	dry_mass_t = 0.004999999888241291
+	shielded = True
+	payload = True
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 100
+		capacity = 100
+		density = 0
+	}
+}
+PART
+{
+	name = proceduralTankRealFuels
+	flight_id = 953386448
+	persistent_id = 1572795478
+	parent_flight_id = 4163543
+	stage = -1
+	mass_t = 2.3549998998641968
+	dry_mass_t = 0.02499997615814209
+	shielded = True
+	payload = True
+	RESOURCE
+	{
+		name = LeadBallast
+		amount = 205.46736979058875
+		capacity = 250
+		density = 0.011339999735355377
+	}
+}
+PART
+{
+	name = SSTU-SC-GEN-PDC
+	flight_id = 1979909842
+	persistent_id = 3780494906
+	parent_flight_id = 953386448
+	stage = 0
+	mass_t = 0.026389384642243385
+	dry_mass_t = 0.026389384642243385
+	shielded = True
+	payload = False
+}
+PART
+{
+	name = KzResizableFairingBase
+	flight_id = 2369881539
+	persistent_id = 3242423090
+	parent_flight_id = 1979909842
+	stage = 0
+	mass_t = 0.15665625035762787
+	dry_mass_t = 0.15665625035762787
+	shielded = True
+	payload = False
+}
+PART
+{
+	name = KzProcFairingSide1
+	flight_id = 1034173800
+	persistent_id = 2259091025
+	parent_flight_id = 2369881539
+	stage = 2
+	mass_t = 0.014594463631510735
+	dry_mass_t = 0.014594463631510735
+	shielded = False
+	payload = False
+}
+PART
+{
+	name = KzProcFairingSide1
+	flight_id = 3596740091
+	persistent_id = 2538631721
+	parent_flight_id = 2369881539
+	stage = 2
+	mass_t = 0.014594463631510735
+	dry_mass_t = 0.014594463631510735
+	shielded = False
+	payload = False
+}
+PART
+{
+	name = SSTU-TANK-MFT-A
+	flight_id = 2917034645
+	persistent_id = 2343477931
+	parent_flight_id = 2369881539
+	stage = 0
+	mass_t = 18.839152812957764
+	dry_mass_t = 0.27121496200561523
+	shielded = False
+	payload = False
+	RESOURCE
+	{
+		name = Aerozine50
+		amount = 7901.25
+		capacity = 7901.25
+		density = 0.00089999998454004526
+	}
+	RESOURCE
+	{
+		name = NTO
+		amount = 7901.25
+		capacity = 7901.25
+		density = 0.001449999981559813
+	}
+}
+PART
+{
+	name = SSTU-SC-ENG-LR81-8096
+	flight_id = 893698859
+	persistent_id = 2586840446
+	parent_flight_id = 2917034645
+	stage = 1
+	mass_t = 0.43500000238418579
+	dry_mass_t = 0.43500000238418579
+	shielded = False
+	payload = False
+	ENGINE
+	{
+		max_thrust_kN = 213
+		min_thrust_kN = 0
+		ignited = False
+		operational = False
+	}
+}
+PART
+{
+	name = SSTU-SC-GEN-PDC
+	flight_id = 2993363060
+	persistent_id = 3198465651
+	parent_flight_id = 893698859
+	stage = 1
+	mass_t = 0.12566371262073517
+	dry_mass_t = 0.12566371262073517
+	shielded = False
+	payload = False
+}
+PART
+{
+	name = SSTU-TANK-MFT-A
+	flight_id = 2923652394
+	persistent_id = 1266480401
+	parent_flight_id = 2993363060
+	stage = 1
+	mass_t = 127.78695058822632
+	dry_mass_t = 1.8031020164489746
+	shielded = False
+	payload = False
+	RESOURCE
+	{
+		name = Kerosene
+		amount = 56888.998492956161
+		capacity = 56888.998492956161
+		density = 0.00082000001566484571
+	}
+	RESOURCE
+	{
+		name = LqdOxygen
+		amount = 69531.001217720433
+		capacity = 69531.001507043839
+		density = 0.0011409999569877982
+	}
+}
+PART
+{
+	name = SSTU-SC-ENG-Merlin-1B
+	flight_id = 3753872227
+	persistent_id = 710805053
+	parent_flight_id = 2923652394
+	stage = 4
+	mass_t = 4.0799999237060547
+	dry_mass_t = 4.0799999237060547
+	shielded = False
+	payload = False
+	ENGINE
+	{
+		max_thrust_kN = 2400
+		min_thrust_kN = 0
+		ignited = False
+		operational = False
+	}
+}
+PART
+{
+	name = launchClamp1
+	flight_id = 845588289
+	persistent_id = 1022228133
+	parent_flight_id = 2923652394
+	stage = 3
+	mass_t = 0.10000000149011612
+	dry_mass_t = 0.10000000149011612
+	shielded = False
+	payload = False
+}
+PART
+{
+	name = launchClamp1
+	flight_id = 2090609295
+	persistent_id = 499556674
+	parent_flight_id = 2923652394
+	stage = 3
+	mass_t = 0.10000000149011612
+	dry_mass_t = 0.10000000149011612
+	shielded = False
+	payload = False
+}
+PART
+{
+	name = launchClamp1
+	flight_id = 351622619
+	persistent_id = 1218238124
+	parent_flight_id = 2923652394
+	stage = 3
+	mass_t = 0.10000000149011612
+	dry_mass_t = 0.10000000149011612
+	shielded = False
+	payload = False
+}
+PART
+{
+	name = launchClamp1
+	flight_id = 1089063296
+	persistent_id = 4228547165
+	parent_flight_id = 2923652394
+	stage = 3
+	mass_t = 0.10000000149011612
+	dry_mass_t = 0.10000000149011612
+	shielded = False
+	payload = False
+}
+PART
+{
+	name = longAntenna
+	flight_id = 1592116928
+	persistent_id = 2323619153
+	parent_flight_id = 4163543
+	stage = -1
+	mass_t = 0.004999999888241291
+	dry_mass_t = 0.004999999888241291
+	shielded = True
+	payload = True
+}
+MechJebModuleAscentAutopilot
+{
+	status = 
+	desiredOrbitAltitude = 220000
+	desiredInclination = 20
+	desiredLAN = 23.6
+	autoThrottle = True
+	correctiveSteering = False
+	correctiveSteeringGain = 0.6
+	forceRoll = True
+	verticalRoll = 0
+	turnRoll = 0
+	autodeploySolarPanels = True
+	autoDeployAntennas = True
+	skipCircularization = True
+	rollAltitude = 50
+	_autostage = True
+	limitAoA = True
+	maxAoA = 5
+	aoALimitFadeoutPressure = 2500
+	limitingAoA = False
+	limitQa = 2000
+	limitQaEnabled = True
+	launchPhaseAngle = 0
+	launchLANDifference = 0
+	showSettings = True
+	showTargeting = True
+	showGuidanceSettings = True
+	showStatus = True
+	timedLaunch = False
+	launchTime = 0
+	currentMaxAoA = 0
+	launchLatitude = 0
+	launchStarted = -1
+	priority = 0
+	unlockParts = 
+	unlockTechs = 
+	unlockChecked = True
+	profilerName = MechJebModuleAscentAutopilot
+	dirty = False
+	ascentPathIdxPublic = PVG
+}
+MechJebModuleAscentPVG
+{
+	PitchStartVelocity = 50
+	PitchRate = 0.5
+	DesiredApoapsis = 220000
+	DesiredAttachAlt = 0
+	DynamicPressureTrigger = 10000
+	FixedCoast = True
+	FixedCoastLength = 0
+	AttachAltFlag = False
+	StagingTriggerFlag = False
+	priority = 0
+	unlockParts = 
+	unlockTechs = 
+	unlockChecked = True
+	profilerName = MechJebModuleAscentPVG
+	dirty = False
+}
+MechJebModuleAscentGuidance
+{
+	desiredInclination = 20
+	desiredLAN = 23.6
+	launchingToPlane = False
+	launchingToRendezvous = False
+	launchingToMatchLAN = False
+	launchingToLAN = False
+	hidden = False
+	showInFlight = True
+	showInEditor = False
+	isOverlay = False
+	locked = False
+	ID = 72195086
+	priority = 0
+	unlockParts = 
+	unlockTechs = start
+	unlockChecked = True
+	profilerName = MechJebModuleAscentGuidance
+	dirty = False
+}
+MechJebModuleStagingController
+{
+	autostagePreDelay = 0
+	autostagePostDelay = 0.5
+	fairingMaxDynamicPressure = 5000
+	fairingMinAltitude = 50000
+	clampAutoStageThrustPct = 0.99
+	fairingMaxAerothermalFlux = 1135
+	hotStaging = True
+	hotStagingLeadTime = 1
+	dropSolids = False
+	dropSolidsLeadTime = 1
+	autostagingOnce = False
+	waitingForFirstStaging = True
+	autostageLimitInternal = 0
+	priority = 1000
+	unlockParts = 
+	unlockTechs = 
+	unlockChecked = True
+	profilerName = MechJebModuleStagingController
+	dirty = False
+}
+MechJebModuleThrustController
+{
+	trans_spd_act = 0
+	trans_prev_thrust = 0
+	trans_kill_h = False
+	limitToTerminalVelocity = False
+	limitDynamicPressure = True
+	maxDynamicPressure = 38000
+	limitToPreventOverheats = False
+	smoothThrottle = False
+	throttleSmoothingTime = 1
+	limitToPreventFlameout = False
+	limitToPreventUnstableIgnition = False
+	autoRCSUllaging = True
+	flameoutSafetyPct = 5
+	manageIntakes = False
+	limitAcceleration = True
+	maxAcceleration = 50
+	limitThrottle = False
+	maxThrottle = 1
+	limiterMinThrottle = True
+	minThrottle = 0.1
+	differentialThrottle = False
+	differentialThrottleSuccess = Success
+	electricThrottle = False
+	electricThrottleLo = 0.05
+	electricThrottleHi = 0.15
+	limiter = None
+	targetThrottle = 0
+	priority = 200
+	unlockParts = 
+	unlockTechs = 
+	unlockChecked = True
+	profilerName = MechJebModuleThrustController
+	dirty = False
+}
