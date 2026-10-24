@@ -1,6 +1,10 @@
 # RealChute 结算质量接入生产证据链 — 启用文档（6B.3C.4A）
 
-> 权威证据：`experiments/control_mass/attempts/attempt-002/result.json`
+> 生产门控仍按固定配置/DLL 指纹 fail-closed。原始
+> `experiments/control_mass/attempts/attempt-002/result.json` 已在
+> 2026-10-21 清零，本文不能用于环境变化后的重新授权。
+
+> 历史证据（原始文件已清零）：`experiments/control_mass/attempts/attempt-002/result.json`
 > （SHA-256 `2c1433b7183614385615dd65b6d59bf8be716c825c49b9b9ffbee24ab755e178`，
 > `experiment_status=analyzed`，`validation.diffs=[]`）。
 > 本阶段不修改生产质量模型本身；本文档说明已将已验证结论接入

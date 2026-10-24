@@ -1,5 +1,8 @@
 # KSP 受控质量实验 — 正式差分分析结果（attempt-002）
 
+> 历史记录：本文引用的 `experiments/control_mass/attempts/attempt-002/`
+> 原始文件已在 2026-10-21 清零，不能作为当前证据或重新授权依据。
+
 > 状态：`analyzed`（2026-08-02，KSP 指纹下实验支持 `realchute_settled_mass`）。
 > 本文档由 `attempt-002/result.json`（SHA-256 `2c1433b7183614385615dd65b6d59bf8be716c825c49b9b9ffbee24ab755e178`）与 `attempt-002/capture_receipt.json` 生成；除格式外未修改任何数值。
 

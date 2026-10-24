@@ -1,5 +1,8 @@
 # 单火箭轨道任务后端分析服务（Mission Analysis Service）
 
+> 示例说明：文中的 Neutron / 0.502 t 数值是 2026-10-21 数据清零前的回归
+> 样例，不是当前火箭库结果；服务契约仍适用。
+
 阶段 4A 交付物：`server/mission_analysis.py`。
 
 ## 1. 定位与边界

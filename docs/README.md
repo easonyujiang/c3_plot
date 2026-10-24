@@ -1,17 +1,20 @@
 # 文档导航
 
-[项目使用说明](../README.md) · [数据清零与游戏源](DATA_POLICY.md) · [技术栈与基座](TECH_STACK.md) · [产品路线图](PRODUCT_ROADMAP.md) · [目录与清理记录](MAINTENANCE.md) · [维护工具](../tools/README.md)
+[项目使用说明](../README.md) · [数据策略](DATA_POLICY.md) · [技术栈与基座](TECH_STACK.md) · [产品路线图](PRODUCT_ROADMAP.md) · [目录与维护](MAINTENANCE.md) · [维护工具](../tools/README.md)
 
-## 游戏与验证
+## 当前证据与验证
 
-- [本机 KSP/模组与 MechJeb 接口分析](ksp/KSP_INSTALLATION_AUDIT_20261021.md)
-- [当前验证基线与精度边界](validation/BASELINE.md)
-- [基线飞行证据 20261024F：1 t / 220 km / 20°](evidence/C3Baseline20261024F/README.md)
+- [基线飞行 20261024F：1.000 t / 220 km / 20°](evidence/C3Baseline20261024F/README.md)
+- [当前验证基线与证据边界](validation/BASELINE.md)
+- [本机 KSP/模组与 MechJeb 接口分析](ksp/KSP_INSTALLATION_AUDIT_20261021.md) · [安装哈希清单](evidence/ksp_installation_20261021.json)
+- [技术基座验证 2026-10-21](validation/FOUNDATION_20261021.md)（历史记录，数字已过期）
+
+## 游戏与数据集成
+
 - [VAB 导入设计](ksp/VAB_IMPORT_DESIGN.md)、[批量导入 API](ksp/BATCH_IMPORT.md)
 - [安装索引](ksp/KSP_INSTALL_INDEX.md)、[部件匹配](ksp/KSP_PART_MATCHING.md)
-- [质量证据](ksp/KSP_MASS_EVIDENCE.md)、[整箭对账](ksp/KSP_CRAFT_MASS_RECONCILIATION.md)
-- [质量残差](ksp/KSP_MASS_RESIDUAL_FORENSICS.md)、[模块语义](ksp/KSP_MODULE_MASS_SEMANTICS.md)、[数值精度](ksp/KSP_NUMERIC_PRECISION_FORENSICS.md)
-- [受控实验](ksp/KSP_CONTROLLED_MASS_EXPERIMENT.md)、[实验结论](ksp/KSP_CONTROLLED_MASS_EXPERIMENT_RESULT.md)、[RealChute 授权范围](ksp/KSP_REALCHUTE_SETTLED_MASS_ENABLEMENT.md)
+- [质量证据](ksp/KSP_MASS_EVIDENCE.md)、[整箭对账](ksp/KSP_CRAFT_MASS_RECONCILIATION.md)、[模块语义](ksp/KSP_MODULE_MASS_SEMANTICS.md)
+- [RealChute 授权范围](ksp/KSP_REALCHUTE_SETTLED_MASS_ENABLEMENT.md)（生产门控仍按固定指纹 fail-closed；原始实验数据已移出工作树）
 
 ## 计算模型与 API
 
@@ -21,4 +24,11 @@
 - [载荷可行性](models/MISSION_PAYLOAD_FEASIBILITY.md)、[容量搜索](models/MISSION_CAPACITY_SEARCH.md)
 - [统一分析服务](models/MISSION_ANALYSIS_SERVICE.md)、[任务查询 API](models/MISSION_QUERY_API.md)
 
-这些技术说明对应仍在运行的模型和证据门控。阶段名称描述其实现来源，当前产品执行顺序统一由路线图决定；不再保留重复的旧计划和过程复盘。
+这些说明对应当前运行的模型和证据门控。文中出现的 Neutron / `0.502 t` 等数值是数据清零前的回归示例，不是当前火箭库结果。阶段名称描述实现来源，当前产品执行顺序统一由路线图决定。
+
+## 历史研究记录
+
+- [受控质量实验](ksp/KSP_CONTROLLED_MASS_EXPERIMENT.md)、[实验结论](ksp/KSP_CONTROLLED_MASS_EXPERIMENT_RESULT.md)
+- [质量残差](ksp/KSP_MASS_RESIDUAL_FORENSICS.md)、[数值精度](ksp/KSP_NUMERIC_PRECISION_FORENSICS.md)
+
+这些记录的方法和边界仍有参考价值，但原始数据已在 2026-10-21 清零，不能作为当前验证或生产授权。需要追溯时从 Git 历史或本机游戏目录读取。

@@ -1,5 +1,8 @@
 # 轨道任务最大载荷搜索（Mission Capacity Search）
 
+> 示例说明：文中的 0.502 t 搜索结果是 2026-10-21 数据清零前的回归样例，
+> 不是当前火箭库结果；算法与边界规则仍适用。
+
 阶段 3H 交付物：`c3_mass/mission_capacity_search.py`（c3_mass 包目录，纯 Python）。
 
 ## 1. 定位与边界

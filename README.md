@@ -53,7 +53,7 @@ powershell -ExecutionPolicy Bypass -File scripts/setup.ps1
 
 ## 数据与测试
 
-项目已清零：不附带 VAB、发动机副本、火箭样例、实验记录、计算结果和备份。首次启动只建立空数据库结构，不灌入火箭、发动机或任务样例。
+业务数据已清零：不附带 VAB、发动机副本、火箭样例、实验记录、计算结果和备份。首次启动只建立空数据库结构，不灌入火箭、发动机或任务样例。唯一的游戏输入例外是显式冻结的 [基线飞行证据](docs/evidence/C3Baseline20261024F/README.md)，它用于审计，不是可复用样例。
 
 真实输入统一来自 `.env` 的 `C3_MASS_KSP_ROOT`：火箭从 `saves/*/Ships/VAB/*.craft` 即读，部件与发动机从 `GameData` 读取。游戏目录只读，不复制为项目固定样例。游戏目录缺失时给出配置提示。
 

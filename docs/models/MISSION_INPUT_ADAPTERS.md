@@ -1,5 +1,8 @@
 # 任务仿真输入适配层（Mission Simulation Input Adapters）
 
+> 示例说明：`rockets/neutron_i_2630.yaml` 是 2026-10-21 清零前的样例路径，
+> 当前工作树不再包含它；适配规则本身仍适用。
+
 阶段 3D 交付物：`c3_mass/mission_adapters.py`（c3_mass 包目录，纯 Python）。
 
 ## 1. 定位与边界

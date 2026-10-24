@@ -126,7 +126,7 @@
 - `GameData/SSTU/Parts/Engines/SC-ENG-Merlin-1B.cfg`：部件 `SSTU-SC-ENG-Merlin-1B` 的原始布局为 `Single`，额定推力 400 kN。
 - `GameData/SSTU/Parts/Engines/SC-ENG-LR81-8096.cfg`：部件 `SSTU-SC-ENG-LR81-8096` 的原始布局为 `Single`，额定推力 71 kN。
 
-因此 VAB 存档里的 `PART` 数量绝不能当作发动机数量。例如，存档中的一个 `SSTU-SC-ENG-Merlin-1B` 部件若保存了 `currentEngineLayoutName = Triple`，它实际表示 3 台 Merlin-1B；两个这样的 `PART` 则是 6 台。现有 `Neutrons I 2630.craft` 正是这种情况。
+因此 VAB 存档里的 `PART` 数量绝不能当作发动机数量。例如，存档中的一个 `SSTU-SC-ENG-Merlin-1B` 部件若保存了 `currentEngineLayoutName = Triple`，它实际表示 3 台 Merlin-1B；两个这样的 `PART` 则是 6 台。清零前的 `Neutrons I 2630.craft` 历史样例正是这种情况；当前应直接用游戏存档核对。
 
 ## 导入流程
 

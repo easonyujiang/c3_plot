@@ -1,5 +1,8 @@
 # 串联火箭停泊轨道状态回放（Serial Ascent Parking-Orbit Replay）
 
+> 示例说明：`rockets/neutron_i_2630.yaml` 与 2.5 t 校准点是 2026-10-21
+> 清零前的样例，不是当前火箭库结果；回放规则本身仍适用。
+
 阶段 3E 交付物：`c3_mass/mission_parking_replay.py`（c3_mass 包目录，纯 Python）。
 
 ## 1. 定位与边界

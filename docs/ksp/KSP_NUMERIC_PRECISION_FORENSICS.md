@@ -1,5 +1,8 @@
 # KSP 整箭质量 float32 求和顺序取证（阶段 6B.3C.2A）
 
+> 历史记录：`Neutrons II 354S.craft` 等样例已在 2026-10-21 清零；本文的
+> 单精度求和结论是方法证据，不是当前火箭库的测量结果。
+
 验证 `Neutrons II 354S.craft` 的剩余异常（double 模型下 PDC 后
 `-8.0472788e-5 t`）是否能由 KSP/C# 单精度（IEEE-754 binary32）累加语义
 解释。本阶段只增加取证模型，不修改正式质量估算、正式 reconciliation 或

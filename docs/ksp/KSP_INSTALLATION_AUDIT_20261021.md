@@ -1,5 +1,10 @@
 # 本机 KSP 安装与发射接口分析
 
+> 2026-10-24 更新：本文的安装分析仍是当前环境基线；其中的“未启动游戏”
+> 仅指 2026-10-21 那次核查。此后已用隔离 baseline harness 完成一次
+> 1.000 t / 220 × 220 km / 20° 的 `target_verified` 飞行，证据见
+> [C3Baseline20261024F](../evidence/C3Baseline20261024F/README.md)。
+
 核查日期：2026-10-21。来源为用户指定的 `D:\SteamLibrary\steamapps\common\Kerbal Space Program`，本轮只读检查，未改动游戏安装、模组或存档，未启动游戏。日志是 2026-10-11 的历史运行记录，不能替代一次新的目标存档实机检查。
 
 ## 游戏与关键环境

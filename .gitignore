@@ -10,7 +10,7 @@ backups/
 .vscode/
 node_modules/
 c3_plot.db
-# Database stays local; versioned samples in rockets/, VAB/ and experiments/ are retained.
+# Database stays local; game inputs are read from C3_MASS_KSP_ROOT.
 
 # Local credentials and generated diagnostics
 .env
@@ -32,3 +32,4 @@ htmlcov/
 # Old evidence was cleared; explicitly frozen flight bundles are versioned.
 /docs/evidence/*
 !/docs/evidence/C3Baseline20261024F/
+!/docs/evidence/ksp_installation_20261021.json
