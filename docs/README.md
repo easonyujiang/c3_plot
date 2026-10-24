@@ -1,6 +1,6 @@
 # 文档导航
 
-[项目使用说明](../README.md) · [数据策略](DATA_POLICY.md) · [技术栈与基座](TECH_STACK.md) · [产品路线图](PRODUCT_ROADMAP.md) · [目录与维护](MAINTENANCE.md) · [维护工具](../tools/README.md)
+[项目使用说明](../README.md) · [数据策略](DATA_POLICY.md) · [技术栈与基座](TECH_STACK.md) · [产品路线图](PRODUCT_ROADMAP.md) · [运力百科与自动校准路线图（草案）](ROADMAP_CAPACITY_ENCYCLOPEDIA.md) · [目录与维护](MAINTENANCE.md) · [维护工具](../tools/README.md)
 
 ## 当前证据与验证
 
