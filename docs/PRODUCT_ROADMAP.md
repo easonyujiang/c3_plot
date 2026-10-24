@@ -183,7 +183,7 @@ GTO + 远地点圆化属于同一冲量族；区别主要在：
 
 ### Phase C — Campaign v1 + 遥测升级 + 220 km 标定
 
-> 契约初版已落地：`server/campaign.py` 提供确定性 `CampaignSpec` / `TrialRecord` / `CampaignQueue` 状态机，4 项测试通过；尚未接 KSP 执行器。
+> 契约初版已落地：`server/campaign.py` 提供确定性 `CampaignSpec` / `TrialRecord` / `CampaignQueue` 状态机和六架次计划生成器，7 项状态机/计划测试通过；尚未接 KSP 执行器。
 
 交付：
 

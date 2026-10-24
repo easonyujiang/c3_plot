@@ -49,6 +49,27 @@ queue.finish(trial.trial_id, TrialResult(spec_id=trial.trial_id,
 print(queue.snapshot())
 ```
 
+## 六架次计划生成器
+
+`server/campaign_plan.py` 从 profile + 设计载荷生成标准 6 架次 `CampaignSpec`：
+
+- 220 km/20° 设计载荷；
+- 220 km/20° 半载荷；
+- 220 km/97.8° 极地（`--sso` 时改为 600 km SSO）；
+- 220 km/180° 逆行；
+- GTO 220 × 35786 km/28.5°；
+- TLI（C3≈-2）或 Molniya 500 × 40000 km/63.4°，二选一。
+
+```bash
+.venv/bin/python -m tools.plan_campaign \
+  --profile output/profiles/<名称>.json \
+  --design-payload 5.0 \
+  --high-energy tli \
+  --output output/campaigns/<名称>.json
+```
+
+输出 `CampaignQueue.snapshot()`（spec + stats + queued trials），纯规划，不启动 KSP。
+
 ## 设计原则
 
 - **确定性**：trial id 为 `<campaign_id>-0001`，`campaign_id` 由 profile/craft/trials/program/tolerances/max_trials 稳定哈希；相同 spec 得到相同 id。
@@ -65,6 +86,7 @@ print(queue.snapshot())
 - 队列顺序与单 running；
 - completed / failed / cancelled 状态迁移；
 - 非法 spec/状态迁移拒绝；
-- snapshot JSON 序列化。
+- snapshot JSON 序列化；
+- 六架次计划的载荷/轨道/SSO/Molniya 变体和非法输入拒绝。
 
 下一步：把 `CampaignQueue` 接到真实执行器（prepare → KSP → audit）和 Phase B 仿真预飞；当前没有自动启动游戏。
