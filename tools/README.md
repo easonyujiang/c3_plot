@@ -6,6 +6,7 @@
 | --- | --- |
 | 只读审计、备份、恢复 | `python -m tools.data --help` |
 | 构建火箭 Profile/参数目录 | `python -m tools.profile --help` |
+| 离线 T0/T1 上升仿真 | `python -m tools.simulate --help` |
 | 从实际游戏配置绘图 | `python -m tools.plot_capacity --help` |
 | 临时数据库的界面验证服务 | `python -m tools.dev.serve_validation --help` |
 | 飞行遥测审计 | `python -m tools.game.analyze_telemetry --help` |

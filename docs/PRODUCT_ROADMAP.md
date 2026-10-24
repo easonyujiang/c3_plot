@@ -170,7 +170,7 @@ GTO + 远地点圆化属于同一冲量族；区别主要在：
 
 ### Phase B — 通用导入、百科与仿真内核 v1
 
-> 初版已开始：`c3_mass/ascent_simulation.py` 提供 T0 火箭方程与 T1 平面 3DOF 上升骨架，6 项合成测试通过；尚未接 KSP/FAR/轨道插入，完整回归待游戏结束后执行。
+> 初版已开始：`c3_mass/ascent_simulation.py` 提供 T0 火箭方程与 T1 平面 3DOF 上升骨架和 profile→T0/T1 适配/CLI，9 项离线测试通过；尚未接 KSP/FAR/轨道插入，完整回归待游戏结束后执行。
 
 交付：
 

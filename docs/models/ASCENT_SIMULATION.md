@@ -54,6 +54,22 @@ print(result.final.speed_m_s, result.max_dynamic_pressure_Pa,
       [event.to_dict() for event in result.stage_events])
 ```
 
+## Profile 适配与离线 CLI
+
+`c3_mass/profile_simulation.py` 把 `RocketProfile` 转成 T0/T1 输入：
+
+- 从声明载荷的级段中减去载荷湿/干质量，避免重复计入；
+- 载荷未声明时用 0 t 并给出警告，不静默假设；
+- 整流罩质量暂时保留在级段中，并明确提示 T1 尚未建模抛罩；
+- profile 没有气动面积/Cd，默认无阻力；CLI 可显式给 `--area` / `--drag-coefficient`。
+
+```bash
+.venv/bin/python -m tools.simulate --profile output/profiles/<名称>.json \
+  --dt 0.05 --max-time 600 --output output/simulations/<名称>.json
+```
+
+结果包含 T0 理想 Δv、T1 最终速度/高度/质量、最大动压/加速度、级段抛离事件和 warnings。纯离线，不读 KSP。
+
 ## 当前边界
 
 - **平面 2D**：没有 3D 方位/倾角、没有真实发射场几何；初始切向速度只是一阶近似；
@@ -73,4 +89,4 @@ print(result.final.speed_m_s, result.max_dynamic_pressure_Pa,
 - 时间步收敛；
 - 非法级段参数拒绝。
 
-当前 6 项测试通过；完整回归待游戏结束后运行，避免在用户游戏时扫描/读取游戏目录。
+当前 9 项离线测试通过（6 项 T1 + 3 项 profile 适配）；完整回归待游戏结束后运行，避免在用户游戏时扫描/读取游戏目录。
