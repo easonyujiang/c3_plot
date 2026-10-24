@@ -7,8 +7,9 @@ $buildDir = Join-Path $projectRoot 'output\plugins'
 New-Item -ItemType Directory -Path $buildDir -Force | Out-Null
 $target = Join-Path $buildDir 'C3MassValidation.dll'
 $source = Join-Path $projectRoot 'game_plugin\C3MassValidation.cs'
-$argsForCompiler = @('/nologo','/target:library',('/out:' + $target),$source)
-foreach ($ref in @('Assembly-CSharp.dll','UnityEngine.dll','UnityEngine.CoreModule.dll')) {
+$baselineSource = Join-Path $projectRoot 'game_plugin\C3BaselineInspection.cs'
+$argsForCompiler = @('/nologo','/target:library',('/out:' + $target),$source,$baselineSource)
+foreach ($ref in @('Assembly-CSharp.dll','UnityEngine.dll','UnityEngine.CoreModule.dll','UnityEngine.UI.dll')) {
     $argsForCompiler += ('/reference:' + (Join-Path $managed $ref))
 }
 & (Join-Path $env:WINDIR 'Microsoft.NET\Framework64\v4.0.30319\csc.exe') @argsForCompiler
