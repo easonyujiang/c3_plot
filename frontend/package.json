@@ -1,14 +1,19 @@
 {
   "name": "c3-mass-workspace",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
-    "check:ui": "node tests/workspace.cjs"
+    "check:ui": "node tests/workspace.cjs",
+    "typecheck": "tsc --noEmit",
+    "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {
+    "@tanstack/react-query": "5.104.5",
+    "clsx": "2.1.1",
+    "lucide-react": "1.60.0",
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },
@@ -18,5 +23,8 @@
     "playwright": "1.62.1",
     "typescript": "5.9.3",
     "vite": "7.1.9"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
   }
 }

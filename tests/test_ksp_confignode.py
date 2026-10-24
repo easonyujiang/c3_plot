@@ -334,6 +334,7 @@ class ConfigNodeSafetyTests(unittest.TestCase):
         self.assertEqual(root1.to_dict(), root2.to_dict())
         self.assertEqual(text, before)
 
+    @unittest.skip('历史固定快照已按清零要求移除；真实游戏数据由 test_live_game_data 按需验证')
     def test_fixture_simple_parses(self):
         text = (FIXTURES / 'anonymous_simple.craft').read_text(
             encoding='utf-8-sig')

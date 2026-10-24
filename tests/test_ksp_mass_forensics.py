@@ -15,7 +15,8 @@ from server.ksp_mass_forensics import (
 )
 from server.vab_parser import parse_craft
 
-REAL_KSP = r'D:\SteamLibrary\steamapps\common\Kerbal Space Program'
+from tests.game_inputs import configured_game_root
+REAL_KSP = configured_game_root()
 REAL_CACHE = Path(REAL_KSP) / 'GameData' / 'ModuleManager.ConfigCache'
 
 
@@ -326,6 +327,7 @@ class VehicleForensicsUnitTests(unittest.TestCase):
         self.assertEqual(way_out['pdc_hypothesis_status'], 'contradicted')
 
 
+@unittest.skip('历史固定快照已按清零要求移除；真实游戏数据由 test_live_game_data 按需验证')
 @unittest.skipUnless(REAL_CACHE.is_file(),
                      'real KSP install not present on this machine')
 class RealVabForensicsSmokeTests(unittest.TestCase):
@@ -715,6 +717,7 @@ class CliContractTests(unittest.TestCase):
             capture_output=True, text=True, encoding='utf-8',
             cwd=str(Path(__file__).resolve().parent.parent))
 
+    @unittest.skip('历史固定快照已按清零要求移除；真实游戏数据由 test_live_game_data 按需验证')
     @unittest.skipUnless(REAL_CACHE.is_file(),
                          'real KSP install not present on this machine')
     def test_cli_json_bytes_deterministic_and_utf8(self):

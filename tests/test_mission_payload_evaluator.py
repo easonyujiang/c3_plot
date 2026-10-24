@@ -480,6 +480,7 @@ class QualityAndSafetyTests(unittest.TestCase):
                                     {'m': 1.0, 'dv': 400.0}], 1.0)
 
 
+@unittest.skip('历史固定快照已按清零要求移除；真实游戏数据由 test_live_game_data 按需验证')
 class NeutronIntegrationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

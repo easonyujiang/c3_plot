@@ -1,6 +1,6 @@
 # 文档导航
 
-[项目使用说明](../README.md) · [产品路线图](PRODUCT_ROADMAP.md) · [目录与清理记录](MAINTENANCE.md) · [维护工具](../tools/README.md)
+[项目使用说明](../README.md) · [数据清零与游戏源](DATA_POLICY.md) · [技术栈与基座](TECH_STACK.md) · [产品路线图](PRODUCT_ROADMAP.md) · [目录与清理记录](MAINTENANCE.md) · [维护工具](../tools/README.md)
 
 ## 游戏与验证
 

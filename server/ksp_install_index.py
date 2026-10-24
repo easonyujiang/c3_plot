@@ -976,7 +976,8 @@ def get_auto_ksp_index():
     roots = []
     env_root = os.environ.get('C3_MASS_KSP_ROOT')
     if env_root:
-        roots.append(env_root)
+        from .paths import native_path
+        roots.append(native_path(env_root))
     roots.extend(KSP_INSTALL_CANDIDATES)
     for root in roots:
         source_path = Path(root) / 'GameData' / CONFIG_CACHE_FILENAME

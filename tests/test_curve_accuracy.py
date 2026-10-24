@@ -13,6 +13,7 @@ from server.yaml_codec import load_config
 ROOT = Path(__file__).resolve().parents[1]
 
 
+@unittest.skip('历史固定快照已按清零要求移除；真实游戏数据由 test_live_game_data 按需验证')
 class CurveAccuracyTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

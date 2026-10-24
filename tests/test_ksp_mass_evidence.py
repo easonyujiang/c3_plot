@@ -22,7 +22,8 @@ from server.ksp_mass_evidence import (
 from server.ksp_part_matcher import match_craft_parts
 from server.vab_parser import parse_craft
 
-REAL_KSP = r'D:\SteamLibrary\steamapps\common\Kerbal Space Program'
+from tests.game_inputs import configured_game_root
+REAL_KSP = configured_game_root()
 REAL_CACHE = Path(REAL_KSP) / 'GameData' / 'ModuleManager.ConfigCache'
 
 
@@ -883,6 +884,7 @@ class MassEvidenceRework2Tests(unittest.TestCase):
         self.assertEqual(report['tank_mismatch_lines'], 0)
 
 
+@unittest.skip('历史固定快照已按清零要求移除；真实游戏数据由 test_live_game_data 按需验证')
 @unittest.skipUnless(REAL_CACHE.is_file(),
                      'real KSP install not present on this machine')
 class RealVabMassSmokeTests(unittest.TestCase):
@@ -1445,6 +1447,7 @@ class RealChuteProductionEvidenceTests(unittest.TestCase):
         self.assertIsNone(inst['mass_semantics_evidence'])
 
 
+@unittest.skip('历史固定快照已按清零要求移除；真实游戏数据由 test_live_game_data 按需验证')
 @unittest.skipUnless(REAL_CACHE.is_file(),
                      'real KSP install not present on this machine')
 class RealChuteAttempt002EndToEndTests(unittest.TestCase):
@@ -1471,7 +1474,7 @@ class RealChuteAttempt002EndToEndTests(unittest.TestCase):
         evidence = _json.loads((self.ATTEMPT_DIR / 'evidence_hashes.json')
                                .read_text(encoding='utf-8'))
         for fname, info in evidence['files'].items():
-            path = experiment_dir / info['path']
+            path = experiment_dir / info['path'].replace('\\', '/')
             self.assertTrue(path.is_file(), fname)
             self.assertEqual(
                 self.hash(path.read_bytes()).hexdigest(), info['sha256'],

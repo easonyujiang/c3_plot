@@ -1,7 +1,6 @@
 """Run unittest with an isolated database and temporary output directory."""
 import json
 import os
-import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -9,16 +8,14 @@ from pathlib import Path
 def main():
     root = Path(__file__).resolve().parent
     os.chdir(root)
-    scratch = root / '.tmp'
-    scratch.mkdir(exist_ok=True)
-    with tempfile.TemporaryDirectory(prefix='c3-tests-', dir=scratch) as temporary:
+    with tempfile.TemporaryDirectory(prefix='c3-tests-') as temporary:
         temporary = Path(temporary)
         # Include files left by individual mkdtemp() calls in session cleanup.
         test_scratch = temporary / 'scratch'
         test_scratch.mkdir()
         tempfile.tempdir = str(test_scratch)
         os.environ['TEMP'] = os.environ['TMP'] = str(test_scratch)
-        shutil.copytree(root / 'rockets', temporary / 'rockets')
+        (temporary / 'rockets').mkdir()
         os.environ['C3_MASS_DB_PATH'] = str(temporary / 'test.db')
         os.environ['C3_MASS_ROCKETS_DIR'] = str(temporary / 'rockets')
         os.environ['C3_MASS_OUTPUT_DIR'] = str(temporary / 'output')

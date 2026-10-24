@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { api } from './api';
 
 type Candidate = {
   slug: string; rocket: string; capacity: number; verified_capacity: number|null;
@@ -12,6 +13,7 @@ type Response = {
   results: Candidate[];
 };
 export function MissionPanel({allowance,validFairing}:{allowance:number;validFairing:boolean}) {
+  const revision=useRef(0);
   const [periapsis,setPeriapsis]=useState('400');
   const [apoapsis,setApoapsis]=useState('40000');
   const [inclination,setInclination]=useState('89');
@@ -21,21 +23,21 @@ export function MissionPanel({allowance,validFairing}:{allowance:number;validFai
   const [response,setResponse]=useState<Response|null>(null);
   const [queriedAllowance,setQueriedAllowance]=useState(0);
   async function query() {
+    const requestedRevision=revision.current;
     setBusy(true);setError('');setResponse(null);
     try {
-      const result=await fetch('/api/mission-query',{
-        method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({orbit_type:'elliptical',periapsis_km:Number(periapsis),apoapsis_km:Number(apoapsis),
-          inclination_deg:Number(inclination),payload_t:Number(payload)/1000+allowance,
-          parking_alt_km:220,launch_lat:19.81,arrival_strategy:'combined'}),
+      const data=await api<Response>('/api/mission-query',{
+        orbit_type:'elliptical',
+        periapsis_km:Number(periapsis),apoapsis_km:Number(apoapsis),
+        inclination_deg:Number(inclination),payload_t:Number(payload)/1000+allowance,
+        parking_alt_km:220,launch_lat:19.81,arrival_strategy:'combined',
       });
-      const data=await result.json();
-      if(!result.ok) throw new Error(data.error||'查询失败');
+      if(requestedRevision!==revision.current)return;
       setResponse(data);setQueriedAllowance(allowance);
     }catch(e){setError(e instanceof Error?e.message:String(e));}finally{setBusy(false);}
   }
   const stale=queriedAllowance!==allowance;
-  function update(set:(v:string)=>void,value:string){set(value);setResponse(null);}
+  function update(set:(v:string)=>void,value:string){revision.current++;set(value);setResponse(null);}
   return <div className="card mission-panel">
     <div className="section-heading"><h2>按任务筛选火箭</h2><span className="badge">自定义地球轨道</span></div>
     <p className="muted">220 km 停泊轨道 · 发射纬度 19.81° · 基准向东发射</p>

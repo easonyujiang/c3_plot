@@ -23,7 +23,8 @@ from server.ksp_module_mass_semantics import (
 )
 from server.ksp_module_mass_semantics import _module_state
 
-REAL_KSP = r'D:\SteamLibrary\steamapps\common\Kerbal Space Program'
+from tests.game_inputs import configured_game_root
+REAL_KSP = configured_game_root()
 REAL_CACHE = Path(REAL_KSP) / 'GameData' / 'ModuleManager.ConfigCache'
 
 
@@ -876,6 +877,7 @@ class HypothesisTests(unittest.TestCase):
         json.dumps(first, ensure_ascii=False)
 
 
+@unittest.skip('历史固定快照已按清零要求移除；真实游戏数据由 test_live_game_data 按需验证')
 @unittest.skipUnless(REAL_CACHE.is_file(),
                      'real KSP install not present on this machine')
 class RealSpecialVehicleTests(unittest.TestCase):

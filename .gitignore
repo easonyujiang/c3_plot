@@ -19,3 +19,14 @@ c3_plot.db
 *.log
 .coverage
 htmlcov/
+
+# Native build tooling
+.uv-cache/
+.playwright/
+
+# Game inputs are read from C3_MASS_KSP_ROOT, never versioned as snapshots.
+/VAB/
+/engines/
+/experiments/
+/rockets/
+/docs/evidence/

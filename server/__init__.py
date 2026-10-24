@@ -13,6 +13,9 @@ def create_app():
 
     init_db(app)
 
+    from .routes_system import bp as system_bp
+    app.register_blueprint(system_bp)
+
     # Register blueprints
     from .routes_rockets import bp as rockets_bp
     from .routes_data import bp as data_bp
@@ -46,6 +49,10 @@ def create_app():
         return send_from_directory(
             os.path.join(app.root_path, '..', 'frontend', 'dist'), filename,
             max_age=0 if filename == 'index.html' else 3600)
+
+    @app.route('/favicon.ico')
+    def favicon():
+        return app.send_static_file('favicon.svg')
 
     @app.errorhandler(404)
     def not_found(e):

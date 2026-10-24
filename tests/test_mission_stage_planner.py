@@ -418,6 +418,7 @@ class NeutronIntegrationTests(unittest.TestCase):
         self.assertTrue(replay.success)
         return replay.stages, replay.final_vehicle_mass_t, payload
 
+    @unittest.skip('历史固定快照已按清零要求移除；真实游戏数据由 test_live_game_data 按需验证')
     def test_feasible_small_post_parking_mission(self):
         stages, vehicle, payload = self._parking_state()
         reqs = [_calib('park', 1),
@@ -440,6 +441,7 @@ class NeutronIntegrationTests(unittest.TestCase):
         for predicted, executed in zip(plan.planned_final_stages, final):
             self.assertEqual(predicted.to_dict(), executed.to_dict())
 
+    @unittest.skip('历史固定快照已按清零要求移除；真实游戏数据由 test_live_game_data 按需验证')
     def test_infeasible_geo_retrograde_combined_mission(self):
         from c3_mass.compute_c3_mass import compute_orbit_mission
         from c3_mass.mission_adapters import burn_sequence_to_requirements

@@ -12,9 +12,9 @@ from tools.paths import ROOT
 def runtime_files(tracked):
     """Explicit runtime inputs; research, test and retired tools stay out."""
     directories = {'c3_mass', 'server', 'static', 'engines', 'rockets',
-                   'migrations', 'docs', 'licenses'}
+                   'migrations', 'docs', 'licenses', 'scripts', 'frontend'}
     entrypoints = {
-        'run.py', 'requirements.txt', 'README.md', 'CHANGELOG.md',
+        'c3', 'pyproject.toml', 'uv.lock', '.env.example', 'requirements.txt', 'README.md', 'CHANGELOG.md',
         'THIRD_PARTY_NOTICES.md', 'VERSION', '启动C3-Mass.bat',
         'tools/__init__.py', 'tools/paths.py', 'tools/data.py',
         'tools/README.md', 'frontend/README.md',

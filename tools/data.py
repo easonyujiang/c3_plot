@@ -48,7 +48,7 @@ def audit(root):
             else:
                 try:
                     cfg = load_config(paths[slug].read_text(encoding='utf-8-sig'))
-                    valid, errors = validate_rocket(cfg, engines_dir=root / 'engines')
+                    valid, errors = validate_rocket(cfg)
                     if not valid:
                         item.update(status='invalid', errors=errors)
                     elif slug not in sql:

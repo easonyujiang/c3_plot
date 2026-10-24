@@ -4,7 +4,6 @@ Rocket config validation.
 import math
 import os
 from numbers import Real
-from .config import ENGINES_DIR
 
 
 def _is_finite_number(value):
@@ -32,7 +31,14 @@ def validate_rocket(cfg, *, engines_dir=None):
     The config dict has the same shape as the YAML format:
         { rocket: {name}, stages: [...], calibration: [...], reference_missions: {...} }
     """
-    engines_dir = ENGINES_DIR if engines_dir is None else engines_dir
+    def engine_exists(name):
+        if engines_dir is not None:
+            return os.path.isfile(os.path.join(engines_dir, name))
+        from c3_mass.game_data import engine_cfg_path
+        try:
+            return engine_cfg_path(name).is_file()
+        except (OSError, ValueError):
+            return False
     errors = []
     if not isinstance(cfg, dict):
         return False, ["Rocket configuration must be a mapping"]
@@ -80,8 +86,8 @@ def validate_rocket(cfg, *, engines_dir=None):
                     if not isinstance(cfg_name, str) or not cfg_name:
                         errors.append(f"{prefix}: missing cfg")
                     elif (os.path.basename(cfg_name) != cfg_name or not cfg_name.endswith('.cfg')
-                          or ('runtime_performance' not in s and not os.path.isfile(os.path.join(engines_dir, cfg_name)))):
-                        errors.append(f"{prefix}: engine cfg '{cfg_name}' not found in engines/")
+                          or ('runtime_performance' not in s and not engine_exists(cfg_name))):
+                        errors.append(f"{prefix}: engine cfg '{cfg_name}' not found in configured KSP GameData")
                     if 'count' in eng and (not isinstance(eng['count'], int)
                                            or isinstance(eng['count'], bool) or eng['count'] < 1):
                         errors.append(f"{prefix}: count must be a positive integer")

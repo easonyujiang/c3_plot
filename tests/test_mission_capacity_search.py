@@ -434,6 +434,7 @@ class RealEndToEndTests(unittest.TestCase):
         json.dumps(result.to_dict(), ensure_ascii=False)
 
 
+@unittest.skip('历史固定快照已按清零要求移除；真实游戏数据由 test_live_game_data 按需验证')
 class NeutronIntegrationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

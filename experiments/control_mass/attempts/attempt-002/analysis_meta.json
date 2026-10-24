@@ -1,8 +1,0 @@
-{
- "command": "C:\\ProgramData\\anaconda3\\python.exe ksp_mass_control_experiment.py analyze --input experiments\\\\control_mass\\\\attempts\\\\attempt-002 --json",
- "exit_code": 0,
- "result_sha256": "2c1433b7183614385615dd65b6d59bf8be716c825c49b9b9ffbee24ab755e178",
- "result_bytes": 14756,
- "analyzed_at_utc": "2026-08-02T15:18:57.356106+00:00",
- "note": "stdout 字节级原样保存，未手工修改 JSON"
-}

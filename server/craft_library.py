@@ -10,17 +10,18 @@ import os
 import re
 from pathlib import Path, PurePosixPath
 
-from .config import KSP_INSTALL_CANDIDATES
 
 MAX_CRAFT_BYTES = 25 * 1024 * 1024
 MAX_LIST_ITEMS = 500
 
 
 def configured_ksp_root():
-    override = os.environ.get('C3_MASS_KSP_ROOT')
-    candidates = [override] if override else KSP_INSTALL_CANDIDATES
-    return next((Path(path).resolve() for path in candidates
-                 if path and (Path(path) / 'saves').is_dir()), None)
+    from c3_mass.game_data import ksp_root
+    try:
+        root = ksp_root()
+    except FileNotFoundError:
+        return None
+    return root if (root / 'saves').is_dir() else None
 
 
 def craft_path(root, craft_id):

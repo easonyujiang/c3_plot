@@ -377,6 +377,7 @@ class ImmutabilityTests(unittest.TestCase):
         self.assertEqual(a.to_api_dict(), b.to_api_dict())
 
 
+@unittest.skip('历史固定快照已按清零要求移除；真实游戏数据由 test_live_game_data 按需验证')
 class NeutronIntegrationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

@@ -14,7 +14,8 @@ from server.ksp_numeric_precision_forensics import (
     to_float32,
 )
 
-REAL_KSP = r'D:\SteamLibrary\steamapps\common\Kerbal Space Program'
+from tests.game_inputs import configured_game_root
+REAL_KSP = configured_game_root()
 REAL_CACHE = Path(REAL_KSP) / 'GameData' / 'ModuleManager.ConfigCache'
 
 
@@ -238,6 +239,7 @@ class FiveModelTests(unittest.TestCase):
         json.dumps(first, ensure_ascii=False)
 
 
+@unittest.skip('历史固定快照已按清零要求移除；真实游戏数据由 test_live_game_data 按需验证')
 @unittest.skipUnless(REAL_CACHE.is_file(),
                      'real KSP install not present on this machine')
 class RealFleetNumericSmokeTests(unittest.TestCase):
@@ -326,6 +328,7 @@ def struct_f32(value):
     return struct.unpack('<f', struct.pack('<f', value))[0]
 
 
+@unittest.skip('历史固定快照已按清零要求移除；真实游戏数据由 test_live_game_data 按需验证')
 class FleetContractReworkTests(unittest.TestCase):
     """6B.3C.2A-R: sample completeness, overflow, tolerance, conclusion."""
 

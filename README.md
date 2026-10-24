@@ -6,15 +6,27 @@
 
 ## 安装与启动
 
-已验证环境为 Windows、Python 3.12。前端静态产物随源码提供，日常使用无需 Node.js。
+运行基座：Python 3.12–3.14 + Flask / Waitress + SQLite；界面采用 React 19 + TypeScript + Vite + TanStack Query，图表与资源均在本地提供。详见 [技术栈与基座](docs/TECH_STACK.md)。
 
-```powershell
-py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe run.py
+Linux / WSL：
+
+```bash
+./scripts/setup
+./c3 --doctor
+./c3 --open
 ```
 
-也可双击 `启动C3-Mass.bat`，访问 http://localhost:8765。端口可用 `python run.py 8876` 指定。首页与 `/workspace/` 提供同一个 React 工作台；旧版界面已移除。
+Windows 原生：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/setup.ps1
+.venv/Scripts/python.exe -m c3_mass --doctor
+.venv/Scripts/python.exe -m c3_mass --open
+```
+
+首次安装和前端开发需要 Node.js 20.19+ 或 22.12+。构建后的日常使用无需 Node.js，也不需要下载测试浏览器。服务默认访问 http://127.0.0.1:8765，端口可通过 `--port 8876` 或 `.env` 中的 `C3_MASS_PORT` 指定。首页与 `/workspace/` 是同一入口。
+
+复制 `.env.example` 为 `.env`，按实际安装位置设置 `C3_MASS_KSP_ROOT`。本机 `启动C3-Mass.bat` 使用 WSL 启动；Windows 原生请使用上述命令。
 
 ## 使用流程
 
@@ -34,43 +46,24 @@ py -3.12 -m venv .venv
 ```powershell
 .\.venv\Scripts\python.exe run_tests.py
 .\.venv\Scripts\python.exe -m tools.data audit
-.\.venv\Scripts\python.exe -m tools.plot_capacity rockets/neutron_i_2630.yaml --ksp-root "D:\SteamLibrary\steamapps\common\Kerbal Space Program" --output output/my_curve
+.\.venv\Scripts\python.exe -m tools.plot_capacity rockets/<已保存的火箭>.yaml --ksp-root "D:\SteamLibrary\steamapps\common\Kerbal Space Program" --output output/my_curve
 ```
 
 测试使用隔离数据库、YAML 副本和临时输出。审计只读，不自动覆盖数据。绘图生成离线 HTML、CSV 和来源记录，不初始化正式数据库。更多命令见 [工具说明](tools/README.md)。
 
-## 数据备份与恢复
+## 数据与测试
 
-先停止所有数据写入程序，使数据库和 YAML 处于同一业务时点。
+项目已清零：不附带 VAB、发动机副本、火箭样例、实验记录、计算结果和备份。首次启动只建立空数据库结构，不灌入火箭、发动机或任务样例。
 
-```powershell
-.\.venv\Scripts\python.exe -m tools.data backup E:\Backups\c3-snapshot
-.\.venv\Scripts\python.exe -m tools.data --root E:\Backups\c3-snapshot restore E:\Recovered\c3-snapshot
-.\.venv\Scripts\python.exe -m tools.data --root E:\Recovered\c3-snapshot audit
+真实输入统一来自 `.env` 的 `C3_MASS_KSP_ROOT`：火箭从 `saves/*/Ships/VAB/*.craft` 即读，部件与发动机从 `GameData` 读取。游戏目录只读，不复制为项目固定样例。游戏目录缺失时给出配置提示。
+
+```bash
+.venv/bin/python run_tests.py
 ```
 
-目标目录必须不存在。备份核验 SHA-256，恢复到新目录；正式数据库、火箭设计、原始 craft 和受控实验不能当作缓存清理。SQLite 与 YAML 的跨介质断电原子性仍有限。
+测试使用临时数据库和临时输出，结束后移除。真实游戏数据的动态检查见 `tests/test_live_game_data.py`；旧固定数据集的数值回归已标记停用，不会把旧标定冒充当前游戏的结果。算法单元测试仍使用代码内的最小输入；`.NET` 指令规范表不是游戏数据，予以保留。
 
-## 目录
-
-```text
-c3_mass/        计算、发动机解析与任务模型
-server/         Flask API、存储、游戏导入和质量证据
-frontend/       React 源码、统一浏览器检查与交付用 dist/
-game_plugin/    编辑器导出、被动遥测和隔离回放插件源码
-migrations/     按顺序执行的数据库迁移
-tools/          数据审计、绘图、game/、research/、release/、dev/
-tests/          Python 回归测试与合成 fixtures/
-docs/           当前路线、models/、ksp/、validation/ 与证据清单
-engines/        仍用于首启和计算的发动机样例
-rockets/        YAML 配置及首启恢复输入
-VAB/            用于来源核对和测试的原始 craft 样例
-experiments/    仍被质量证据门控使用的原始实验
-output/         生成产物与本地验证记录（忽略）
-backups/        本地数据备份（忽略）
-```
-
-数据库 `c3_plot.db` 是运行时主数据，`rockets/*.yaml` 是写穿备份和恢复输入。依赖环境、缓存、凭据和生成产物不提交。数据库迁移、历史输入和原始实验仍有实际用途，完整保留。
+后续手动导入保存的业务档案会写入本地数据库与 `rockets/`；不会在启动时自动导入目录内容。已有备份、恢复工具仍可用于未来新建数据，见 [工具说明](tools/README.md)。
 
 [文档导航](docs/README.md) · [前端开发](frontend/README.md) · [整理记录](docs/MAINTENANCE.md) · [变更记录](CHANGELOG.md)
 

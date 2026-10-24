@@ -894,7 +894,8 @@ public static class OpCodeDumper2 {
         self.assertEqual(mismatch, [])
 
 
-REAL_KSP = r'D:\SteamLibrary\steamapps\common\Kerbal Space Program'
+from tests.game_inputs import configured_game_root
+REAL_KSP = configured_game_root()
 _REAL_FUELS = Path(REAL_KSP) / 'GameData' / 'RealFuels' / 'Plugins' \
     / 'RealFuels.dll'
 _REAL_CHUTE = Path(REAL_KSP) / 'GameData' / 'RealChute' / 'Plugins' \

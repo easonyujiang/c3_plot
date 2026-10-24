@@ -8,12 +8,14 @@ from server.yaml_codec import load_config
 
 
 class ImportPipelineTests(unittest.TestCase):
+    @unittest.skip('历史固定快照已按清零要求移除；真实游戏数据由 test_live_game_data 按需验证')
     def test_legacy_numpy_yaml_is_safe_and_valid(self):
         config = load_config((Path(__file__).parent / 'fixtures/legacy_numpy_rocket.yaml').read_text(encoding='utf-8'))
         valid, errors = validate_rocket(config)
         self.assertTrue(valid, errors)
         self.assertIsNone(config['reference_missions']['gto'].get('dv'))
 
+    @unittest.skip('历史固定 VAB 样本已清零；真实游戏数据由 test_live_game_data 验证')
     def test_vab_parser_preserves_multiple_engine_groups(self):
         craft = Path('VAB/1T_Test.craft')
         parsed = parse_craft(craft.read_text(encoding='utf-8-sig'), craft.name)

@@ -30,7 +30,8 @@ def _fail(message):
 
 
 def _resolve_path(raw, default, role):
-    path = Path(raw) if raw is not None else Path(default)
+    from server.paths import native_path
+    path = Path(native_path(raw if raw is not None else default))
     if not path.is_dir():
         _fail(f'{role} 不存在或不是目录: {path}')
     return path
@@ -162,7 +163,7 @@ def _collect_mft_tank_types(ksp_root, index=None, vab_dir=None):
         vab_dir = Path(ksp_root) / 'VAB'
     vab_dir = Path(vab_dir)
     if vab_dir.is_dir():
-        for craft_path in sorted(vab_dir.glob('*.craft')):
+        for craft_path in sorted(vab_dir.glob('*/Ships/VAB/*.craft') if vab_dir.name == 'saves' else vab_dir.glob('*.craft')):
             if craft_path.name.endswith('.original'):
                 continue
             try:
@@ -546,7 +547,7 @@ def main(argv=None):
                              r'D:\SteamLibrary\steamapps\common\Kerbal '
                              r'Space Program)')
     parser.add_argument('--vab-dir', default=None,
-                        help='VAB craft directory (default: ./VAB)')
+                        help='Explicit craft directory; default: live KSP saves')
     parser.add_argument('--json', action='store_true',
                         help='emit a single JSON document instead of a table')
     args = parser.parse_args(argv)
@@ -558,11 +559,25 @@ def main(argv=None):
         except (AttributeError, ValueError):
             pass
 
+    from c3_mass.game_data import ksp_root as configured_root
     ksp_root = _resolve_path(
         args.ksp_root,
-        r'D:\SteamLibrary\steamapps\common\Kerbal Space Program',
+        str(configured_root()) if args.ksp_root is None else args.ksp_root,
         'KSP 根目录')
-    vab_dir = _resolve_path(args.vab_dir, 'VAB', 'VAB 目录')
+    vab_dir = _resolve_path(args.vab_dir, str(ksp_root / 'saves'), 'VAB 目录')
+
+    # Reject invalid inputs before expensive game indexing and IL analysis.
+    crafts = sorted(p for p in (vab_dir.glob('*.craft') if args.vab_dir else vab_dir.glob('*/Ships/VAB/*.craft'))
+                    if not p.name.endswith('.original'))
+    if not crafts:
+        _fail(f'{vab_dir} 中没有 .craft 文件')
+
+    from server.vab_parser import parse_craft
+    for craft_path in crafts:
+        try:
+            parse_craft(craft_path.read_text(encoding='utf-8-sig'), craft_path.name)
+        except Exception as exc:
+            _fail(f'解析 {craft_path.name} 失败: {exc}')
 
     from server.ksp_install_index import build_ksp_index
     try:
@@ -576,11 +591,6 @@ def main(argv=None):
     realchute_il_evidence = _realchute_il_evidence(ksp_root)
     mft_il_evidence_json = _mft_il_evidence(ksp_root, for_json=True,
                                             vab_dir=vab_dir)
-
-    crafts = sorted(p for p in vab_dir.glob('*.craft')
-                    if not p.name.endswith('.original'))
-    if not crafts:
-        _fail(f'{vab_dir} 中没有 .craft 文件')
 
     from server.ksp_runtime_fingerprints import ksp_runtime_provenance
     provenance = ksp_runtime_provenance(ksp_root)

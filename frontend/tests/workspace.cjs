@@ -1,16 +1,51 @@
 const {chromium}=require('playwright');
 const fs=require('fs'),path=require('path'),assert=require('assert/strict');
 const base=process.env.C3_TEST_URL || 'http://127.0.0.1:8878';
-const slug=process.env.C3_TEST_ROCKET || 'neutron_i_2630';
-const out=path.resolve(process.env.C3_BROWSER_OUTPUT || path.join(__dirname,'../../output/browser-checks'));
+const slug=process.env.C3_TEST_ROCKET;
+const out=process.env.C3_BROWSER_OUTPUT?path.resolve(process.env.C3_BROWSER_OUTPUT):fs.mkdtempSync(path.join(require('os').tmpdir(),'c3-ui-'));
 fs.mkdirSync(out,{recursive:true});
 (async()=>{
  const browser=await chromium.launch({headless:true,...(process.env.C3_BROWSER_CHANNEL ? {channel:process.env.C3_BROWSER_CHANNEL} : {})}),results=[],errors=[];
  try{
+  if(!slug){
+   for(const width of [390,768,1440]){
+    const page=await browser.newPage({viewport:{width,height:1000}});
+    page.on('pageerror',error=>errors.push(error.message));
+    const writes=[];
+    page.on('request',request=>{if(['PUT','DELETE'].includes(request.method())||request.url().includes('/confirm'))writes.push(request.url());});
+    await page.goto(`${base}/#/dashboard`);
+    await page.getByRole('heading',{name:'每一次发射，都心中有数。'}).waitFor();
+    await page.getByRole('heading',{name:'建立你的第一份火箭档案'}).waitFor();
+    assert((await page.evaluate(()=>document.documentElement.scrollWidth))<=width+1);
+    const library=await (await page.request.get(`${base}/api/import/library`)).json();
+    await page.goto(`${base}/#/tools/import`);
+    if(library.items.length){
+     await page.locator('.import-grid button.craft').first().click();
+     await page.getByLabel('火箭名称').waitFor({timeout:90000});
+     await page.getByRole('button',{name:'取消并返回'}).click();
+    }else{
+     await page.getByRole('heading',{name:'暂未发现游戏火箭'}).waitFor();
+    }
+    assert.deepEqual(writes,[],'Live craft preview must not save data');
+    await page.goto(`${base}/#/tools/mission`);
+    await page.getByRole('button',{name:'筛选火箭'}).click();
+    await page.getByText('火箭库中尚无可筛选数据。').waitFor();
+    results.push({width,emptyWorkspace:true,liveCraftPreview:library.items.length>0,noWrites:true});
+    await page.close();
+   }
+   assert.deepEqual(errors,[]);
+   console.log(JSON.stringify({results,errors}));
+   return;
+  }
   for(const width of [390,768,1440]){
    console.log('Checking chart width '+width);
    const page=await browser.newPage({viewport:{width,height:1000}});
    page.on('pageerror',e=>errors.push(e.message));
+   await page.goto(`${base}/#/dashboard`);
+   await page.getByRole('heading',{name:'每一次发射，都心中有数。'}).waitFor();
+   await page.getByText('正在读取…',{exact:true}).waitFor({state:'hidden'});
+   assert((await page.evaluate(()=>document.documentElement.scrollWidth))<=width+1,'Dashboard must fit viewport');
+   await page.screenshot({path:path.join(out,`dashboard-${width}.png`),fullPage:true});
    await page.goto(`${base}/#/dictionary/${encodeURIComponent(slug)}`);
    const plot=page.getByRole('img',{name:'C3 与可用载荷曲线'});
    await page.waitForFunction(()=>document.querySelector('.capacity-plot')?._fullLayout?.xaxis);
@@ -90,6 +125,14 @@ fs.mkdirSync(out,{recursive:true});
    results.push({width,hover:true,wheelZoom:true,pan:true,reset:true,boxZoom:true,doubleClickReset:true,fairingPreservesZoom:true,equivalentC3:true,conciseResults:true,dimensions});
    await page.close();
   }
+  const recovery=await browser.newPage();
+  await recovery.route('**/api/rockets',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'测试连接中断'})}));
+  await recovery.goto(`${base}/#/dashboard`);
+  await recovery.getByRole('alert').filter({hasText:'测试连接中断'}).waitFor();
+  await recovery.unroute('**/api/rockets');
+  await recovery.getByRole('button',{name:'重试',exact:true}).click();
+  await recovery.getByRole('alert').waitFor({state:'hidden'});
+  await recovery.close();
   assert.deepEqual(errors,[]);fs.writeFileSync(path.join(out,'checks.json'),JSON.stringify({results,errors},null,2));console.log(JSON.stringify({results,errors}));
- }finally{await browser.close();}
+ }finally{await browser.close();if(!process.env.C3_BROWSER_OUTPUT)fs.rmSync(out,{recursive:true,force:true});}
 })().catch(e=>{console.error(e);process.exit(1);});

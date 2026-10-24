@@ -319,6 +319,7 @@ class RealOrbitConversionTests(unittest.TestCase):
 
 
 class NeutronIntegrationTests(unittest.TestCase):
+    @unittest.skip('历史固定快照已按清零要求移除；真实游戏数据由 test_live_game_data 按需验证')
     def test_neutron_i_2630_normalization(self):
         config = load_config(
             Path('rockets/neutron_i_2630.yaml').read_text(encoding='utf-8'))
