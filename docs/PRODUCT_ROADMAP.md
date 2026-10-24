@@ -170,7 +170,7 @@ GTO + 远地点圆化属于同一冲量族；区别主要在：
 
 ### Phase B — 通用导入、百科与仿真内核 v1
 
-> 初版已开始：`c3_mass/ascent_simulation.py` 提供 T0 火箭方程与 T1 平面 3DOF 上升骨架和 profile→T0/T1 适配/CLI，9 项离线测试通过；尚未接 KSP/FAR/轨道插入，完整回归待游戏结束后执行。
+> 初版已开始：`c3_mass/ascent_simulation.py` 提供 T0 火箭方程与 T1 平面 3DOF 上升骨架和 profile→T0/T1 适配/CLI，10 项离线测试通过；尚未接 KSP/FAR/轨道插入，完整回归待游戏结束后执行。
 
 交付：
 
@@ -182,6 +182,8 @@ GTO + 远地点圆化属于同一冲量族；区别主要在：
 验收：3 枚不同 craft 导入；参数完整；T0/T1 对 220 km 基准预测与现有经验模型量级一致；未知构型不会生成假曲线；无 AI 参与。
 
 ### Phase C — Campaign v1 + 遥测升级 + 220 km 标定
+
+> 契约初版已落地：`server/campaign.py` 提供确定性 `CampaignSpec` / `TrialRecord` / `CampaignQueue` 状态机，4 项测试通过；尚未接 KSP 执行器。
 
 交付：
 

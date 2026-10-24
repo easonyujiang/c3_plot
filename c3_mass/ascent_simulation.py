@@ -124,6 +124,7 @@ class AscentResult:
     samples: list[AscentSample] = field(default_factory=list)
     stage_events: list[StageEvent] = field(default_factory=list)
     final: AscentSample | None = None
+    final_orbit: dict | None = None
     max_dynamic_pressure_Pa: float = 0.0
     max_acceleration_m_s2: float = 0.0
     initial_mass_t: float = 0.0
@@ -140,12 +141,54 @@ class AscentResult:
             'samples': [sample.to_dict() for sample in self.samples],
             'stage_events': [event.to_dict() for event in self.stage_events],
             'final': self.final.to_dict() if self.final is not None else None,
+            'final_orbit': self.final_orbit,
             'max_dynamic_pressure_Pa': self.max_dynamic_pressure_Pa,
             'max_acceleration_m_s2': self.max_acceleration_m_s2,
             'initial_mass_t': self.initial_mass_t,
             'final_mass_t': self.final_mass_t,
             'stopped_reason': self.stopped_reason,
         }
+
+
+def orbital_elements(planet: Planet, radius_m: float,
+                     radial_velocity_m_s: float,
+                     tangential_velocity_m_s: float) -> dict:
+    """Two-body orbital elements from a planar state; empty if mu is unavailable."""
+    if planet.mu <= 0 or radius_m <= 0:
+        return {}
+    speed_sq = radial_velocity_m_s ** 2 + tangential_velocity_m_s ** 2
+    energy = speed_sq / 2.0 - planet.mu / radius_m
+    momentum = radius_m * tangential_velocity_m_s
+    if momentum == 0:
+        return {'specific_energy_m2_s2': energy, 'escape': energy >= 0}
+    eccentricity = math.sqrt(max(0.0, 1.0 + 2.0 * energy * momentum ** 2 / planet.mu ** 2))
+    result = {
+        'specific_energy_m2_s2': energy,
+        'eccentricity': eccentricity,
+        'escape': energy >= 0,
+    }
+    if energy < 0:
+        semi_major = -planet.mu / (2.0 * energy)
+        periapsis = semi_major * (1.0 - eccentricity)
+        apoapsis = semi_major * (1.0 + eccentricity)
+        result.update({
+            'semi_major_axis_m': semi_major,
+            'periapsis_m': periapsis,
+            'apoapsis_m': apoapsis,
+            'periapsis_altitude_m': periapsis - planet.radius,
+            'apoapsis_altitude_m': apoapsis - planet.radius,
+            'period_s': 2.0 * math.pi * math.sqrt(semi_major ** 3 / planet.mu),
+        })
+    else:
+        result.update({
+            'semi_major_axis_m': None,
+            'periapsis_m': momentum ** 2 / (planet.mu * (1.0 + eccentricity)),
+            'apoapsis_m': None,
+            'periapsis_altitude_m': momentum ** 2 / (planet.mu * (1.0 + eccentricity)) - planet.radius,
+            'apoapsis_altitude_m': None,
+            'period_s': None,
+        })
+    return result
 
 
 def _stage_wet(stage: StageSpec) -> float:
@@ -299,4 +342,8 @@ def simulate_ascent(stages: list[StageSpec], payload_t: float, *,
     if not result.stopped_reason:
         result.stopped_reason = 'max_time'
     result.final_mass_t = state[4]
+    if result.final is not None:
+        result.final_orbit = orbital_elements(
+            planet, planet.radius + result.final.altitude_m,
+            result.final.radial_velocity_m_s, result.final.tangential_velocity_m_s)
     return result

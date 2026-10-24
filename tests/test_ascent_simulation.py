@@ -6,6 +6,7 @@ from c3_mass.ascent_simulation import (
     PitchProgram,
     Planet,
     StageSpec,
+    orbital_elements,
     simulate_ascent,
     total_ideal_dv,
 )
@@ -34,6 +35,7 @@ class AscentSimulationTests(unittest.TestCase):
         self.assertAlmostEqual(result.final.speed_m_s, expected, delta=1.0)
         self.assertAlmostEqual(result.final_mass_t, 1.0, places=9)
         self.assertEqual(result.stopped_reason, 'all_stages_burned')
+        self.assertIsNotNone(result.final_orbit)
 
     def test_two_stage_total_dv_and_mass_drop(self):
         stages = [
@@ -82,6 +84,22 @@ class AscentSimulationTests(unittest.TestCase):
         fine = simulate_ascent([stage], 1.0, planet=vacuum_planet(), pitch=horizontal(),
                                settings=AscentSettings(dt_s=0.01, max_time_s=1000.0))
         self.assertLess(abs(coarse.final.speed_m_s - fine.final.speed_m_s), 1.0)
+
+    def test_orbital_elements_circular_elliptical_and_escape(self):
+        planet = Planet()
+        radius = planet.radius + 220000.0
+        circular = math.sqrt(planet.mu / radius)
+        near = orbital_elements(planet, radius, 0.0, circular)
+        self.assertAlmostEqual(near['eccentricity'], 0.0, places=6)
+        self.assertAlmostEqual(near['periapsis_m'], radius, delta=1.0)
+        self.assertAlmostEqual(near['apoapsis_m'], radius, delta=1.0)
+        elliptical = orbital_elements(planet, radius, 0.0, circular * 1.05)
+        self.assertGreater(elliptical['apoapsis_m'], radius)
+        self.assertAlmostEqual(elliptical['periapsis_m'], radius, delta=1.0)
+        self.assertFalse(elliptical['escape'])
+        escape = orbital_elements(planet, radius, 0.0, math.sqrt(2 * planet.mu / radius) * 1.01)
+        self.assertTrue(escape['escape'])
+        self.assertIsNone(escape['apoapsis_m'])
 
     def test_invalid_stage_is_rejected(self):
         with self.assertRaises(ValueError):

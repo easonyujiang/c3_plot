@@ -89,4 +89,4 @@ print(result.final.speed_m_s, result.max_dynamic_pressure_Pa,
 - 时间步收敛；
 - 非法级段参数拒绝。
 
-当前 9 项离线测试通过（6 项 T1 + 3 项 profile 适配）；完整回归待游戏结束后运行，避免在用户游戏时扫描/读取游戏目录。
+当前 10 项离线测试通过（7 项 T1 + 3 项 profile 适配）；完整回归待游戏结束后运行，避免在用户游戏时扫描/读取游戏目录。

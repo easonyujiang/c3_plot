@@ -22,6 +22,7 @@
 
 - [轨道运力模型](models/ORBIT_CAPACITY_MODEL.md)、[任务数据契约](models/MISSION_SIMULATION_DATA_CONTRACT.md)
 - [上升仿真内核 T0/T1](models/ASCENT_SIMULATION.md)
+- [Campaign 与试验队列契约](models/CAMPAIGN_CONTRACTS.md)
 - [燃烧原语](models/MISSION_BURN_PRIMITIVE.md)、[序列求解](models/MISSION_SEQUENCE_SOLVER.md)、[多级求解](models/MISSION_MULTISTAGE_SOLVER.md)
 - [输入适配](models/MISSION_INPUT_ADAPTERS.md)、[停泊回放](models/MISSION_PARKING_REPLAY.md)、[级段规划](models/MISSION_STAGE_PLANNER.md)
 - [载荷可行性](models/MISSION_PAYLOAD_FEASIBILITY.md)、[容量搜索](models/MISSION_CAPACITY_SEARCH.md)

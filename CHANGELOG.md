@@ -2,7 +2,8 @@
 
 ## 未发布
 
-- Phase B 初版：新增 `c3_mass/ascent_simulation.py`，提供 T0 火箭方程与 T1 平面 3DOF 上升骨架（球形引力、指数大气、阻力、推力/Isp、质量流、分级、简单俯仰程序、RK4）；6 项合成测试通过。新增 `c3_mass/profile_simulation.py` 与 `tools.simulate`，从 profile 扣除声明载荷后离线运行 T0/T1，并给出整流罩/未知载荷/无气动警告；3 项适配测试通过。尚未接 KSP/FAR/轨道插入，完整回归待游戏结束后执行。
+- Phase C 契约初版：新增 `server/campaign.py` 的 `CampaignSpec` / `TrialRecord` / `CampaignQueue` 确定性状态机（单 running、显式 trial 列表、失败不自动重飞、campaign id 稳定哈希）；4 项测试通过。尚未接 KSP 执行器。
+- Phase B 初版：新增 `c3_mass/ascent_simulation.py`，提供 T0 火箭方程与 T1 平面 3DOF 上升骨架（球形引力、指数大气、阻力、推力/Isp、质量流、分级、简单俯仰程序、RK4）；7 项合成测试通过。新增 `c3_mass/profile_simulation.py` 与 `tools.simulate`，从 profile 扣除声明载荷后离线运行 T0/T1，并给出整流罩/未知载荷/无气动警告；3 项适配测试通过。尚未接 KSP/FAR/轨道插入，完整回归待游戏结束后执行。
 - Phase A 初版：新增 `RocketProfile` / `EnvironmentProfile` / `ParameterCatalog` / `TrialSpec` / `CapacityPoint` 契约，以及从 craft + 编辑器快照生成 profile 的 `tools.profile` CLI；显式区分级段/部件/载荷/整流罩质量，参数带来源、哈希和置信度。当前 938 项回归通过。
 - 基线 harness 支持可配置载荷目标：`prepare_baseline --payload-t` 按目标扩大 payload 舱配重容量，插件按请求中的 `payload_t` 调整 ballast 并通过相同的 pad gate。
 - 完成 `C3Baseline20261024G` 的 2.500 t / 220 × 220 km / 20° 飞行，`target_verified`，保持 30.60 s，载荷 11/11 完整；证据包在 `docs/evidence/C3Baseline20261024G/`。`audit_baseline` 改为按 `target_payload_t` 校验，不再硬编码 1.0 t；新增对应回归测试。
