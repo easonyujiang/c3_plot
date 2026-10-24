@@ -36,7 +36,7 @@ powershell -File tools/game/build_validation.ps1 -KspRoot "D:\SteamLibrary\steam
 
 浏览器检查统一在 [frontend/tests/workspace.cjs](../frontend/tests/workspace.cjs)，执行说明见 [前端说明](../frontend/README.md)。
 
-发布要求 Git 工作区干净，`v<VERSION>` 标签指向 HEAD。源码包保留完整项目，运行包使用显式文件清单；包含工具的运行时依赖，不带测试、研究脚本、旧界面或内部回放插件。输出为 `output/releases/<版本>/`。新结构没有改变原有 `v0.1.0` 标签，后续正式发布应升级版本并使用新标签。
+发布要求 Git 工作区干净，`v<VERSION>` 标签指向 HEAD。源码包保留完整项目，运行包使用显式文件清单；包含工具的运行时依赖，不带测试、研究脚本、旧界面或内部回放插件。输出为 `output/releases/<版本>/`。`v0.2.0` 标签已创建，原有 `v0.1.0` 标签未移动。
 
 研究脚本的版本/样例范围需要按实际安装核对：固定提交不等于证明 DLL 为对应源码的可复现构建。独立公式复算验证算术一致性，不能证明火箭实际运力。
 
