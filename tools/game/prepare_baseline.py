@@ -2,20 +2,39 @@
 import argparse
 import hashlib
 import json
+import math
 import re
 from pathlib import Path
 from server.ksp_confignode import parse
+
+
+BALLAST_DENSITY_T_PER_UNIT = 0.01134
+BASE_BALLAST_CAPACITY = 94.2478
+
+
+def ballast_capacity(payload_t):
+    """Lead-ballast capacity with margin for the payload tank's own dry mass."""
+    if not math.isfinite(payload_t) or payload_t <= 0:
+        raise ValueError('payload target must be a positive finite mass')
+    if payload_t <= 1.0:
+        return BASE_BALLAST_CAPACITY
+    return max(BASE_BALLAST_CAPACITY,
+               (payload_t + 0.20) / BALLAST_DENSITY_T_PER_UNIT * 1.05)
 
 
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def prepare(root, folder, with_fairings=False, ballast_amount=None, flight=False):
+def prepare(root, folder, with_fairings=False, ballast_amount=None, flight=False, payload_t=1.0):
     if not re.fullmatch(r'C3Baseline[0-9A-Za-z_-]+', folder):
         raise ValueError('A dedicated C3Baseline save name is required')
-    if flight and (not with_fairings or ballast_amount is None):
+    if flight and not with_fairings:
         raise ValueError('Flight requires the calibrated payload and fairings')
+    capacity = ballast_capacity(payload_t)
+    if ballast_amount is not None and not 0 <= ballast_amount <= capacity:
+        raise ValueError('Ballast must fit the payload tank capacity')
+    initial_ballast = capacity if ballast_amount is None else ballast_amount
     source = root / 'saves/RocketMaking'
     target = root / 'saves' / folder
     if target.exists():
@@ -42,10 +61,13 @@ def prepare(root, folder, with_fairings=False, ballast_amount=None, flight=False
         text=re.sub(r'(?m)^(\s*pos = ).*$',lambda m:m[1]+pos,text)
         if i==0:
             text=re.sub(r'(?m)^(\s*attPos0 = ).*$',lambda m:m[1]+pos,text)
-        if ballast_amount is not None and p.value('part').startswith('proceduralTankRealFuels_'):
-            if not 0 <= ballast_amount <= 94.2478:
-                raise ValueError('Ballast must fit the unchanged donor tank')
-            text=re.sub(r'(?m)^(\s*amount = ).*$',lambda m:m[1]+format(ballast_amount,'.15g'),text)
+        if p.value('part').startswith('proceduralTankRealFuels_'):
+            # Expand the mass simulator in place. The visual shape and fairing
+            # stay unchanged; the runtime controller trims the ballast to the
+            # requested payload mass.
+            text=re.sub(r'(?m)^(\s*volume = ).*$',lambda m:m[1]+format(capacity,'.15g'),text)
+            text=re.sub(r'(?m)^(\s*maxAmount = ).*$',lambda m:m[1]+format(capacity,'.15g'),text)
+            text=re.sub(r'(?m)^(\s*amount = ).*$',lambda m:m[1]+format(initial_ballast,'.15g'),text)
         blocks.append(text)
     # Preserve donor ballast amount initially: runtime measurement defines the
     # delivered assembly mass. A name or static modMass is not a mass measurement.
@@ -88,7 +110,7 @@ def prepare(root, folder, with_fairings=False, ballast_amount=None, flight=False
     name='C3 Neutrons I 2630 Payload Baseline'
     header='\n'.join(btext.splitlines()[:bp[0].start_line-1])+'\n'
     header=re.sub(r'(?m)^ship = .*$', 'ship = '+name, header)
-    header=re.sub(r'(?m)^description = .*$', 'description = Isolated baseline; donor payload mass pending runtime measurement; 220km x 220km at 20deg', header)
+    header=re.sub(r'(?m)^description = .*$', f'description = Isolated baseline; payload target {payload_t:g} t pending runtime measurement; 220km x 220km at 20deg', header)
     header=re.sub(r'(?m)^vesselType = .*$', 'vesselType = Probe', header)
     craft=header+''.join(blocks+baseblocks)
     parsed=parse(craft)
@@ -120,16 +142,19 @@ def prepare(root, folder, with_fairings=False, ballast_amount=None, flight=False
                        'GameData/C3MassValidation/Plugins/C3MassValidation.dll']
     environment={p:sha(root/p) for p in environment_paths}
     manifest={'source_files':original,'environment_sha256':environment,'craft_sha256':sha(cp),'payload_part_ids':[p.value('part') for p in payload],
+              'payload_t':payload_t,'payload_capacity_units':capacity,
               'target_pe_m':220000,'target_ap_m':220000,'inclination_deg':20,
               'payload_mass_status':'pending_runtime','fairing_status':'pending_editor_rebuild' if with_fairings else 'missing_sides_pad_only',
-              'ballast_amount':ballast_amount,
+              'ballast_amount':initial_ballast,
               'source_save_sha256':sha(save)}
     (target/'baseline-inputs.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')
     changed=[p for p,h in original.items() if sha(root/p)!=h]
     if changed: raise ValueError('Source changed during preparation: '+repr(changed))
     request_dir.mkdir(parents=True,exist_ok=True)
-    request.write_text('C3_BASELINE_REQUEST\n{\n folder = '+folder+'\n craft = '+name+'\n mode = '+('flight' if flight else 'inspect')+'\n editor_rebuild = '+str(with_fairings)+'\n craft_sha256 = '+sha(cp)+'\n save_sha256 = '+sha(target/'persistent.sfs')+'\n}\n',encoding='ascii')
-    return {'folder':folder,'parts':len(ids),'payload_parts':len(payload),'original_files_unchanged':len(original),'mode':'gated baseline flight' if flight else 'pad inspection only'}
+    request.write_text('C3_BASELINE_REQUEST\n{\n folder = '+folder+'\n craft = '+name+'\n mode = '+('flight' if flight else 'inspect')+'\n editor_rebuild = '+str(with_fairings)+'\n payload_t = '+format(payload_t,'.15g')+'\n craft_sha256 = '+sha(cp)+'\n save_sha256 = '+sha(target/'persistent.sfs')+'\n}\n',encoding='ascii')
+    return {'folder':folder,'parts':len(ids),'payload_parts':len(payload),'payload_t':payload_t,
+            'payload_capacity_units':capacity,'original_files_unchanged':len(original),
+            'mode':'gated baseline flight' if flight else 'pad inspection only'}
 
 if __name__=='__main__':
     ap=argparse.ArgumentParser(description=__doc__)
@@ -137,6 +162,11 @@ if __name__=='__main__':
     ap.add_argument('--folder',required=True)
     ap.add_argument('--flight',action='store_true')
     ap.add_argument('--with-fairings',action='store_true')
-    ap.add_argument('--ballast-amount',type=float)
+    ap.add_argument('--payload-t',type=float,default=1.0,
+                    help='delivered payload target in tonnes; the payload tank is expanded to fit it')
+    ap.add_argument('--ballast-amount',type=float,
+                    help='legacy initial ballast amount; runtime still trims to --payload-t')
     a=ap.parse_args()
-    print(json.dumps(prepare(a.ksp_root,a.folder,a.with_fairings,a.ballast_amount,a.flight),ensure_ascii=False))
+    print(json.dumps(prepare(a.ksp_root,a.folder,with_fairings=a.with_fairings,
+                            ballast_amount=a.ballast_amount,flight=a.flight,
+                            payload_t=a.payload_t),ensure_ascii=False))

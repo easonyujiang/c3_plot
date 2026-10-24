@@ -17,6 +17,7 @@ public class C3BaselineInspection : MonoBehaviour
     private double launchedUT, lastRecord = -1, stableSince = -1;
     private float launchWall;
     private double measuredPayload;
+    private double targetPayload = 1.0;
     private bool payloadShielded;
     private int payloadCount;
     private bool ballastAdjusted;
@@ -46,6 +47,11 @@ public class C3BaselineInspection : MonoBehaviour
             if (plan == null) throw new Exception("missing request node");
             rebuild = plan.GetValue("editor_rebuild") == "True";
             fly = plan.GetValue("mode") == "flight";
+            string payloadText = plan.GetValue("payload_t");
+            if (!string.IsNullOrEmpty(payloadText) &&
+                (!double.TryParse(payloadText, NumberStyles.Float, CultureInfo.InvariantCulture, out targetPayload) ||
+                 targetPayload <= 0))
+                throw new Exception("invalid payload target");
             folder = plan.GetValue("folder"); craftName = plan.GetValue("craft");
             if (string.IsNullOrEmpty(folder) || !System.Text.RegularExpressions.Regex.IsMatch(folder, "^C3Baseline[0-9A-Za-z_-]+$"))
                 throw new Exception("invalid isolated folder");
@@ -153,9 +159,9 @@ public class C3BaselineInspection : MonoBehaviour
                             }
                 if (ballast == null || ballast.info.density <= 0 || payloadCount != 11)
                     throw new Exception("missing or invalid ballast");
-                double amount = ballast.amount + (1.0-measuredPayload)/ballast.info.density;
+                double amount = ballast.amount + (targetPayload-measuredPayload)/ballast.info.density;
                 if (amount < 0 || amount > ballast.maxAmount) throw new Exception("ballast capacity exceeded");
-                Status("ballast_adjustment old=" + F(ballast.amount) + " new=" + F(amount) + " density=" + F(ballast.info.density));
+                Status("ballast_adjustment target=" + F(targetPayload) + " old=" + F(ballast.amount) + " new=" + F(amount) + " density=" + F(ballast.info.density));
                 ballast.amount = amount;
                 ballastAdjusted = true; ballastAdjustedAt = Time.realtimeSinceStartup;
                 return;
@@ -217,6 +223,7 @@ public class C3BaselineInspection : MonoBehaviour
         }
         measuredPayload = payloadMass; masterCore = master;
         report.AddValue("payload_mass_t", F(payloadMass));
+        report.AddValue("target_payload_t", F(targetPayload));
         report.AddValue("payload_shielded", payloadShielded);
         report.AddValue("mechjeb_master_found", master != null);
         if (master != null)
@@ -270,7 +277,7 @@ public class C3BaselineInspection : MonoBehaviour
     private void BeginFlight(Vessel v)
     {
         if (v.situation != Vessel.Situations.PRELAUNCH || !v.IsControllable || masterCore == null ||
-            payloadCount != 11 || Math.Abs(measuredPayload - 1) > 0.001 || !payloadShielded || v.parts.Count != 24 ||
+            payloadCount != 11 || Math.Abs(measuredPayload - targetPayload) > 0.001 || !payloadShielded || v.parts.Count != 24 ||
             Math.Abs(v.latitude - 19.6137) > 0.02 || Math.Abs(v.longitude - 110.9553) > 0.02)
             throw new Exception("pad gates failed: payload mass/count/shielding, control, location or part count");
         int clamps = 0, fairings = 0, engines = 0;
@@ -303,7 +310,7 @@ public class C3BaselineInspection : MonoBehaviour
         users.GetType().GetMethod("Add").Invoke(users, new object[] { this });
         launchedUT = Planetarium.GetUniversalTime(); launchWall = Time.realtimeSinceStartup; flying = true;
         ascent.GetType().GetMethod("StartCountdown").Invoke(ascent, new object[] { launchedUT + 5 });
-        Status("flight_countdown target=220000x220000 inclination=20 payload_t=" + F(measuredPayload));
+        Status("flight_countdown target=220000x220000 inclination=20 payload_t=" + F(measuredPayload) + " target_payload_t=" + F(targetPayload));
     }
     private void MonitorFlight(Vessel v)
     {
