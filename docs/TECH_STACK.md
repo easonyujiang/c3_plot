@@ -60,6 +60,6 @@ Python 依赖以 `pyproject.toml` / `uv.lock` 为准，`requirements.txt` 是 `u
 
 参考 [Vite 环境要求](https://vite.dev/guide/)、[TanStack Query 重试机制](https://tanstack.com/query/latest/docs/framework/react/guides/query-retries) 和 [Flask 的 Waitress 部署说明](https://flask.palletsprojects.com/en/stable/deploying/waitress/)。依赖版本锁定为本项目实际构建验证过的版本；不把追逐最新主版本当成重建目标。
 
-本次构建与回归结果见 [基座验证记录](validation/FOUNDATION_20261021.md)。
+本次构建与回归结果见 [基座验证记录](archive/FOUNDATION_20261021.md)。
 
 数据策略已更新为 [清零与游戏源测试](DATA_POLICY.md)，旧验证结果属于清零前记录。

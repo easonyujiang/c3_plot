@@ -2,6 +2,7 @@
 
 ## 未发布
 
+- Phase A 初版：新增 `RocketProfile` / `EnvironmentProfile` / `ParameterCatalog` / `TrialSpec` / `CapacityPoint` 契约，以及从 craft + 编辑器快照生成 profile 的 `tools.profile` CLI；显式区分级段/部件/载荷/整流罩质量，参数带来源、哈希和置信度。当前 938 项回归通过。
 - 基线 harness 支持可配置载荷目标：`prepare_baseline --payload-t` 按目标扩大 payload 舱配重容量，插件按请求中的 `payload_t` 调整 ballast 并通过相同的 pad gate。
 - 完成 `C3Baseline20261024G` 的 2.500 t / 220 × 220 km / 20° 飞行，`target_verified`，保持 30.60 s，载荷 11/11 完整；证据包在 `docs/evidence/C3Baseline20261024G/`。`audit_baseline` 改为按 `target_payload_t` 校验，不再硬编码 1.0 t；新增对应回归测试。
 - 复核遥测发现 F/G 两架次在一级燃尽后各有 **17.34 s / 11.24 s** 的非预期滑行（throttle=1.0、thrust=0、stage 不前进）。证据已加“程序问题”标注：它们仍证明交付质量与轨道，但不是干净的可比上升程序，暂不作为标准 C3 校准值；分级修正与复飞待做。

@@ -1,6 +1,6 @@
 # 文档导航
 
-[项目使用说明](../README.md) · [数据策略](DATA_POLICY.md) · [技术栈与基座](TECH_STACK.md) · [产品路线图](PRODUCT_ROADMAP.md) · [运力百科与自动校准路线图（草案）](ROADMAP_CAPACITY_ENCYCLOPEDIA.md) · [目录与维护](MAINTENANCE.md) · [维护工具](../tools/README.md)
+[项目使用说明](../README.md) · [数据策略](DATA_POLICY.md) · [技术栈与基座](TECH_STACK.md) · [产品路线图](PRODUCT_ROADMAP.md) · [目录与维护](MAINTENANCE.md) · [维护工具](../tools/README.md)
 
 ## 当前证据与验证
 
@@ -8,7 +8,6 @@
 - [基线飞行 20261024G：2.500 t / 220 km / 20°](evidence/C3Baseline20261024G/README.md)
 - [当前验证基线与证据边界](validation/BASELINE.md)
 - [本机 KSP/模组与 MechJeb 接口分析](ksp/KSP_INSTALLATION_AUDIT_20261021.md) · [安装哈希清单](evidence/ksp_installation_20261021.json)
-- [技术基座验证 2026-10-21](validation/FOUNDATION_20261021.md)（历史记录，数字已过期）
 
 ## 游戏与数据集成
 
@@ -16,6 +15,7 @@
 - [安装索引](ksp/KSP_INSTALL_INDEX.md)、[部件匹配](ksp/KSP_PART_MATCHING.md)
 - [质量证据](ksp/KSP_MASS_EVIDENCE.md)、[整箭对账](ksp/KSP_CRAFT_MASS_RECONCILIATION.md)、[模块语义](ksp/KSP_MODULE_MASS_SEMANTICS.md)
 - [源验证缓存与导入预览性能](ksp/KSP_SOURCE_VERIFICATION_CACHE.md)
+- [火箭 Profile 与参数目录](ksp/ROCKET_PROFILE.md)
 - [RealChute 授权范围](ksp/KSP_REALCHUTE_SETTLED_MASS_ENABLEMENT.md)（生产门控仍按固定指纹 fail-closed；原始实验数据已移出工作树）
 
 ## 计算模型与 API
@@ -26,11 +26,14 @@
 - [载荷可行性](models/MISSION_PAYLOAD_FEASIBILITY.md)、[容量搜索](models/MISSION_CAPACITY_SEARCH.md)
 - [统一分析服务](models/MISSION_ANALYSIS_SERVICE.md)、[任务查询 API](models/MISSION_QUERY_API.md)
 
-这些说明对应当前运行的模型和证据门控。文中出现的 Neutron / `0.502 t` 等数值是数据清零前的回归示例，不是当前火箭库结果。阶段名称描述实现来源，当前产品执行顺序统一由路线图决定。
+这些说明对应当前运行的模型和证据门控。文中出现的 Neutron / `0.502 t` 等数值是数据清零前的回归示例，不是当前火箭库结果。产品执行顺序统一由 [产品路线图](PRODUCT_ROADMAP.md) 决定。
 
-## 历史研究记录
+## 历史归档
 
-- [受控质量实验](ksp/KSP_CONTROLLED_MASS_EXPERIMENT.md)、[实验结论](ksp/KSP_CONTROLLED_MASS_EXPERIMENT_RESULT.md)
-- [质量残差](ksp/KSP_MASS_RESIDUAL_FORENSICS.md)、[数值精度](ksp/KSP_NUMERIC_PRECISION_FORENSICS.md)
+- [归档说明与目录](archive/README.md)
+- [旧产品路线图 2026-10-21](archive/PRODUCT_ROADMAP_20261021.md)
+- [技术基座验证 2026-10-21](archive/FOUNDATION_20261021.md)
+- [受控质量实验](archive/KSP_CONTROLLED_MASS_EXPERIMENT.md)、[实验结论](archive/KSP_CONTROLLED_MASS_EXPERIMENT_RESULT.md)
+- [质量残差](archive/KSP_MASS_RESIDUAL_FORENSICS.md)、[数值精度](archive/KSP_NUMERIC_PRECISION_FORENSICS.md)
 
-这些记录的方法和边界仍有参考价值，但原始数据已在 2026-10-21 清零，不能作为当前验证或生产授权。需要追溯时从 Git 历史或本机游戏目录读取。
+归档文档不是当前产品方向、当前证据或生产授权；保留用于追溯方法和边界。
