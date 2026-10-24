@@ -2,13 +2,22 @@ import hashlib
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from c3_mass.mission_simulation import StageState, BurnRequirement, FailureCode
 from c3_mass.mission_solver import execute_burn
-from server.editor_snapshot import checked_runtime_performance, verify_sources
+from server.editor_snapshot import (checked_runtime_performance, clear_source_cache,
+                                    verify_sources)
+from server.validation import validate_rocket
 
 
 class RuntimeWorkflowTests(unittest.TestCase):
+    def setUp(self):
+        clear_source_cache()
+
+    def tearDown(self):
+        clear_source_cache()
+
     def test_ground_only_engine_cannot_start_as_an_upper_stage(self):
         stage=StageState(stage_index=1,wet_mass_t=10,dry_mass_t=1,
                          propellant_remaining_t=9,isp_vac_s=320,
@@ -62,3 +71,45 @@ class RuntimeWorkflowTests(unittest.TestCase):
             verify_sources(source)
             (game/'new.dll').write_bytes(b'new')
             with self.assertRaises(ValueError):verify_sources(source)
+
+    def test_cached_verification_skips_second_game_data_scan(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);game=root/'GameData';game.mkdir()
+            cache=game/'ModuleManager.ConfigCache';cache.write_bytes(b'cache')
+            plugin_dir=game/'Mod'/'Plugins';plugin_dir.mkdir(parents=True)
+            dll=plugin_dir/'mod.dll';dll.write_bytes(b'mod')
+            source={'ksp_root':str(root),'files':[
+                {'path':'GameData/ModuleManager.ConfigCache','sha256':hashlib.sha256(b'cache').hexdigest()},
+                {'path':'GameData/Mod/Plugins/mod.dll','sha256':hashlib.sha256(b'mod').hexdigest()}]}
+            import server.editor_snapshot as editor_snapshot
+            with patch.object(editor_snapshot,'_scan_plugin_paths',
+                              wraps=editor_snapshot._scan_plugin_paths) as scan:
+                verify_sources(source)
+                verify_sources(source)
+            self.assertEqual(scan.call_count,1)
+
+    def test_new_dll_beside_recorded_plugin_invalidates_cache(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);game=root/'GameData';game.mkdir()
+            cache=game/'ModuleManager.ConfigCache';cache.write_bytes(b'cache')
+            plugin_dir=game/'Mod'/'Plugins';plugin_dir.mkdir(parents=True)
+            dll=plugin_dir/'mod.dll';dll.write_bytes(b'mod')
+            source={'ksp_root':str(root),'files':[
+                {'path':'GameData/ModuleManager.ConfigCache','sha256':hashlib.sha256(b'cache').hexdigest()},
+                {'path':'GameData/Mod/Plugins/mod.dll','sha256':hashlib.sha256(b'mod').hexdigest()}]}
+            verify_sources(source)
+            (plugin_dir/'new.dll').write_bytes(b'new')
+            with self.assertRaises(ValueError):verify_sources(source)
+
+    def test_validate_rocket_reuses_verified_source(self):
+        source={'ksp_root':'/tmp/not-used','files':[{'path':'GameData/x','sha256':'0'}]}
+        cfg={'rocket':{'name':'T'},'stages':[{
+            'wet_mass_t':2.0,'dry_mass_t':1.0,
+            'engine_groups':[{'cfg':'x.cfg','count':1}],
+            'runtime_performance':{'thrust':10.0,'isp_vac':300.0,'isp_sl':250.0}}],
+            'calibration':[]}
+        with patch('server.editor_snapshot.checked_runtime_performance') as checked:
+            checked.return_value={'isp_vac':300.0,'isp_sl':250.0,'thrust':10.0,'isp_type':'editor_runtime'}
+            validate_rocket(cfg,verified_source=source)
+            checked.assert_called_once()
+            self.assertIs(checked.call_args.kwargs['verified_source'],source)

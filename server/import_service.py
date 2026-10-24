@@ -227,6 +227,7 @@ def preview_craft(filename, content, loadmeta=None, ksp_index=None):
     metadata = dict(draft.get('source') or {})
     metadata.update(loadmeta or {})
     draft['source'] = metadata
+    verified_source = None
     if ksp_index is not None:
         root = (getattr(ksp_index, 'metadata', None) or {}).get('ksp_root')
         if root:
@@ -234,6 +235,9 @@ def preview_craft(filename, content, loadmeta=None, ksp_index=None):
             try:
                 snapshot = read_snapshot(root, content)
                 if snapshot is not None:
+                    # read_snapshot already verified this exact source; pass it
+                    # to validation so each stage does not rescan GameData.
+                    verified_source = snapshot['source']
                     stages, topology = automatic_stages(snapshot)
                     draft['stages'] = stages
                     draft['automatic_identification'] = {'status':'verified_editor_snapshot',
@@ -246,7 +250,7 @@ def preview_craft(filename, content, loadmeta=None, ksp_index=None):
                         'message':'请在安装采样插件的游戏编辑器内保存这份火箭，以读取 Mod 生效后的数据'}
             except (ValueError, OSError, KeyError) as exc:
                 draft['automatic_identification'] = {'status':'needs_review','message':str(exc)}
-    valid, errors = validate_rocket(draft)
+    valid, errors = validate_rocket(draft, verified_source=verified_source)
     status = 'ready' if valid else 'needs_review'
     # Craft drafts have no mass/staging solution yet: they must always be
     # reviewed, even if the placeholder shape would validate.

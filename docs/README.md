@@ -14,6 +14,7 @@
 - [VAB 导入设计](ksp/VAB_IMPORT_DESIGN.md)、[批量导入 API](ksp/BATCH_IMPORT.md)
 - [安装索引](ksp/KSP_INSTALL_INDEX.md)、[部件匹配](ksp/KSP_PART_MATCHING.md)
 - [质量证据](ksp/KSP_MASS_EVIDENCE.md)、[整箭对账](ksp/KSP_CRAFT_MASS_RECONCILIATION.md)、[模块语义](ksp/KSP_MODULE_MASS_SEMANTICS.md)
+- [源验证缓存与导入预览性能](ksp/KSP_SOURCE_VERIFICATION_CACHE.md)
 - [RealChute 授权范围](ksp/KSP_REALCHUTE_SETTLED_MASS_ENABLEMENT.md)（生产门控仍按固定指纹 fail-closed；原始实验数据已移出工作树）
 
 ## 计算模型与 API

@@ -1,8 +1,14 @@
 """Verified editor state; never approximate a mod's settled mass from PART.mass."""
 import hashlib
+import json
 import math
+import os
+import tempfile
+import threading
+import time
 from pathlib import Path
 
+from .config import OUTPUT_DIR
 from .ksp_confignode import parse
 
 
@@ -21,13 +27,153 @@ def module_fields(module):
     return values
 
 
+_CACHE_SCHEMA = 1
+_CACHE_TTL_S = 6 * 60 * 60
+_CACHE_PATH = Path(OUTPUT_DIR) / 'cache' / 'ksp_source_verification.json'
+_CACHE_LOCK = threading.RLock()
+_CACHE = {}
+_CACHE_LOADED = False
+
+
+def _load_cache():
+    global _CACHE_LOADED
+    with _CACHE_LOCK:
+        if _CACHE_LOADED:
+            return
+        _CACHE_LOADED = True
+        try:
+            payload = json.loads(_CACHE_PATH.read_text(encoding='utf-8'))
+        except (OSError, ValueError, TypeError):
+            return
+        if not isinstance(payload, dict) or payload.get('schema') != _CACHE_SCHEMA:
+            return
+        entries = payload.get('entries')
+        if not isinstance(entries, dict):
+            return
+        now = time.time()
+        for key, entry in entries.items():
+            if not isinstance(entry, dict) or not isinstance(entry.get('signature'), str):
+                continue
+            try:
+                verified_at = float(entry.get('verified_at', 0))
+            except (TypeError, ValueError):
+                continue
+            if now - verified_at <= _CACHE_TTL_S:
+                _CACHE[key] = {'signature': entry['signature'], 'verified_at': verified_at}
+
+
+def _write_cache_locked():
+    payload = {'schema': _CACHE_SCHEMA, 'entries': _CACHE}
+    temporary = None
+    try:
+        _CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
+        descriptor, temporary = tempfile.mkstemp(
+            prefix='.ksp-source-', suffix='.tmp', dir=str(_CACHE_PATH.parent))
+        with os.fdopen(descriptor, 'w', encoding='utf-8') as stream:
+            json.dump(payload, stream, ensure_ascii=False, separators=(',', ':'))
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, _CACHE_PATH)
+        temporary = None
+    except OSError:
+        pass
+    finally:
+        if temporary:
+            try:
+                os.unlink(temporary)
+            except OSError:
+                pass
+
+
+def clear_source_cache():
+    """Drop the in-memory and on-disk verification cache (tests/manual refresh)."""
+    global _CACHE_LOADED
+    with _CACHE_LOCK:
+        _CACHE.clear()
+        _CACHE_LOADED = True
+        try:
+            _CACHE_PATH.unlink()
+        except OSError:
+            pass
+
+
+def _source_key(source):
+    root = str(Path(source['ksp_root']).resolve())
+    files = sorted((str(record.get('path', '')).replace('\\', '/'),
+                    str(record.get('sha256', '')))
+                   for record in source.get('files') or [])
+    payload = json.dumps([root, files], ensure_ascii=False, separators=(',', ':'))
+    return hashlib.sha256(payload.encode('utf-8')).hexdigest()
+
+
+def _signature_paths(source):
+    """Directories whose mtimes can reveal new or removed plugin files."""
+    root = Path(source['ksp_root']).resolve()
+    gamedata = root / 'GameData'
+    directories = {gamedata}
+    recorded = []
+    for record in source.get('files') or []:
+        path = root / record['path']
+        recorded.append(path)
+        parent = path.parent
+        while parent != gamedata and gamedata in parent.parents:
+            directories.add(parent)
+            parent = parent.parent
+    try:
+        with os.scandir(gamedata) as entries:
+            for entry in entries:
+                try:
+                    if entry.is_dir(follow_symlinks=False):
+                        directories.add(Path(entry.path))
+                except OSError:
+                    continue
+    except OSError:
+        pass
+    return directories, recorded
+
+
+def _source_signature(source):
+    directories, recorded = _signature_paths(source)
+    parts = []
+    for directory in sorted(directories, key=str):
+        try:
+            stat = directory.stat()
+            parts.append(['d', str(directory), stat.st_mtime_ns, stat.st_size])
+        except OSError:
+            parts.append(['d', str(directory), -1, -1])
+    for path in sorted(set(recorded), key=str):
+        try:
+            stat = path.stat()
+            parts.append(['f', str(path), stat.st_mtime_ns, stat.st_size])
+        except OSError:
+            parts.append(['f', str(path), -1, -1])
+    payload = json.dumps(parts, ensure_ascii=False, separators=(',', ':'))
+    return hashlib.sha256(payload.encode('utf-8')).hexdigest()
+
+
+def _scan_plugin_paths(root):
+    """Current DLL set; this recursive scan dominates a cold verification."""
+    return {str(path.relative_to(root)).replace('\\', '/').lower()
+            for path in (Path(root) / 'GameData').rglob('*.dll')}
+
+
 def verify_sources(source):
     root = Path(source['ksp_root']).resolve()
     records = source.get('files') or []
     if not records:
         raise ValueError('缺少游戏配置来源指纹')
-    plugin_paths = {record['path'].replace('\\','/').lower() for record in records if record['path'].lower().endswith('.dll')}
-    current_plugins = {str(p.relative_to(root)).replace('\\','/').lower() for p in (root/'GameData').rglob('*.dll')}
+    key = _source_key(source)
+    signature = _source_signature(source)
+    _load_cache()
+    with _CACHE_LOCK:
+        cached = _CACHE.get(key)
+        if (cached is not None and cached.get('signature') == signature
+                and time.time() - cached['verified_at'] <= _CACHE_TTL_S):
+            return
+    plugin_paths = {record['path'].replace('\\', '/').lower()
+                    for record in records
+                    if record['path'].lower().endswith('.dll')}
+    current_plugins = _scan_plugin_paths(root)
     if plugin_paths != current_plugins:
         raise ValueError('Mod 插件集合已变化，请在游戏中重新保存火箭')
     for record in records:
@@ -36,11 +182,32 @@ def verify_sources(source):
             raise ValueError('游戏来源文件缺失或路径越界')
         if hashlib.sha256(path.read_bytes()).hexdigest() != record['sha256']:
             raise ValueError('游戏配置或 Mod 已变化，请在游戏中重新保存火箭')
+    # Cache only the exact state that was verified. If files changed during
+    # the scan, the next call must verify again instead of trusting a state
+    # that no longer exists.
+    if _source_signature(source) != signature:
+        return
+    with _CACHE_LOCK:
+        _CACHE[key] = {'signature': signature, 'verified_at': time.time()}
+        if len(_CACHE) > 8:
+            oldest = sorted(_CACHE.items(), key=lambda item: item[1]['verified_at'])[:len(_CACHE) - 8]
+            for stale, _ in oldest:
+                _CACHE.pop(stale, None)
+        _write_cache_locked()
 
 
-def checked_runtime_performance(stage):
-    verify_sources(stage['runtime_source'])
-    source=stage['runtime_source']
+def _same_source(left, right):
+    if left is right:
+        return True
+    if not isinstance(left, dict) or not isinstance(right, dict):
+        return False
+    return left.get('ksp_root') == right.get('ksp_root') and left.get('files') == right.get('files')
+
+
+def checked_runtime_performance(stage, *, verified_source=None):
+    source = stage['runtime_source']
+    if not _same_source(verified_source, source):
+        verify_sources(source)
     root=Path(source['ksp_root']).resolve()
     snapshot_path=Path(source['snapshot_path']).resolve()
     if not snapshot_path.is_relative_to(root/'PluginData/C3MassTelemetry/EditorSnapshots'):

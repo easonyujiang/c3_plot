@@ -24,7 +24,7 @@ def _validate_number(errors, value, field, *, minimum=None, strictly_positive=Fa
     return True
 
 
-def validate_rocket(cfg, *, engines_dir=None):
+def validate_rocket(cfg, *, engines_dir=None, verified_source=None):
     """
     Validate a rocket config dict. Returns (is_valid, errors_list).
 
@@ -100,7 +100,7 @@ def validate_rocket(cfg, *, engines_dir=None):
             if 'runtime_performance' in s:
                 try:
                     from .editor_snapshot import checked_runtime_performance
-                    checked_runtime_performance(s)
+                    checked_runtime_performance(s, verified_source=verified_source)
                 except (KeyError, ValueError, OSError) as exc:
                     errors.append(f'Stage {i}: runtime engine evidence invalid: {exc}')
             if s.get('parallel') and i == len(stages) - 1:
